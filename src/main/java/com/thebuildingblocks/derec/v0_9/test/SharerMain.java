@@ -1,7 +1,9 @@
 package com.thebuildingblocks.derec.v0_9.test;
 
+import com.thebuildingblocks.derec.v0_9.httpprototype.HelperClient;
 import com.thebuildingblocks.derec.v0_9.httpprototype.Secret;
 import com.thebuildingblocks.derec.v0_9.httpprototype.Sharer;
+import com.thebuildingblocks.derec.v0_9.httpprototype.Version;
 import com.thebuildingblocks.derec.v0_9.interfaces.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,16 +26,16 @@ public class SharerMain {
 
     public void run() {
         // build a sharer
-        DeRecSharer me = Sharer.newBuilder()
+        Sharer me = Sharer.newBuilder()
                 .id(new DeRecId("Secret Sammy", "mailto:test@example.org", null))
                 .notificationListener(this::logNotification)
                 .build();
         // get a secret
         logger.info("Building a secret, wait for it to be available");
-        DeRecSecret secret = me.newSecret("Martin Luther", "I have a dream".getBytes(StandardCharsets.UTF_8),
+        Secret secret = me.newSecret("Martin Luther", "I have a dream".getBytes(StandardCharsets.UTF_8),
                 Arrays.asList(DEFAULT_IDS));
         // get last version shared - in this case the first version shared
-        DeRecVersion v = secret.getVersions().lastEntry().getValue();
+        Version v = secret.getVersions().lastEntry().getValue();
         logger.info("Secret version: {}, is protected: {}", v.getVersionNumber(), v.isProtected());
 
         // update the secret
@@ -55,7 +57,7 @@ public class SharerMain {
             logger.info("[Expected] Exception on update secret", e);
         }
 
-        DeRecSecret secret2 = me.newSecret("Genghis Khan", "Something".getBytes(StandardCharsets.UTF_8),
+        Secret secret2 = me.newSecret("Genghis Khan", "Something".getBytes(StandardCharsets.UTF_8),
                 Arrays.asList(DEFAULT_IDS));
 
         System.out.println("Helpers and Secrets");
@@ -66,9 +68,9 @@ public class SharerMain {
         });
 
         System.out.println("Secrets and Helpers");
-        for (DeRecSecret s: me.getSecrets()) {
+        for (Secret s: me.getSecrets()) {
             System.out.println("Secret Id: " + s.getSecretId().toString());
-            for (DeRecPairable p: s.getHelpers()) {
+            for (HelperClient p: s.getHelpers()) {
                 System.out.println("   " + p.getId().getName() + ": " + p.getStatus());
             }
         }

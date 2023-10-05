@@ -1,5 +1,6 @@
 package com.thebuildingblocks.derec.v0_9.httpprototype;
 
+import com.thebuildingblocks.derec.v0_9.interfaces.DeRecId;
 import com.thebuildingblocks.derec.v0_9.interfaces.DeRecSecret;
 import com.thebuildingblocks.derec.v0_9.interfaces.DeRecVersion;
 
@@ -12,7 +13,7 @@ import java.util.stream.IntStream;
 /**
  * Representing a version of a share
  */
-public class Version implements DeRecVersion {
+public class Version implements DeRecVersion<Secret, Version, HelperClient, DeRecId> {
     // copy of the secret when the version was created
     final byte[] bytesToProtect;
     // the secret this version belongs to
@@ -50,7 +51,7 @@ public class Version implements DeRecVersion {
     }
 
     @Override
-    public DeRecSecret getSecret() {
+    public Secret getSecret() {
         return secret;
     }
 

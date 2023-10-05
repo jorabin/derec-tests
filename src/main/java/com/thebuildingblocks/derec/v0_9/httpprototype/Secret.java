@@ -20,7 +20,7 @@ import static com.thebuildingblocks.derec.v0_9.httpprototype.Sharer.defaultRetry
  * safe to be called from different threads, however asynchronous completions carried out in different threads
  * are intended to be safe.
  */
-public class Secret implements Closeable, DeRecSecret {
+public class Secret implements Closeable, DeRecSecret<Secret, Version, HelperClient, DeRecId> {
     /* -- basic details of the secret -- */
      DeRecId sharerId;
      UUID secretId; // the ID of the secret
@@ -57,9 +57,9 @@ public class Secret implements Closeable, DeRecSecret {
      * @param helperIds the ids of the helpers to add
      */
     @Override
-    public void addHelpers(List<? extends DeRecId> helperIds) {
+    public void addHelpers(List<DeRecId> helperIds) {
         // block for completion
-        List<CompletableFuture<? extends DeRecPairable>> futures = addHelpersAsync(helperIds);
+        List<CompletableFuture<HelperClient>> futures = addHelpersAsync(helperIds);
         try {
             logger.info("Awaiting result of pairing");
             CompletableFuture.allOf(futures.toArray(new CompletableFuture[helperIds.size()])).get(retryParameters.pairingWaitSecs, TimeUnit.SECONDS);
@@ -82,11 +82,11 @@ public class Secret implements Closeable, DeRecSecret {
      * @return a list of {@link Future<HelperClient>} for helpers created and added
      */
     @Override
-    public List<CompletableFuture<? extends DeRecPairable>> addHelpersAsync(List<? extends DeRecId> helperIds) {
+    public List<CompletableFuture<HelperClient>> addHelpersAsync(List<DeRecId> helperIds) {
         if (isClosed()) {
             throw new IllegalStateException("Cannot add helpers to closed secret");
         }
-        List<CompletableFuture<? extends DeRecPairable>> addedHelpers = new ArrayList<>();
+        List<CompletableFuture<HelperClient>> addedHelpers = new ArrayList<>();
         for (DeRecId helperId: helperIds) {
             HelperClient helper = new HelperClient(this, helperId);
             // todo other helper configuration, timeouts, etc.
@@ -103,7 +103,7 @@ public class Secret implements Closeable, DeRecSecret {
     }
 
     @Override
-    public void removeHelpers(List<? extends DeRecId> helperIds) {
+    public void removeHelpers(List<DeRecId> helperIds) {
         // update status of to-be-removed helpers
         // figure out the remaining threshold and re-share to those that remain
         // notify the removed helpers that they are removed
@@ -165,7 +165,7 @@ public class Secret implements Closeable, DeRecSecret {
     }
 
     @Override
-    public NavigableMap<Integer, ? extends DeRecVersion> getVersions() {
+    public NavigableMap<Integer, Version> getVersions() {
         return versions;
     }
 

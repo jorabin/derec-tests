@@ -9,7 +9,7 @@ import java.security.cert.X509Certificate;
 import java.util.*;
 import java.util.function.Consumer;
 
-public class Sharer implements DeRecSharer{
+public class Sharer implements DeRecSharer<Secret, Version, HelperClient, DeRecId>{
     public static final List<String> availableVersions = List.of("0.9");
     public static Util.RetryParameters defaultRetryParameters = new Util.RetryParameters();
     // TODO: these should be grouped as "threshold management parameters" or some such

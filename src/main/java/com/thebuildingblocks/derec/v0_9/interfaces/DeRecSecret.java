@@ -11,28 +11,28 @@ import java.util.concurrent.Future;
  * A secret is a "Helper Controller", in other words it controls the communication with each of the
  * helpers assigned to it, and carries out updates of the secret.
  */
-public interface DeRecSecret extends Closeable {
+public interface DeRecSecret <S extends DeRecSecret<S, V, H, I>, V extends DeRecVersion<S, V, H, I>, H extends DeRecPairable, I extends DeRecId> extends Closeable {
 
     /**
      * Add helpers to this secret and block till the outcome of adding them is known
      *
      * @param helperIds a list of helper IDs to add
      */
-    void addHelpers(List<? extends DeRecId> helperIds);
+    void addHelpers(List<I> helperIds);
 
     /**
      * Add helpers to this secret asynchronously
      *
      * @param helperIds a list of futures for each of the helpers
      */
-    List<CompletableFuture<? extends DeRecPairable>> addHelpersAsync(List<? extends DeRecId> helperIds);
+    List<CompletableFuture<H>> addHelpersAsync(List<I> helperIds);
 
     /**
      * List the helpers
      *
      * @return a list of helpers
      */
-    List<? extends DeRecPairable> getHelpers();
+    List<H> getHelpers();
 
     /**
      * Remove each of the helperIds in the list, if a helperId in the list does not refer to a helper for this secret
@@ -40,7 +40,7 @@ public interface DeRecSecret extends Closeable {
      *
      * @param helperIds a list of helper IDs
      */
-    void removeHelpers(List<? extends DeRecId> helperIds);
+    void removeHelpers(List<I> helperIds);
 
     /**
      * Update a secret synchronously blocking till the outcome (success or fail) is known.
@@ -56,14 +56,14 @@ public interface DeRecSecret extends Closeable {
      * @param bytesToProtect the bytes of the update
      * @return a Future which completes when the update is safe or when it is known to have failed
      */
-    Future<? extends DeRecVersion> updateAsync(byte[] bytesToProtect);
+    Future<V> updateAsync(byte[] bytesToProtect);
 
     /**
      * get a list of versions of the secret
      *
      * @return a {@link NavigableMap} of versions
      */
-    NavigableMap<Integer, ? extends DeRecVersion> getVersions();
+    NavigableMap<Integer, V> getVersions();
 
     /**
      * Is the secret in a state where updates can safely be made and if it is not closed

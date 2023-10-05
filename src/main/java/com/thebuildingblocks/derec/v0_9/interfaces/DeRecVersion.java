@@ -5,12 +5,12 @@ package com.thebuildingblocks.derec.v0_9.interfaces;
  * It is distributed among helpers. If a sufficient number of helpers acknowledge receipt {@link #isProtected()}
  * returns true, representing that this version can be recovered.
  */
-public interface DeRecVersion {
+public interface DeRecVersion <S extends DeRecSecret<S, V, H, I>, V extends DeRecVersion<S, V, H, I>, H extends DeRecPairable, I extends DeRecId>{
 
     /**
      * The secret this version is a secret of
      */
-    DeRecSecret getSecret();
+    S getSecret();
 
     /**
      * The version number of this Version. Later versions have higher numbers.
