@@ -17,7 +17,7 @@
 
 package com.thebuildingblocks.derec.v0_9.test;
 
-import org.derecalliance.derec.api.DeRecHelperInfo;
+import org.derecalliance.derec.api.DeRecIdentity;
 import org.derecalliance.derec.api.DeRecSecret;
 import org.derecalliance.derec.api.DeRecSharer;
 
@@ -51,10 +51,10 @@ public class Recipes {
     /**
      * Get a list of all helper ids and the secrets they protect
      */
-    public static Map<DeRecHelperInfo, List<DeRecSecret>> listHelpers(DeRecSharer sharer) {
+    public static Map<DeRecIdentity, List<DeRecSecret>> listHelpers(DeRecSharer sharer) {
         // todo: this could possibly be done more elegantly using mapping collector
         // create a map of DeRecId and List<Secret>
-        final Map<DeRecHelperInfo, List<DeRecSecret>> secretMap = new HashMap<>();
+        final Map<DeRecIdentity, List<DeRecSecret>> secretMap = new HashMap<>();
         // populate the map
         sharer.getSecrets().forEach(s -> s.getHelpers()
                 .forEach(h -> {

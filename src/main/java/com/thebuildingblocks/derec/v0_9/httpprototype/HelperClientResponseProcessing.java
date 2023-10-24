@@ -97,30 +97,6 @@ public class HelperClientResponseProcessing {
         return helperClient;
     }
 
-    private static boolean pairingProcessResponse(BodyCase bodyCase,
-                                                  ResultOuterClass.Result result,
-                                                  HelperClient helperClient) {
-        // get the right set of status and notification codes for this message type
-        PairingResponseProcessingStatus processingStatus = responsesStatuses.get(bodyCase);
-        // handy callable notification function
-        BiConsumer<Boolean, String> reporter = (b, s) -> helperClient.secret.notifyStatus(Notification.newBuilder()
-                .secret(helperClient.secret)
-                .helper(helperClient)
-                .message(s)
-                .build(b ? processingStatus.successNotification() : processingStatus.failNotification()));
-
-        // server failed
-        if (!result.getStatus().equals(OK)) {
-            reporter.accept(false, result.getStatus() + " " + result.getMemo());
-            helperClient.status = processingStatus.failStatus();
-            return false;
-        }
-        // server success
-        reporter.accept(true, result.getStatus() + " " + result.getMemo());
-        helperClient.status = processingStatus.successStatus();
-        return true;
-    }
-
     public static Version.Share verifyResponseHandler(InputStream inputStream, Version.Share share) {
         BiConsumer<Boolean, String> reporter = (b, s) -> share.processResult(VERIFY, b, s);
         // check there is an appropriate messageBody

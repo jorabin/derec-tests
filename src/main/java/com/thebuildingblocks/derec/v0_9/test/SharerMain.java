@@ -19,7 +19,6 @@ package com.thebuildingblocks.derec.v0_9.test;
 
 import com.thebuildingblocks.derec.v0_9.httpprototype.Secret;
 import com.thebuildingblocks.derec.v0_9.httpprototype.Sharer;
-import com.thebuildingblocks.derec.v0_9.httpprototype.Util;
 import org.derecalliance.derec.api.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,7 +48,7 @@ public class SharerMain {
         String pem = pemFrom(keyPair.getPublic());
         // build a sharer
         Sharer me = Sharer.newBuilder()
-                .id(new DeRecHelperInfo("Secret Sammy", "mailto:test@example.org", null, pem))
+                .id(new DeRecIdentity("Secret Sammy", "mailto:test@example.org", null, pem))
                 .keyPair(keyPairGenerator.generateKeyPair())
                 .notificationListener(Notifier::logNotification)
                 .build();

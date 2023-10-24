@@ -18,7 +18,10 @@
 package com.thebuildingblocks.derec.v0_9.httpprototype;
 
 import com.google.protobuf.ByteString;
-import org.derecalliance.derec.api.DeRecHelperInfo;
+import com.google.protobuf.Timestamp;
+import derec.message.Secretidsversions;
+import derec.message.Secretidsversions.GetSecretIdsVersionsRequestMessage;
+import org.derecalliance.derec.api.DeRecIdentity;
 import derec.message.Derecmessage.DeRecMessage.SharerMessageBody;
 
 import static derec.message.Communicationinfo.*;
@@ -34,7 +37,40 @@ import static derec.message.Verify.*;
  */
 public class HelperClientMessageFactory {
 
-    public static SharerMessageBody getPairRequestMessageBody (DeRecHelperInfo deRecId) {
+    public static class ProtocolInfo {
+        private int versionMinor = 9;
+        private int versionMajor = 0;
+        private byte[] secretId = new byte[0];
+        private byte[] sharerPublicKeyDigest;
+        private byte[] helperPublicKeyDigest;
+
+        public static Builder newBuilder(){
+            return new Builder();
+        }
+
+        public static class Builder {
+            ProtocolInfo protocolInfo = new ProtocolInfo();
+            private Builder(){}
+
+            Builder secretId(byte[] secretId) {
+                protocolInfo.secretId = secretId;
+                return this;
+            }
+            Builder sharerPublicKeyDigest(byte[] sharerPublicKeyDigest) {
+                protocolInfo.sharerPublicKeyDigest = sharerPublicKeyDigest;
+                return this;
+            }
+            Builder helperPublicKeyDigest(byte[] helperPublicKeyDigest) {
+                protocolInfo.helperPublicKeyDigest = helperPublicKeyDigest;
+                return this;
+            }
+            ProtocolInfo build() {
+                return protocolInfo;
+            }
+        }
+    }
+
+    public static SharerMessageBody getPairRequestMessageBody (DeRecIdentity deRecId) {
         return SharerMessageBody.newBuilder()
                 .setPairRequestMessage(PairRequestMessage.newBuilder()
                         .setCommunicationInfo(CommunicationInfo.newBuilder()
@@ -84,15 +120,22 @@ public class HelperClientMessageFactory {
                 .build();
     }
 
+    public static SharerMessageBody getSecretsIdsVersionsMessageBody () {
+        return SharerMessageBody.newBuilder()
+                .setGetSecretIdsVersionsRequestMessage(GetSecretIdsVersionsRequestMessage.newBuilder()
+                        .build())
+                .build();
+    }
 
-    public static DeRecMessage getMessage(HelperClient helperClient, SharerMessageBody body) {
+
+    public static DeRecMessage getMessage(ProtocolInfo info, SharerMessageBody body) {
         return newBuilder()
-/*
-                .setProtocolVersionMajor(0)
-                .setProtocolVersionMinor(9)
-                .setSecretId(ByteString.copyFrom(Helpers.asBytes(helperClient.secret.secretId)))
-                .setSender(ByteString.copyFrom(messageDigest.digest(helperClient.secret.sharer.keyPair.getPublic().getEncoded())))
-*/
+                .setProtocolVersionMinor(info.versionMinor)
+                .setProtocolVersionMajor(info.versionMajor)
+                .setReceiver(ByteString.copyFrom(info.helperPublicKeyDigest))
+                .setSender(ByteString.copyFrom(info.sharerPublicKeyDigest))
+                .setSecretId(ByteString.copyFrom(info.secretId))
+                .setTimestamp(Timestamp.newBuilder().setSeconds(System.currentTimeMillis()).build())
                 .setMessageBodies(MessageBodies.newBuilder()
                         .setSharerMessageBodies(SharerMessageBodies.newBuilder()
                                 .addSharerMessageBody(body)

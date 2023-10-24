@@ -21,7 +21,7 @@ import com.thebuildingblocks.derec.v0_9.httpprototype.Secret;
 import com.thebuildingblocks.derec.v0_9.httpprototype.Sharer;
 import com.thebuildingblocks.derec.v0_9.httpprototype.Util;
 import com.thebuildingblocks.derec.v0_9.httpprototype.Version;
-import org.derecalliance.derec.api.DeRecHelperInfo;
+import org.derecalliance.derec.api.DeRecIdentity;
 import org.derecalliance.derec.api.DeRecSecret;
 import org.derecalliance.derec.api.DeRecStatusNotification;
 import org.derecalliance.derec.api.DeRecVersion;
@@ -54,7 +54,7 @@ public class SharerMain2 {
         String pem = pemFrom(keyPair.getPublic());
         // build a sharer
         Sharer me = Sharer.newBuilder()
-                .id(new DeRecHelperInfo("Incremental Inge", "mailto:test@example.org", null, pem))
+                .id(new DeRecIdentity("Incremental Inge", "mailto:test@example.org", null, pem))
                 .keyPair(keyPairGenerator.generateKeyPair())
                 .notificationListener(Notifier::logNotification)
                 .build();
@@ -65,7 +65,7 @@ public class SharerMain2 {
         Version v = (Version) secret.getVersions().lastEntry().getValue();
         logger.info("Secret version: {}, is protected: {}", v.getVersionNumber(), v.isProtected());
 
-        for (DeRecHelperInfo helperInfo: DEFAULT_IDS) {
+        for (DeRecIdentity helperInfo: DEFAULT_IDS) {
             Thread.sleep(5000);
             logger.info("Pairing with {}", helperInfo.getName());
             secret.addHelpersAsync(List.of(helperInfo));

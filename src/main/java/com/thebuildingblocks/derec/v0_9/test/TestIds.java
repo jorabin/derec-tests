@@ -17,7 +17,7 @@
 
 package com.thebuildingblocks.derec.v0_9.test;
 
-import org.derecalliance.derec.api.DeRecHelperInfo;
+import org.derecalliance.derec.api.DeRecIdentity;
 
 import java.security.KeyPair;
 import java.security.PublicKey;
@@ -46,16 +46,16 @@ public class TestIds {
     public static String pemFrom(PublicKey publicKey) {
         return Base64.getEncoder().encodeToString(publicKey.getEncoded());
     }
-    public static DeRecHelperInfo[] DEFAULT_IDS = {
-            new DeRecHelperInfo("leemon", "mailto:leemon@swirldslabs.com", "http://localhost:8080/leemon", pem("leemon")),
-            new DeRecHelperInfo("rohit", "mailto:rohit@swirldslabs.com", "http://localhost:8080/rohit", pem("rohit")),
-            new DeRecHelperInfo("dipti", "mailto:dipti@swirldslabs.com", "http://localhost:8080/dipti", pem("dipti")),
-            new DeRecHelperInfo("cate", "mailto:cate@swirldslabs.com", "http://localhost:8080/cate", pem("cate")),
-            new DeRecHelperInfo("jo", "mailto:jo@thebuildingblocks.com", "http://localhost:8080/jo", pem("jo")),
-            new DeRecHelperInfo("niall", "mailto:niall@thebuildingblocks.com", "http://localhost:8080/niall", pem("niall")),
-            new DeRecHelperInfo("daniel", "mailto:daniel@thebuildingblocks.com", "http://localhost:8080/daniel", pem("daniel")),
-            new DeRecHelperInfo("noone", "mailto:noone@thebuildingblocks.com", "http://localhost:8080/noone", pem("noone")),
-            new DeRecHelperInfo("nowhere", "mailto:nowhere@thebuildingblocks.com", "http://192.168.1.40/nowhere", pem("nowhere")),
+    public static DeRecIdentity[] DEFAULT_IDS = {
+            new DeRecIdentity("leemon", "mailto:leemon@swirldslabs.com", "http://localhost:8080/leemon", pem("leemon")),
+            new DeRecIdentity("rohit", "mailto:rohit@swirldslabs.com", "http://localhost:8080/rohit", pem("rohit")),
+            new DeRecIdentity("dipti", "mailto:dipti@swirldslabs.com", "http://localhost:8080/dipti", pem("dipti")),
+            new DeRecIdentity("cate", "mailto:cate@swirldslabs.com", "http://localhost:8080/cate", pem("cate")),
+            new DeRecIdentity("jo", "mailto:jo@thebuildingblocks.com", "http://localhost:8080/jo", pem("jo")),
+            new DeRecIdentity("niall", "mailto:niall@thebuildingblocks.com", "http://localhost:8080/niall", pem("niall")),
+            new DeRecIdentity("daniel", "mailto:daniel@thebuildingblocks.com", "http://localhost:8080/daniel", pem("daniel")),
+            new DeRecIdentity("noone", "mailto:noone@thebuildingblocks.com", "http://localhost:8080/noone", pem("noone")),
+            new DeRecIdentity("nowhere", "mailto:nowhere@thebuildingblocks.com", "http://192.168.1.40/nowhere", pem("nowhere")),
     };
 
 }

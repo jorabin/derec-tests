@@ -17,7 +17,7 @@
 
 package com.thebuildingblocks.derec.v0_9.httpprototype;
 
-import org.derecalliance.derec.api.DeRecHelperInfo;
+import org.derecalliance.derec.api.DeRecIdentity;
 import org.derecalliance.derec.api.DeRecHelperStatus;
 import org.derecalliance.derec.api.DeRecStatusNotification;
 import org.slf4j.Logger;
@@ -55,7 +55,7 @@ public class HelperClient implements DeRecHelperStatus, Closeable {
     public final Secret secret; // the secret this helper is a helper for
     private final Util.RetryParameters retryParameters;
     private final HttpClient httpClient;
-    private final DeRecHelperInfo helperId; // unique Id for helper
+    private final DeRecIdentity helperId; // unique Id for helper
     URI tsAndCs;    // link to legal conditions regarding what the helper is to do about
     // authentication for recovery and substitution of sharer
     PublicKey publicKey; // public key for the helper (for this secret)
@@ -69,8 +69,9 @@ public class HelperClient implements DeRecHelperStatus, Closeable {
     CompletableFuture<HelperClient> pairingFuture; // awaits completion of pairing or unpairing
     BiConsumer<DeRecStatusNotification.StandardNotificationType, String> notifier;
     Logger logger = LoggerFactory.getLogger(this.getClass());
+    ProtocolInfo protocolInfo;
 
-    HelperClient(Secret secret, DeRecHelperInfo helperId, HttpClient httpClient, Util.RetryParameters retryParameters) {
+    HelperClient(Secret secret, DeRecIdentity helperId, HttpClient httpClient, Util.RetryParameters retryParameters) {
         this.secret = secret;
         this.helperId = helperId;
         this.httpClient = httpClient;
@@ -80,6 +81,11 @@ public class HelperClient implements DeRecHelperStatus, Closeable {
                         .helper(this)
                         .message(s)
                         .build(t));
+        this.protocolInfo = ProtocolInfo.newBuilder()
+                .secretId(secret.getSecretId())
+                .helperPublicKeyDigest(helperId.getPublicKeyDigest())
+                .sharerPublicKeyDigest(secret.sharer.id.getPublicKeyDigest())
+                .build();
     }
 
     // convenience function to build requests consistently
@@ -115,7 +121,7 @@ public class HelperClient implements DeRecHelperStatus, Closeable {
         }
 
         HttpRequest request = buildRequest()
-                .POST(BodyPublishers.ofByteArray(getMessage(this,
+                .POST(BodyPublishers.ofByteArray(getMessage(this.protocolInfo,
                         getPairRequestMessageBody(helperId)).toByteArray()))
                 .build();
 
@@ -138,7 +144,7 @@ public class HelperClient implements DeRecHelperStatus, Closeable {
         }
 
         HttpRequest request = buildRequest()
-                .POST(BodyPublishers.ofByteArray(getMessage(this,
+                .POST(BodyPublishers.ofByteArray(getMessage(this.protocolInfo,
                         getShareRequestMessageBody(share)).toByteArray()))
                 .build();
 
@@ -172,7 +178,7 @@ public class HelperClient implements DeRecHelperStatus, Closeable {
         }
 
         HttpRequest request = buildRequest()
-                .POST(BodyPublishers.ofByteArray(getMessage(this, getVerifyRequestMessageBody(share)).toByteArray()))
+                .POST(BodyPublishers.ofByteArray(getMessage(this.protocolInfo, getVerifyRequestMessageBody(share)).toByteArray()))
                 .build();
 
         share.future = httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofInputStream())
@@ -197,7 +203,7 @@ public class HelperClient implements DeRecHelperStatus, Closeable {
         }
 
         HttpRequest request = buildRequest()
-                .POST(BodyPublishers.ofByteArray(getMessage(this, getUnPairRequestMessageBody(reason)).toByteArray()))
+                .POST(BodyPublishers.ofByteArray(getMessage(this.protocolInfo, getUnPairRequestMessageBody(reason)).toByteArray()))
                 .build();
 
 
@@ -223,7 +229,7 @@ public class HelperClient implements DeRecHelperStatus, Closeable {
     }
 
     @Override
-    public DeRecHelperInfo getId() {
+    public DeRecIdentity getId() {
         return helperId;
     }
 

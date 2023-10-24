@@ -23,7 +23,7 @@ import com.sun.net.httpserver.HttpContext;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
-import org.derecalliance.derec.api.DeRecHelperInfo;
+import org.derecalliance.derec.api.DeRecIdentity;
 import derec.message.*;
 import derec.message.Communicationinfo.CommunicationInfoKeyValue;
 import derec.message.Derecmessage.DeRecMessage;
@@ -49,7 +49,7 @@ public class HelperServerMain {
 
     public static void main(String[] args) throws IOException {
         server = HttpServer.create(new InetSocketAddress(8080), 10);
-        for (DeRecHelperInfo id : DEFAULT_IDS) {
+        for (DeRecIdentity id : DEFAULT_IDS) {
             if (id.getName().startsWith("no")) {
                 continue;
             }
@@ -66,9 +66,9 @@ public class HelperServerMain {
     }
 
     public static class HelperHandler implements HttpHandler {
-        private final DeRecHelperInfo id;
+        private final DeRecIdentity id;
 
-        public HelperHandler(DeRecHelperInfo id) {
+        public HelperHandler(DeRecIdentity id) {
             this.id = id;
         }
 

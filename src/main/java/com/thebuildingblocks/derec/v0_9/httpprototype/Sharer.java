@@ -17,13 +17,18 @@
 
 package com.thebuildingblocks.derec.v0_9.httpprototype;
 
-import org.derecalliance.derec.api.DeRecHelperInfo;
+import derec.message.Derecmessage;
+import org.derecalliance.derec.api.DeRecIdentity;
+import org.derecalliance.derec.api.DeRecIdentity;
+import org.derecalliance.derec.api.DeRecSecret;
 import org.derecalliance.derec.api.DeRecSharer;
 import org.derecalliance.derec.api.DeRecStatusNotification;
 
+import java.net.http.HttpClient;
 import java.security.KeyPair;
 import java.security.cert.X509Certificate;
 import java.util.*;
+import java.util.concurrent.Future;
 import java.util.function.Consumer;
 
 public class Sharer implements DeRecSharer{
@@ -33,7 +38,7 @@ public class Sharer implements DeRecSharer{
     public static int defaultHelpersRequiredForDeletion = 4; // number of helpers that need to confirm a new share
 
     private final Map<byte[], Secret> secrets; // a map of secret id to each secret that the sharer wishes to share
-    public DeRecHelperInfo id; // sharer's id
+    public DeRecIdentity id; // sharer's id
     public KeyPair keyPair; // public/private key pair
     // before deleting an old share
     public X509Certificate certificate; // certificate to use
@@ -56,7 +61,7 @@ public class Sharer implements DeRecSharer{
      * @return a new secret
      */
     @Override
-    public Secret newSecret(String description, byte[] bytesToProtect, List<DeRecHelperInfo> helperIds) {
+    public Secret newSecret(String description, byte[] bytesToProtect, List<DeRecIdentity> helperIds) {
         UUID secretId = UUID.randomUUID();
         return newSecret(Util.asBytes(secretId), description, bytesToProtect, helperIds);
     }
@@ -73,7 +78,7 @@ public class Sharer implements DeRecSharer{
      * @return a newly shared secret
      */
     @Override
-    public Secret newSecret(byte[] secretId, String description, byte[] bytesToProtect, List<DeRecHelperInfo> helperIds) {
+    public Secret newSecret(byte[] secretId, String description, byte[] bytesToProtect, List<DeRecIdentity> helperIds) {
         if (secrets.containsKey(secretId)) {
             throw new IllegalStateException("Secret with that Id already exists");
         }
@@ -104,6 +109,16 @@ public class Sharer implements DeRecSharer{
     }
 
     @Override
+    public Future<Map<byte[], List<Integer>>> getSecretIdsAsync(DeRecIdentity deRecHelperInfo) {
+        return Recovery.getSecretIds(this.id, deRecHelperInfo, listener);
+    }
+
+    @Override
+    public DeRecSecret recoverSecret(byte[] bytes, int i, List<? extends DeRecIdentity> list) {
+        return null;
+    }
+
+    @Override
     public void setListener(Consumer<DeRecStatusNotification> listener) {
         this.listener = listener;
     }
@@ -113,6 +128,7 @@ public class Sharer implements DeRecSharer{
             secret.close();
         }
     }
+
     public static Builder newBuilder() {
         return new Builder();
     }
@@ -123,7 +139,7 @@ public class Sharer implements DeRecSharer{
     public static class Builder {
         private final Sharer sharer = new Sharer();
 
-        public Builder id(DeRecHelperInfo id) {
+        public Builder id(DeRecIdentity id) {
             sharer.id = id;
             return this;
         }
