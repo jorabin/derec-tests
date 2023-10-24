@@ -55,6 +55,7 @@ public class HelperClientMessageDeserializer {
             case VERIFYSHARERESPONSEMESSAGE -> klass.cast(body.getVerifyShareResponseMessage());
             case GETSECRETIDSVERSIONSRESPONSEMESSAGE -> klass.cast(body.getGetSecretIdsVersionsResponseMessage());
             case GETSHARERESPONSEMESSAGE -> klass.cast(body.getGetShareResponseMessage());
+            case MESSAGINGERRORMESSAGE -> klass.cast(body.getMessagingErrorMessage());
             case BODY_NOT_SET -> throw new IllegalArgumentException("Body is not set for " + body.getBodyCase());
         };
     }
@@ -67,6 +68,7 @@ public class HelperClientMessageDeserializer {
             case VERIFYSHARERESPONSEMESSAGE -> body.getVerifyShareResponseMessage().getResult();
             case GETSECRETIDSVERSIONSRESPONSEMESSAGE -> body.getGetSecretIdsVersionsResponseMessage().getResult();
             case GETSHARERESPONSEMESSAGE -> body.getGetShareResponseMessage().getResult();
+            case MESSAGINGERRORMESSAGE -> body.getMessagingErrorMessage().getResult();
             case BODY_NOT_SET -> throw new IllegalArgumentException("Body is not set for " + body.getBodyCase());
         };
     }

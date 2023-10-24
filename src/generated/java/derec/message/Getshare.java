@@ -20,23 +20,25 @@ public final class Getshare {
 
     /**
      * <pre>
-     * the secret ID for the requested share 
+     *
+     * Secret ID (any length from 1 to 16 bytes) for the requested share
+     * Must be unique for each secret created by a sharer
      * </pre>
      *
-     * <code>int64 secretId = 1;</code>
+     * <code>bytes secretId = 1;</code>
      * @return The secretId.
      */
-    long getSecretId();
+    com.google.protobuf.ByteString getSecretId();
 
     /**
      * <pre>
      * the share version for the requested share 
      * </pre>
      *
-     * <code>int64 shareVersion = 2;</code>
+     * <code>int32 shareVersion = 2;</code>
      * @return The shareVersion.
      */
-    long getShareVersion();
+    int getShareVersion();
   }
   /**
    * <pre>
@@ -55,6 +57,7 @@ public final class Getshare {
       super(builder);
     }
     private GetShareRequestMessage() {
+      secretId_ = com.google.protobuf.ByteString.EMPTY;
     }
 
     @java.lang.Override
@@ -78,32 +81,34 @@ public final class Getshare {
     }
 
     public static final int SECRETID_FIELD_NUMBER = 1;
-    private long secretId_ = 0L;
+    private com.google.protobuf.ByteString secretId_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <pre>
-     * the secret ID for the requested share 
+     *
+     * Secret ID (any length from 1 to 16 bytes) for the requested share
+     * Must be unique for each secret created by a sharer
      * </pre>
      *
-     * <code>int64 secretId = 1;</code>
+     * <code>bytes secretId = 1;</code>
      * @return The secretId.
      */
     @java.lang.Override
-    public long getSecretId() {
+    public com.google.protobuf.ByteString getSecretId() {
       return secretId_;
     }
 
     public static final int SHAREVERSION_FIELD_NUMBER = 2;
-    private long shareVersion_ = 0L;
+    private int shareVersion_ = 0;
     /**
      * <pre>
      * the share version for the requested share 
      * </pre>
      *
-     * <code>int64 shareVersion = 2;</code>
+     * <code>int32 shareVersion = 2;</code>
      * @return The shareVersion.
      */
     @java.lang.Override
-    public long getShareVersion() {
+    public int getShareVersion() {
       return shareVersion_;
     }
 
@@ -121,11 +126,11 @@ public final class Getshare {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (secretId_ != 0L) {
-        output.writeInt64(1, secretId_);
+      if (!secretId_.isEmpty()) {
+        output.writeBytes(1, secretId_);
       }
-      if (shareVersion_ != 0L) {
-        output.writeInt64(2, shareVersion_);
+      if (shareVersion_ != 0) {
+        output.writeInt32(2, shareVersion_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -136,13 +141,13 @@ public final class Getshare {
       if (size != -1) return size;
 
       size = 0;
-      if (secretId_ != 0L) {
+      if (!secretId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(1, secretId_);
+          .computeBytesSize(1, secretId_);
       }
-      if (shareVersion_ != 0L) {
+      if (shareVersion_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(2, shareVersion_);
+          .computeInt32Size(2, shareVersion_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -159,8 +164,8 @@ public final class Getshare {
       }
       derec.message.Getshare.GetShareRequestMessage other = (derec.message.Getshare.GetShareRequestMessage) obj;
 
-      if (getSecretId()
-          != other.getSecretId()) return false;
+      if (!getSecretId()
+          .equals(other.getSecretId())) return false;
       if (getShareVersion()
           != other.getShareVersion()) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
@@ -175,11 +180,9 @@ public final class Getshare {
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + SECRETID_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getSecretId());
+      hash = (53 * hash) + getSecretId().hashCode();
       hash = (37 * hash) + SHAREVERSION_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getShareVersion());
+      hash = (53 * hash) + getShareVersion();
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -315,8 +318,8 @@ public final class Getshare {
       public Builder clear() {
         super.clear();
         bitField0_ = 0;
-        secretId_ = 0L;
-        shareVersion_ = 0L;
+        secretId_ = com.google.protobuf.ByteString.EMPTY;
+        shareVersion_ = 0;
         return this;
       }
 
@@ -402,10 +405,10 @@ public final class Getshare {
 
       public Builder mergeFrom(derec.message.Getshare.GetShareRequestMessage other) {
         if (other == derec.message.Getshare.GetShareRequestMessage.getDefaultInstance()) return this;
-        if (other.getSecretId() != 0L) {
+        if (other.getSecretId() != com.google.protobuf.ByteString.EMPTY) {
           setSecretId(other.getSecretId());
         }
-        if (other.getShareVersion() != 0L) {
+        if (other.getShareVersion() != 0) {
           setShareVersion(other.getShareVersion());
         }
         this.mergeUnknownFields(other.getUnknownFields());
@@ -434,13 +437,13 @@ public final class Getshare {
               case 0:
                 done = true;
                 break;
-              case 8: {
-                secretId_ = input.readInt64();
+              case 10: {
+                secretId_ = input.readBytes();
                 bitField0_ |= 0x00000001;
                 break;
-              } // case 8
+              } // case 10
               case 16: {
-                shareVersion_ = input.readInt64();
+                shareVersion_ = input.readInt32();
                 bitField0_ |= 0x00000002;
                 break;
               } // case 16
@@ -461,30 +464,34 @@ public final class Getshare {
       }
       private int bitField0_;
 
-      private long secretId_ ;
+      private com.google.protobuf.ByteString secretId_ = com.google.protobuf.ByteString.EMPTY;
       /**
        * <pre>
-       * the secret ID for the requested share 
+       *
+       * Secret ID (any length from 1 to 16 bytes) for the requested share
+       * Must be unique for each secret created by a sharer
        * </pre>
        *
-       * <code>int64 secretId = 1;</code>
+       * <code>bytes secretId = 1;</code>
        * @return The secretId.
        */
       @java.lang.Override
-      public long getSecretId() {
+      public com.google.protobuf.ByteString getSecretId() {
         return secretId_;
       }
       /**
        * <pre>
-       * the secret ID for the requested share 
+       *
+       * Secret ID (any length from 1 to 16 bytes) for the requested share
+       * Must be unique for each secret created by a sharer
        * </pre>
        *
-       * <code>int64 secretId = 1;</code>
+       * <code>bytes secretId = 1;</code>
        * @param value The secretId to set.
        * @return This builder for chaining.
        */
-      public Builder setSecretId(long value) {
-
+      public Builder setSecretId(com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
         secretId_ = value;
         bitField0_ |= 0x00000001;
         onChanged();
@@ -492,30 +499,32 @@ public final class Getshare {
       }
       /**
        * <pre>
-       * the secret ID for the requested share 
+       *
+       * Secret ID (any length from 1 to 16 bytes) for the requested share
+       * Must be unique for each secret created by a sharer
        * </pre>
        *
-       * <code>int64 secretId = 1;</code>
+       * <code>bytes secretId = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearSecretId() {
         bitField0_ = (bitField0_ & ~0x00000001);
-        secretId_ = 0L;
+        secretId_ = getDefaultInstance().getSecretId();
         onChanged();
         return this;
       }
 
-      private long shareVersion_ ;
+      private int shareVersion_ ;
       /**
        * <pre>
        * the share version for the requested share 
        * </pre>
        *
-       * <code>int64 shareVersion = 2;</code>
+       * <code>int32 shareVersion = 2;</code>
        * @return The shareVersion.
        */
       @java.lang.Override
-      public long getShareVersion() {
+      public int getShareVersion() {
         return shareVersion_;
       }
       /**
@@ -523,11 +532,11 @@ public final class Getshare {
        * the share version for the requested share 
        * </pre>
        *
-       * <code>int64 shareVersion = 2;</code>
+       * <code>int32 shareVersion = 2;</code>
        * @param value The shareVersion to set.
        * @return This builder for chaining.
        */
-      public Builder setShareVersion(long value) {
+      public Builder setShareVersion(int value) {
 
         shareVersion_ = value;
         bitField0_ |= 0x00000002;
@@ -539,12 +548,12 @@ public final class Getshare {
        * the share version for the requested share 
        * </pre>
        *
-       * <code>int64 shareVersion = 2;</code>
+       * <code>int32 shareVersion = 2;</code>
        * @return This builder for chaining.
        */
       public Builder clearShareVersion() {
         bitField0_ = (bitField0_ & ~0x00000002);
-        shareVersion_ = 0L;
+        shareVersion_ = 0;
         onChanged();
         return this;
       }
@@ -1581,8 +1590,8 @@ public final class Getshare {
     java.lang.String[] descriptorData = {
       "\n\016getshare.proto\022\rderec.message\032\014result." +
       "proto\032\020storeshare.proto\"@\n\026GetShareReque" +
-      "stMessage\022\020\n\010secretId\030\001 \001(\003\022\024\n\014shareVers" +
-      "ion\030\002 \001(\003\"\201\001\n\027GetShareResponseMessage\022%\n" +
+      "stMessage\022\020\n\010secretId\030\001 \001(\014\022\024\n\014shareVers" +
+      "ion\030\002 \001(\005\"\201\001\n\027GetShareResponseMessage\022%\n" +
       "\006result\030\001 \001(\0132\025.derec.message.Result\022?\n\023" +
       "committedDeRecShare\030\002 \001(\0132\".derec.messag" +
       "e.CommittedDeRecShareb\006proto3"

@@ -166,24 +166,46 @@ public final class Pair {
     /**
      * <pre>
      *
-     * public key used for signatures of messages from the initiator;
+     * public key (PEM encoded) used for signing messages from the initiator;
      * </pre>
      *
-     * <code>bytes publicSignatureKey = 3;</code>
+     * <code>string publicSignatureKey = 3;</code>
      * @return The publicSignatureKey.
      */
-    com.google.protobuf.ByteString getPublicSignatureKey();
+    java.lang.String getPublicSignatureKey();
+    /**
+     * <pre>
+     *
+     * public key (PEM encoded) used for signing messages from the initiator;
+     * </pre>
+     *
+     * <code>string publicSignatureKey = 3;</code>
+     * @return The bytes for publicSignatureKey.
+     */
+    com.google.protobuf.ByteString
+        getPublicSignatureKeyBytes();
 
     /**
      * <pre>
      *
-     * public key used for encrypting messages to the initiator;
+     * public key (PEM encoded) used for encrypting messages to the initiator;
      * </pre>
      *
-     * <code>bytes publicEncryptionKey = 4;</code>
+     * <code>string publicEncryptionKey = 4;</code>
      * @return The publicEncryptionKey.
      */
-    com.google.protobuf.ByteString getPublicEncryptionKey();
+    java.lang.String getPublicEncryptionKey();
+    /**
+     * <pre>
+     *
+     * public key (PEM encoded) used for encrypting messages to the initiator;
+     * </pre>
+     *
+     * <code>string publicEncryptionKey = 4;</code>
+     * @return The bytes for publicEncryptionKey.
+     */
+    com.google.protobuf.ByteString
+        getPublicEncryptionKeyBytes();
 
     /**
      * <pre>
@@ -287,8 +309,8 @@ public final class Pair {
     }
     private PairRequestMessage() {
       senderKind_ = 0;
-      publicSignatureKey_ = com.google.protobuf.ByteString.EMPTY;
-      publicEncryptionKey_ = com.google.protobuf.ByteString.EMPTY;
+      publicSignatureKey_ = "";
+      publicEncryptionKey_ = "";
       nonce_ = com.google.protobuf.ByteString.EMPTY;
     }
 
@@ -342,35 +364,101 @@ public final class Pair {
     }
 
     public static final int PUBLICSIGNATUREKEY_FIELD_NUMBER = 3;
-    private com.google.protobuf.ByteString publicSignatureKey_ = com.google.protobuf.ByteString.EMPTY;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object publicSignatureKey_ = "";
     /**
      * <pre>
      *
-     * public key used for signatures of messages from the initiator;
+     * public key (PEM encoded) used for signing messages from the initiator;
      * </pre>
      *
-     * <code>bytes publicSignatureKey = 3;</code>
+     * <code>string publicSignatureKey = 3;</code>
      * @return The publicSignatureKey.
      */
     @java.lang.Override
-    public com.google.protobuf.ByteString getPublicSignatureKey() {
-      return publicSignatureKey_;
+    public java.lang.String getPublicSignatureKey() {
+      java.lang.Object ref = publicSignatureKey_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        publicSignatureKey_ = s;
+        return s;
+      }
     }
-
-    public static final int PUBLICENCRYPTIONKEY_FIELD_NUMBER = 4;
-    private com.google.protobuf.ByteString publicEncryptionKey_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <pre>
      *
-     * public key used for encrypting messages to the initiator;
+     * public key (PEM encoded) used for signing messages from the initiator;
      * </pre>
      *
-     * <code>bytes publicEncryptionKey = 4;</code>
+     * <code>string publicSignatureKey = 3;</code>
+     * @return The bytes for publicSignatureKey.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getPublicSignatureKeyBytes() {
+      java.lang.Object ref = publicSignatureKey_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        publicSignatureKey_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int PUBLICENCRYPTIONKEY_FIELD_NUMBER = 4;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object publicEncryptionKey_ = "";
+    /**
+     * <pre>
+     *
+     * public key (PEM encoded) used for encrypting messages to the initiator;
+     * </pre>
+     *
+     * <code>string publicEncryptionKey = 4;</code>
      * @return The publicEncryptionKey.
      */
     @java.lang.Override
-    public com.google.protobuf.ByteString getPublicEncryptionKey() {
-      return publicEncryptionKey_;
+    public java.lang.String getPublicEncryptionKey() {
+      java.lang.Object ref = publicEncryptionKey_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        publicEncryptionKey_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     *
+     * public key (PEM encoded) used for encrypting messages to the initiator;
+     * </pre>
+     *
+     * <code>string publicEncryptionKey = 4;</code>
+     * @return The bytes for publicEncryptionKey.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getPublicEncryptionKeyBytes() {
+      java.lang.Object ref = publicEncryptionKey_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        publicEncryptionKey_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int COMMUNICATIONINFO_FIELD_NUMBER = 5;
@@ -491,11 +579,11 @@ public final class Pair {
       if (senderKind_ != derec.message.Pair.SenderKind.SHARER_NON_RECOVERY.getNumber()) {
         output.writeEnum(1, senderKind_);
       }
-      if (!publicSignatureKey_.isEmpty()) {
-        output.writeBytes(3, publicSignatureKey_);
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(publicSignatureKey_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, publicSignatureKey_);
       }
-      if (!publicEncryptionKey_.isEmpty()) {
-        output.writeBytes(4, publicEncryptionKey_);
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(publicEncryptionKey_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, publicEncryptionKey_);
       }
       if (((bitField0_ & 0x00000001) != 0)) {
         output.writeMessage(5, getCommunicationInfo());
@@ -519,13 +607,11 @@ public final class Pair {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(1, senderKind_);
       }
-      if (!publicSignatureKey_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, publicSignatureKey_);
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(publicSignatureKey_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, publicSignatureKey_);
       }
-      if (!publicEncryptionKey_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(4, publicEncryptionKey_);
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(publicEncryptionKey_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, publicEncryptionKey_);
       }
       if (((bitField0_ & 0x00000001) != 0)) {
         size += com.google.protobuf.CodedOutputStream
@@ -751,8 +837,8 @@ public final class Pair {
         super.clear();
         bitField0_ = 0;
         senderKind_ = 0;
-        publicSignatureKey_ = com.google.protobuf.ByteString.EMPTY;
-        publicEncryptionKey_ = com.google.protobuf.ByteString.EMPTY;
+        publicSignatureKey_ = "";
+        publicEncryptionKey_ = "";
         communicationInfo_ = null;
         if (communicationInfoBuilder_ != null) {
           communicationInfoBuilder_.dispose();
@@ -872,11 +958,15 @@ public final class Pair {
         if (other.senderKind_ != 0) {
           setSenderKindValue(other.getSenderKindValue());
         }
-        if (other.getPublicSignatureKey() != com.google.protobuf.ByteString.EMPTY) {
-          setPublicSignatureKey(other.getPublicSignatureKey());
+        if (!other.getPublicSignatureKey().isEmpty()) {
+          publicSignatureKey_ = other.publicSignatureKey_;
+          bitField0_ |= 0x00000002;
+          onChanged();
         }
-        if (other.getPublicEncryptionKey() != com.google.protobuf.ByteString.EMPTY) {
-          setPublicEncryptionKey(other.getPublicEncryptionKey());
+        if (!other.getPublicEncryptionKey().isEmpty()) {
+          publicEncryptionKey_ = other.publicEncryptionKey_;
+          bitField0_ |= 0x00000004;
+          onChanged();
         }
         if (other.hasCommunicationInfo()) {
           mergeCommunicationInfo(other.getCommunicationInfo());
@@ -919,12 +1009,12 @@ public final class Pair {
                 break;
               } // case 8
               case 26: {
-                publicSignatureKey_ = input.readBytes();
+                publicSignatureKey_ = input.readStringRequireUtf8();
                 bitField0_ |= 0x00000002;
                 break;
               } // case 26
               case 34: {
-                publicEncryptionKey_ = input.readBytes();
+                publicEncryptionKey_ = input.readStringRequireUtf8();
                 bitField0_ |= 0x00000004;
                 break;
               } // case 34
@@ -1042,31 +1132,62 @@ public final class Pair {
         return this;
       }
 
-      private com.google.protobuf.ByteString publicSignatureKey_ = com.google.protobuf.ByteString.EMPTY;
+      private java.lang.Object publicSignatureKey_ = "";
       /**
        * <pre>
        *
-       * public key used for signatures of messages from the initiator;
+       * public key (PEM encoded) used for signing messages from the initiator;
        * </pre>
        *
-       * <code>bytes publicSignatureKey = 3;</code>
+       * <code>string publicSignatureKey = 3;</code>
        * @return The publicSignatureKey.
        */
-      @java.lang.Override
-      public com.google.protobuf.ByteString getPublicSignatureKey() {
-        return publicSignatureKey_;
+      public java.lang.String getPublicSignatureKey() {
+        java.lang.Object ref = publicSignatureKey_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          publicSignatureKey_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
        * <pre>
        *
-       * public key used for signatures of messages from the initiator;
+       * public key (PEM encoded) used for signing messages from the initiator;
        * </pre>
        *
-       * <code>bytes publicSignatureKey = 3;</code>
+       * <code>string publicSignatureKey = 3;</code>
+       * @return The bytes for publicSignatureKey.
+       */
+      public com.google.protobuf.ByteString
+          getPublicSignatureKeyBytes() {
+        java.lang.Object ref = publicSignatureKey_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          publicSignatureKey_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       *
+       * public key (PEM encoded) used for signing messages from the initiator;
+       * </pre>
+       *
+       * <code>string publicSignatureKey = 3;</code>
        * @param value The publicSignatureKey to set.
        * @return This builder for chaining.
        */
-      public Builder setPublicSignatureKey(com.google.protobuf.ByteString value) {
+      public Builder setPublicSignatureKey(
+          java.lang.String value) {
         if (value == null) { throw new NullPointerException(); }
         publicSignatureKey_ = value;
         bitField0_ |= 0x00000002;
@@ -1076,44 +1197,94 @@ public final class Pair {
       /**
        * <pre>
        *
-       * public key used for signatures of messages from the initiator;
+       * public key (PEM encoded) used for signing messages from the initiator;
        * </pre>
        *
-       * <code>bytes publicSignatureKey = 3;</code>
+       * <code>string publicSignatureKey = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearPublicSignatureKey() {
-        bitField0_ = (bitField0_ & ~0x00000002);
         publicSignatureKey_ = getDefaultInstance().getPublicSignatureKey();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *
+       * public key (PEM encoded) used for signing messages from the initiator;
+       * </pre>
+       *
+       * <code>string publicSignatureKey = 3;</code>
+       * @param value The bytes for publicSignatureKey to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPublicSignatureKeyBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        publicSignatureKey_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.ByteString publicEncryptionKey_ = com.google.protobuf.ByteString.EMPTY;
+      private java.lang.Object publicEncryptionKey_ = "";
       /**
        * <pre>
        *
-       * public key used for encrypting messages to the initiator;
+       * public key (PEM encoded) used for encrypting messages to the initiator;
        * </pre>
        *
-       * <code>bytes publicEncryptionKey = 4;</code>
+       * <code>string publicEncryptionKey = 4;</code>
        * @return The publicEncryptionKey.
        */
-      @java.lang.Override
-      public com.google.protobuf.ByteString getPublicEncryptionKey() {
-        return publicEncryptionKey_;
+      public java.lang.String getPublicEncryptionKey() {
+        java.lang.Object ref = publicEncryptionKey_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          publicEncryptionKey_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
        * <pre>
        *
-       * public key used for encrypting messages to the initiator;
+       * public key (PEM encoded) used for encrypting messages to the initiator;
        * </pre>
        *
-       * <code>bytes publicEncryptionKey = 4;</code>
+       * <code>string publicEncryptionKey = 4;</code>
+       * @return The bytes for publicEncryptionKey.
+       */
+      public com.google.protobuf.ByteString
+          getPublicEncryptionKeyBytes() {
+        java.lang.Object ref = publicEncryptionKey_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          publicEncryptionKey_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       *
+       * public key (PEM encoded) used for encrypting messages to the initiator;
+       * </pre>
+       *
+       * <code>string publicEncryptionKey = 4;</code>
        * @param value The publicEncryptionKey to set.
        * @return This builder for chaining.
        */
-      public Builder setPublicEncryptionKey(com.google.protobuf.ByteString value) {
+      public Builder setPublicEncryptionKey(
+          java.lang.String value) {
         if (value == null) { throw new NullPointerException(); }
         publicEncryptionKey_ = value;
         bitField0_ |= 0x00000004;
@@ -1123,15 +1294,34 @@ public final class Pair {
       /**
        * <pre>
        *
-       * public key used for encrypting messages to the initiator;
+       * public key (PEM encoded) used for encrypting messages to the initiator;
        * </pre>
        *
-       * <code>bytes publicEncryptionKey = 4;</code>
+       * <code>string publicEncryptionKey = 4;</code>
        * @return This builder for chaining.
        */
       public Builder clearPublicEncryptionKey() {
-        bitField0_ = (bitField0_ & ~0x00000004);
         publicEncryptionKey_ = getDefaultInstance().getPublicEncryptionKey();
+        bitField0_ = (bitField0_ & ~0x00000004);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *
+       * public key (PEM encoded) used for encrypting messages to the initiator;
+       * </pre>
+       *
+       * <code>string publicEncryptionKey = 4;</code>
+       * @param value The bytes for publicEncryptionKey to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPublicEncryptionKeyBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        publicEncryptionKey_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -1642,13 +1832,24 @@ public final class Pair {
     /**
      * <pre>
      *
-     * public signature key (byte array supports many schemes) of the responder
+     * public signature key (PEM encoded) of the responder
      * </pre>
      *
-     * <code>bytes publicSignatureKey = 3;</code>
+     * <code>string publicSignatureKey = 3;</code>
      * @return The publicSignatureKey.
      */
-    com.google.protobuf.ByteString getPublicSignatureKey();
+    java.lang.String getPublicSignatureKey();
+    /**
+     * <pre>
+     *
+     * public signature key (PEM encoded) of the responder
+     * </pre>
+     *
+     * <code>string publicSignatureKey = 3;</code>
+     * @return The bytes for publicSignatureKey.
+     */
+    com.google.protobuf.ByteString
+        getPublicSignatureKeyBytes();
 
     /**
      * <pre>
@@ -1742,7 +1943,7 @@ public final class Pair {
     }
     private PairResponseMessage() {
       senderKind_ = 0;
-      publicSignatureKey_ = com.google.protobuf.ByteString.EMPTY;
+      publicSignatureKey_ = "";
       nonce_ = com.google.protobuf.ByteString.EMPTY;
     }
 
@@ -1834,19 +2035,52 @@ public final class Pair {
     }
 
     public static final int PUBLICSIGNATUREKEY_FIELD_NUMBER = 3;
-    private com.google.protobuf.ByteString publicSignatureKey_ = com.google.protobuf.ByteString.EMPTY;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object publicSignatureKey_ = "";
     /**
      * <pre>
      *
-     * public signature key (byte array supports many schemes) of the responder
+     * public signature key (PEM encoded) of the responder
      * </pre>
      *
-     * <code>bytes publicSignatureKey = 3;</code>
+     * <code>string publicSignatureKey = 3;</code>
      * @return The publicSignatureKey.
      */
     @java.lang.Override
-    public com.google.protobuf.ByteString getPublicSignatureKey() {
-      return publicSignatureKey_;
+    public java.lang.String getPublicSignatureKey() {
+      java.lang.Object ref = publicSignatureKey_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        publicSignatureKey_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     *
+     * public signature key (PEM encoded) of the responder
+     * </pre>
+     *
+     * <code>string publicSignatureKey = 3;</code>
+     * @return The bytes for publicSignatureKey.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getPublicSignatureKeyBytes() {
+      java.lang.Object ref = publicSignatureKey_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        publicSignatureKey_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int COMMUNICATIONINFO_FIELD_NUMBER = 4;
@@ -1968,8 +2202,8 @@ public final class Pair {
       if (senderKind_ != derec.message.Pair.SenderKind.SHARER_NON_RECOVERY.getNumber()) {
         output.writeEnum(2, senderKind_);
       }
-      if (!publicSignatureKey_.isEmpty()) {
-        output.writeBytes(3, publicSignatureKey_);
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(publicSignatureKey_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, publicSignatureKey_);
       }
       if (((bitField0_ & 0x00000002) != 0)) {
         output.writeMessage(4, getCommunicationInfo());
@@ -1997,9 +2231,8 @@ public final class Pair {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(2, senderKind_);
       }
-      if (!publicSignatureKey_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, publicSignatureKey_);
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(publicSignatureKey_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, publicSignatureKey_);
       }
       if (((bitField0_ & 0x00000002) != 0)) {
         size += com.google.protobuf.CodedOutputStream
@@ -2228,7 +2461,7 @@ public final class Pair {
           resultBuilder_ = null;
         }
         senderKind_ = 0;
-        publicSignatureKey_ = com.google.protobuf.ByteString.EMPTY;
+        publicSignatureKey_ = "";
         communicationInfo_ = null;
         if (communicationInfoBuilder_ != null) {
           communicationInfoBuilder_.dispose();
@@ -2354,8 +2587,10 @@ public final class Pair {
         if (other.senderKind_ != 0) {
           setSenderKindValue(other.getSenderKindValue());
         }
-        if (other.getPublicSignatureKey() != com.google.protobuf.ByteString.EMPTY) {
-          setPublicSignatureKey(other.getPublicSignatureKey());
+        if (!other.getPublicSignatureKey().isEmpty()) {
+          publicSignatureKey_ = other.publicSignatureKey_;
+          bitField0_ |= 0x00000004;
+          onChanged();
         }
         if (other.hasCommunicationInfo()) {
           mergeCommunicationInfo(other.getCommunicationInfo());
@@ -2405,7 +2640,7 @@ public final class Pair {
                 break;
               } // case 16
               case 26: {
-                publicSignatureKey_ = input.readBytes();
+                publicSignatureKey_ = input.readStringRequireUtf8();
                 bitField0_ |= 0x00000004;
                 break;
               } // case 26
@@ -2680,31 +2915,62 @@ public final class Pair {
         return this;
       }
 
-      private com.google.protobuf.ByteString publicSignatureKey_ = com.google.protobuf.ByteString.EMPTY;
+      private java.lang.Object publicSignatureKey_ = "";
       /**
        * <pre>
        *
-       * public signature key (byte array supports many schemes) of the responder
+       * public signature key (PEM encoded) of the responder
        * </pre>
        *
-       * <code>bytes publicSignatureKey = 3;</code>
+       * <code>string publicSignatureKey = 3;</code>
        * @return The publicSignatureKey.
        */
-      @java.lang.Override
-      public com.google.protobuf.ByteString getPublicSignatureKey() {
-        return publicSignatureKey_;
+      public java.lang.String getPublicSignatureKey() {
+        java.lang.Object ref = publicSignatureKey_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          publicSignatureKey_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
        * <pre>
        *
-       * public signature key (byte array supports many schemes) of the responder
+       * public signature key (PEM encoded) of the responder
        * </pre>
        *
-       * <code>bytes publicSignatureKey = 3;</code>
+       * <code>string publicSignatureKey = 3;</code>
+       * @return The bytes for publicSignatureKey.
+       */
+      public com.google.protobuf.ByteString
+          getPublicSignatureKeyBytes() {
+        java.lang.Object ref = publicSignatureKey_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          publicSignatureKey_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       *
+       * public signature key (PEM encoded) of the responder
+       * </pre>
+       *
+       * <code>string publicSignatureKey = 3;</code>
        * @param value The publicSignatureKey to set.
        * @return This builder for chaining.
        */
-      public Builder setPublicSignatureKey(com.google.protobuf.ByteString value) {
+      public Builder setPublicSignatureKey(
+          java.lang.String value) {
         if (value == null) { throw new NullPointerException(); }
         publicSignatureKey_ = value;
         bitField0_ |= 0x00000004;
@@ -2714,15 +2980,34 @@ public final class Pair {
       /**
        * <pre>
        *
-       * public signature key (byte array supports many schemes) of the responder
+       * public signature key (PEM encoded) of the responder
        * </pre>
        *
-       * <code>bytes publicSignatureKey = 3;</code>
+       * <code>string publicSignatureKey = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearPublicSignatureKey() {
-        bitField0_ = (bitField0_ & ~0x00000004);
         publicSignatureKey_ = getDefaultInstance().getPublicSignatureKey();
+        bitField0_ = (bitField0_ & ~0x00000004);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *
+       * public signature key (PEM encoded) of the responder
+       * </pre>
+       *
+       * <code>string publicSignatureKey = 3;</code>
+       * @param value The bytes for publicSignatureKey to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPublicSignatureKeyBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        publicSignatureKey_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -3195,15 +3480,15 @@ public final class Pair {
       "oninfo.proto\032\024parameterrange.proto\032\014resu" +
       "lt.proto\"\377\001\n\022PairRequestMessage\022-\n\nsende" +
       "rKind\030\001 \001(\0162\031.derec.message.SenderKind\022\032" +
-      "\n\022publicSignatureKey\030\003 \001(\014\022\033\n\023publicEncr" +
-      "yptionKey\030\004 \001(\014\022;\n\021communicationInfo\030\005 \001" +
+      "\n\022publicSignatureKey\030\003 \001(\t\022\033\n\023publicEncr" +
+      "yptionKey\030\004 \001(\t\022;\n\021communicationInfo\030\005 \001" +
       "(\0132 .derec.message.CommunicationInfo\022\r\n\005" +
       "nonce\030\006 \001(\014\0225\n\016parameterRange\030\007 \001(\0132\035.de" +
       "rec.message.ParameterRange\"\212\002\n\023PairRespo" +
       "nseMessage\022%\n\006result\030\001 \001(\0132\025.derec.messa" +
       "ge.Result\022-\n\nsenderKind\030\002 \001(\0162\031.derec.me" +
       "ssage.SenderKind\022\032\n\022publicSignatureKey\030\003" +
-      " \001(\014\022;\n\021communicationInfo\030\004 \001(\0132 .derec." +
+      " \001(\t\022;\n\021communicationInfo\030\004 \001(\0132 .derec." +
       "message.CommunicationInfo\022\r\n\005nonce\030\005 \001(\014" +
       "\0225\n\016parameterRange\030\006 \001(\0132\035.derec.message" +
       ".ParameterRange*F\n\nSenderKind\022\027\n\023SHARER_" +

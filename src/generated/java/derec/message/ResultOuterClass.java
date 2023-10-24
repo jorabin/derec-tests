@@ -90,6 +90,30 @@ public final class ResultOuterClass {
     UNKNOWN_SHARE_VERSION(6),
     /**
      * <pre>
+     * The received message could not be decrypted successfully. 
+     * </pre>
+     *
+     * <code>DECRYPTION_FAILED = 7;</code>
+     */
+    DECRYPTION_FAILED(7),
+    /**
+     * <pre>
+     * Signature could not be verified 
+     * </pre>
+     *
+     * <code>VERIFICATION_FAILED = 8;</code>
+     */
+    VERIFICATION_FAILED(8),
+    /**
+     * <pre>
+     * Format error - includes errors like protobuf parsing failure or invalid message formatting. 
+     * </pre>
+     *
+     * <code>FORMAT_ERROR = 9;</code>
+     */
+    FORMAT_ERROR(9),
+    /**
+     * <pre>
      * the helper is asking the sharer to send an unpair request 
      * </pre>
      *
@@ -164,6 +188,30 @@ public final class ResultOuterClass {
     public static final int UNKNOWN_SHARE_VERSION_VALUE = 6;
     /**
      * <pre>
+     * The received message could not be decrypted successfully. 
+     * </pre>
+     *
+     * <code>DECRYPTION_FAILED = 7;</code>
+     */
+    public static final int DECRYPTION_FAILED_VALUE = 7;
+    /**
+     * <pre>
+     * Signature could not be verified 
+     * </pre>
+     *
+     * <code>VERIFICATION_FAILED = 8;</code>
+     */
+    public static final int VERIFICATION_FAILED_VALUE = 8;
+    /**
+     * <pre>
+     * Format error - includes errors like protobuf parsing failure or invalid message formatting. 
+     * </pre>
+     *
+     * <code>FORMAT_ERROR = 9;</code>
+     */
+    public static final int FORMAT_ERROR_VALUE = 9;
+    /**
+     * <pre>
      * the helper is asking the sharer to send an unpair request 
      * </pre>
      *
@@ -203,6 +251,9 @@ public final class ResultOuterClass {
         case 4: return TOO_FREQUENT;
         case 5: return UNKNOWN_SECRET_ID;
         case 6: return UNKNOWN_SHARE_VERSION;
+        case 7: return DECRYPTION_FAILED;
+        case 8: return VERIFICATION_FAILED;
+        case 9: return FORMAT_ERROR;
         case 99: return REQUEST_TO_CLOSE;
         default: return null;
       }
@@ -943,11 +994,13 @@ public final class ResultOuterClass {
     java.lang.String[] descriptorData = {
       "\n\014result.proto\022\rderec.message\"A\n\006Result\022" +
       ")\n\006status\030\001 \001(\0162\031.derec.message.StatusEn" +
-      "um\022\014\n\004memo\030\002 \001(\t*\236\001\n\nStatusEnum\022\006\n\002OK\020\000\022" +
+      "um\022\014\n\004memo\030\002 \001(\t*\340\001\n\nStatusEnum\022\006\n\002OK\020\000\022" +
       "\013\n\007PARTIAL\020\001\022\010\n\004FAIL\020\002\022\027\n\023SIZE_LIMIT_EXC" +
       "EEDED\020\003\022\020\n\014TOO_FREQUENT\020\004\022\025\n\021UNKNOWN_SEC" +
-      "RET_ID\020\005\022\031\n\025UNKNOWN_SHARE_VERSION\020\006\022\024\n\020R" +
-      "EQUEST_TO_CLOSE\020cb\006proto3"
+      "RET_ID\020\005\022\031\n\025UNKNOWN_SHARE_VERSION\020\006\022\025\n\021D" +
+      "ECRYPTION_FAILED\020\007\022\027\n\023VERIFICATION_FAILE" +
+      "D\020\010\022\020\n\014FORMAT_ERROR\020\t\022\024\n\020REQUEST_TO_CLOS" +
+      "E\020cb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

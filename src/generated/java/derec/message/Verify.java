@@ -24,10 +24,10 @@ public final class Verify {
      * which share version is being verified?
      * </pre>
      *
-     * <code>int64 version = 1;</code>
+     * <code>int32 version = 1;</code>
      * @return The version.
      */
-    long getVersion();
+    int getVersion();
 
     /**
      * <pre>
@@ -86,18 +86,18 @@ public final class Verify {
     }
 
     public static final int VERSION_FIELD_NUMBER = 1;
-    private long version_ = 0L;
+    private int version_ = 0;
     /**
      * <pre>
      *
      * which share version is being verified?
      * </pre>
      *
-     * <code>int64 version = 1;</code>
+     * <code>int32 version = 1;</code>
      * @return The version.
      */
     @java.lang.Override
-    public long getVersion() {
+    public int getVersion() {
       return version_;
     }
 
@@ -132,8 +132,8 @@ public final class Verify {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (version_ != 0L) {
-        output.writeInt64(1, version_);
+      if (version_ != 0) {
+        output.writeInt32(1, version_);
       }
       if (!nonce_.isEmpty()) {
         output.writeBytes(2, nonce_);
@@ -147,9 +147,9 @@ public final class Verify {
       if (size != -1) return size;
 
       size = 0;
-      if (version_ != 0L) {
+      if (version_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(1, version_);
+          .computeInt32Size(1, version_);
       }
       if (!nonce_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
@@ -186,8 +186,7 @@ public final class Verify {
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + VERSION_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getVersion());
+      hash = (53 * hash) + getVersion();
       hash = (37 * hash) + NONCE_FIELD_NUMBER;
       hash = (53 * hash) + getNonce().hashCode();
       hash = (29 * hash) + getUnknownFields().hashCode();
@@ -329,7 +328,7 @@ public final class Verify {
       public Builder clear() {
         super.clear();
         bitField0_ = 0;
-        version_ = 0L;
+        version_ = 0;
         nonce_ = com.google.protobuf.ByteString.EMPTY;
         return this;
       }
@@ -416,7 +415,7 @@ public final class Verify {
 
       public Builder mergeFrom(derec.message.Verify.VerifyShareRequestMessage other) {
         if (other == derec.message.Verify.VerifyShareRequestMessage.getDefaultInstance()) return this;
-        if (other.getVersion() != 0L) {
+        if (other.getVersion() != 0) {
           setVersion(other.getVersion());
         }
         if (other.getNonce() != com.google.protobuf.ByteString.EMPTY) {
@@ -449,7 +448,7 @@ public final class Verify {
                 done = true;
                 break;
               case 8: {
-                version_ = input.readInt64();
+                version_ = input.readInt32();
                 bitField0_ |= 0x00000001;
                 break;
               } // case 8
@@ -475,18 +474,18 @@ public final class Verify {
       }
       private int bitField0_;
 
-      private long version_ ;
+      private int version_ ;
       /**
        * <pre>
        *
        * which share version is being verified?
        * </pre>
        *
-       * <code>int64 version = 1;</code>
+       * <code>int32 version = 1;</code>
        * @return The version.
        */
       @java.lang.Override
-      public long getVersion() {
+      public int getVersion() {
         return version_;
       }
       /**
@@ -495,11 +494,11 @@ public final class Verify {
        * which share version is being verified?
        * </pre>
        *
-       * <code>int64 version = 1;</code>
+       * <code>int32 version = 1;</code>
        * @param value The version to set.
        * @return This builder for chaining.
        */
-      public Builder setVersion(long value) {
+      public Builder setVersion(int value) {
 
         version_ = value;
         bitField0_ |= 0x00000001;
@@ -512,12 +511,12 @@ public final class Verify {
        * which share version is being verified?
        * </pre>
        *
-       * <code>int64 version = 1;</code>
+       * <code>int32 version = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearVersion() {
         bitField0_ = (bitField0_ & ~0x00000001);
-        version_ = 0L;
+        version_ = 0;
         onChanged();
         return this;
       }
@@ -672,10 +671,10 @@ public final class Verify {
      * which version is the response for?
      * </pre>
      *
-     * <code>int64 version = 2;</code>
+     * <code>int32 version = 2;</code>
      * @return The version.
      */
-    long getVersion();
+    int getVersion();
 
     /**
      * <pre>
@@ -781,18 +780,18 @@ public final class Verify {
     }
 
     public static final int VERSION_FIELD_NUMBER = 2;
-    private long version_ = 0L;
+    private int version_ = 0;
     /**
      * <pre>
      *
      * which version is the response for?
      * </pre>
      *
-     * <code>int64 version = 2;</code>
+     * <code>int32 version = 2;</code>
      * @return The version.
      */
     @java.lang.Override
-    public long getVersion() {
+    public int getVersion() {
       return version_;
     }
 
@@ -846,8 +845,8 @@ public final class Verify {
       if (((bitField0_ & 0x00000001) != 0)) {
         output.writeMessage(1, getResult());
       }
-      if (version_ != 0L) {
-        output.writeInt64(2, version_);
+      if (version_ != 0) {
+        output.writeInt32(2, version_);
       }
       if (!nonce_.isEmpty()) {
         output.writeBytes(3, nonce_);
@@ -868,9 +867,9 @@ public final class Verify {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getResult());
       }
-      if (version_ != 0L) {
+      if (version_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(2, version_);
+          .computeInt32Size(2, version_);
       }
       if (!nonce_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
@@ -922,8 +921,7 @@ public final class Verify {
         hash = (53 * hash) + getResult().hashCode();
       }
       hash = (37 * hash) + VERSION_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getVersion());
+      hash = (53 * hash) + getVersion();
       hash = (37 * hash) + NONCE_FIELD_NUMBER;
       hash = (53 * hash) + getNonce().hashCode();
       hash = (37 * hash) + HASH_FIELD_NUMBER;
@@ -1074,7 +1072,7 @@ public final class Verify {
           resultBuilder_.dispose();
           resultBuilder_ = null;
         }
-        version_ = 0L;
+        version_ = 0;
         nonce_ = com.google.protobuf.ByteString.EMPTY;
         hash_ = com.google.protobuf.ByteString.EMPTY;
         return this;
@@ -1176,7 +1174,7 @@ public final class Verify {
         if (other.hasResult()) {
           mergeResult(other.getResult());
         }
-        if (other.getVersion() != 0L) {
+        if (other.getVersion() != 0) {
           setVersion(other.getVersion());
         }
         if (other.getNonce() != com.google.protobuf.ByteString.EMPTY) {
@@ -1219,7 +1217,7 @@ public final class Verify {
                 break;
               } // case 10
               case 16: {
-                version_ = input.readInt64();
+                version_ = input.readInt32();
                 bitField0_ |= 0x00000002;
                 break;
               } // case 16
@@ -1407,18 +1405,18 @@ public final class Verify {
         return resultBuilder_;
       }
 
-      private long version_ ;
+      private int version_ ;
       /**
        * <pre>
        *
        * which version is the response for?
        * </pre>
        *
-       * <code>int64 version = 2;</code>
+       * <code>int32 version = 2;</code>
        * @return The version.
        */
       @java.lang.Override
-      public long getVersion() {
+      public int getVersion() {
         return version_;
       }
       /**
@@ -1427,11 +1425,11 @@ public final class Verify {
        * which version is the response for?
        * </pre>
        *
-       * <code>int64 version = 2;</code>
+       * <code>int32 version = 2;</code>
        * @param value The version to set.
        * @return This builder for chaining.
        */
-      public Builder setVersion(long value) {
+      public Builder setVersion(int value) {
 
         version_ = value;
         bitField0_ |= 0x00000002;
@@ -1444,12 +1442,12 @@ public final class Verify {
        * which version is the response for?
        * </pre>
        *
-       * <code>int64 version = 2;</code>
+       * <code>int32 version = 2;</code>
        * @return This builder for chaining.
        */
       public Builder clearVersion() {
         bitField0_ = (bitField0_ & ~0x00000002);
-        version_ = 0L;
+        version_ = 0;
         onChanged();
         return this;
       }
@@ -1635,9 +1633,9 @@ public final class Verify {
     java.lang.String[] descriptorData = {
       "\n\014verify.proto\022\rderec.message\032\014result.pr" +
       "oto\";\n\031VerifyShareRequestMessage\022\017\n\007vers" +
-      "ion\030\001 \001(\003\022\r\n\005nonce\030\002 \001(\014\"q\n\032VerifyShareR" +
+      "ion\030\001 \001(\005\022\r\n\005nonce\030\002 \001(\014\"q\n\032VerifyShareR" +
       "esponseMessage\022%\n\006result\030\001 \001(\0132\025.derec.m" +
-      "essage.Result\022\017\n\007version\030\002 \001(\003\022\r\n\005nonce\030" +
+      "essage.Result\022\017\n\007version\030\002 \001(\005\022\r\n\005nonce\030" +
       "\003 \001(\014\022\014\n\004hash\030\004 \001(\014b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor

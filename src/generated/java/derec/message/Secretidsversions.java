@@ -565,27 +565,27 @@ public final class Secretidsversions {
         com.google.protobuf.MessageOrBuilder {
 
       /**
-       * <code>int64 secretId = 1;</code>
+       * <code>bytes secretId = 1;</code>
        * @return The secretId.
        */
-      long getSecretId();
+      com.google.protobuf.ByteString getSecretId();
 
       /**
-       * <code>repeated int64 versions = 2;</code>
+       * <code>repeated int32 versions = 2;</code>
        * @return A list containing the versions.
        */
-      java.util.List<java.lang.Long> getVersionsList();
+      java.util.List<java.lang.Integer> getVersionsList();
       /**
-       * <code>repeated int64 versions = 2;</code>
+       * <code>repeated int32 versions = 2;</code>
        * @return The count of versions.
        */
       int getVersionsCount();
       /**
-       * <code>repeated int64 versions = 2;</code>
+       * <code>repeated int32 versions = 2;</code>
        * @param index The index of the element to return.
        * @return The versions at the given index.
        */
-      long getVersions(int index);
+      int getVersions(int index);
     }
     /**
      * <pre>
@@ -606,7 +606,8 @@ public final class Secretidsversions {
         super(builder);
       }
       private VersionList() {
-        versions_ = emptyLongList();
+        secretId_ = com.google.protobuf.ByteString.EMPTY;
+        versions_ = emptyIntList();
       }
 
       @java.lang.Override
@@ -630,43 +631,43 @@ public final class Secretidsversions {
       }
 
       public static final int SECRETID_FIELD_NUMBER = 1;
-      private long secretId_ = 0L;
+      private com.google.protobuf.ByteString secretId_ = com.google.protobuf.ByteString.EMPTY;
       /**
-       * <code>int64 secretId = 1;</code>
+       * <code>bytes secretId = 1;</code>
        * @return The secretId.
        */
       @java.lang.Override
-      public long getSecretId() {
+      public com.google.protobuf.ByteString getSecretId() {
         return secretId_;
       }
 
       public static final int VERSIONS_FIELD_NUMBER = 2;
       @SuppressWarnings("serial")
-      private com.google.protobuf.Internal.LongList versions_ =
-          emptyLongList();
+      private com.google.protobuf.Internal.IntList versions_ =
+          emptyIntList();
       /**
-       * <code>repeated int64 versions = 2;</code>
+       * <code>repeated int32 versions = 2;</code>
        * @return A list containing the versions.
        */
       @java.lang.Override
-      public java.util.List<java.lang.Long>
+      public java.util.List<java.lang.Integer>
           getVersionsList() {
         return versions_;
       }
       /**
-       * <code>repeated int64 versions = 2;</code>
+       * <code>repeated int32 versions = 2;</code>
        * @return The count of versions.
        */
       public int getVersionsCount() {
         return versions_.size();
       }
       /**
-       * <code>repeated int64 versions = 2;</code>
+       * <code>repeated int32 versions = 2;</code>
        * @param index The index of the element to return.
        * @return The versions at the given index.
        */
-      public long getVersions(int index) {
-        return versions_.getLong(index);
+      public int getVersions(int index) {
+        return versions_.getInt(index);
       }
       private int versionsMemoizedSerializedSize = -1;
 
@@ -685,15 +686,15 @@ public final class Secretidsversions {
       public void writeTo(com.google.protobuf.CodedOutputStream output)
                           throws java.io.IOException {
         getSerializedSize();
-        if (secretId_ != 0L) {
-          output.writeInt64(1, secretId_);
+        if (!secretId_.isEmpty()) {
+          output.writeBytes(1, secretId_);
         }
         if (getVersionsList().size() > 0) {
           output.writeUInt32NoTag(18);
           output.writeUInt32NoTag(versionsMemoizedSerializedSize);
         }
         for (int i = 0; i < versions_.size(); i++) {
-          output.writeInt64NoTag(versions_.getLong(i));
+          output.writeInt32NoTag(versions_.getInt(i));
         }
         getUnknownFields().writeTo(output);
       }
@@ -704,15 +705,15 @@ public final class Secretidsversions {
         if (size != -1) return size;
 
         size = 0;
-        if (secretId_ != 0L) {
+        if (!secretId_.isEmpty()) {
           size += com.google.protobuf.CodedOutputStream
-            .computeInt64Size(1, secretId_);
+            .computeBytesSize(1, secretId_);
         }
         {
           int dataSize = 0;
           for (int i = 0; i < versions_.size(); i++) {
             dataSize += com.google.protobuf.CodedOutputStream
-              .computeInt64SizeNoTag(versions_.getLong(i));
+              .computeInt32SizeNoTag(versions_.getInt(i));
           }
           size += dataSize;
           if (!getVersionsList().isEmpty()) {
@@ -737,8 +738,8 @@ public final class Secretidsversions {
         }
         derec.message.Secretidsversions.GetSecretIdsVersionsResponseMessage.VersionList other = (derec.message.Secretidsversions.GetSecretIdsVersionsResponseMessage.VersionList) obj;
 
-        if (getSecretId()
-            != other.getSecretId()) return false;
+        if (!getSecretId()
+            .equals(other.getSecretId())) return false;
         if (!getVersionsList()
             .equals(other.getVersionsList())) return false;
         if (!getUnknownFields().equals(other.getUnknownFields())) return false;
@@ -753,8 +754,7 @@ public final class Secretidsversions {
         int hash = 41;
         hash = (19 * hash) + getDescriptor().hashCode();
         hash = (37 * hash) + SECRETID_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-            getSecretId());
+        hash = (53 * hash) + getSecretId().hashCode();
         if (getVersionsCount() > 0) {
           hash = (37 * hash) + VERSIONS_FIELD_NUMBER;
           hash = (53 * hash) + getVersionsList().hashCode();
@@ -896,8 +896,8 @@ public final class Secretidsversions {
         public Builder clear() {
           super.clear();
           bitField0_ = 0;
-          secretId_ = 0L;
-          versions_ = emptyLongList();
+          secretId_ = com.google.protobuf.ByteString.EMPTY;
+          versions_ = emptyIntList();
           return this;
         }
 
@@ -984,7 +984,7 @@ public final class Secretidsversions {
 
         public Builder mergeFrom(derec.message.Secretidsversions.GetSecretIdsVersionsResponseMessage.VersionList other) {
           if (other == derec.message.Secretidsversions.GetSecretIdsVersionsResponseMessage.VersionList.getDefaultInstance()) return this;
-          if (other.getSecretId() != 0L) {
+          if (other.getSecretId() != com.google.protobuf.ByteString.EMPTY) {
             setSecretId(other.getSecretId());
           }
           if (!other.versions_.isEmpty()) {
@@ -1024,15 +1024,15 @@ public final class Secretidsversions {
                 case 0:
                   done = true;
                   break;
-                case 8: {
-                  secretId_ = input.readInt64();
+                case 10: {
+                  secretId_ = input.readBytes();
                   bitField0_ |= 0x00000001;
                   break;
-                } // case 8
+                } // case 10
                 case 16: {
-                  long v = input.readInt64();
+                  int v = input.readInt32();
                   ensureVersionsIsMutable();
-                  versions_.addLong(v);
+                  versions_.addInt(v);
                   break;
                 } // case 16
                 case 18: {
@@ -1040,7 +1040,7 @@ public final class Secretidsversions {
                   int limit = input.pushLimit(length);
                   ensureVersionsIsMutable();
                   while (input.getBytesUntilLimit() > 0) {
-                    versions_.addLong(input.readInt64());
+                    versions_.addInt(input.readInt32());
                   }
                   input.popLimit(limit);
                   break;
@@ -1062,39 +1062,39 @@ public final class Secretidsversions {
         }
         private int bitField0_;
 
-        private long secretId_ ;
+        private com.google.protobuf.ByteString secretId_ = com.google.protobuf.ByteString.EMPTY;
         /**
-         * <code>int64 secretId = 1;</code>
+         * <code>bytes secretId = 1;</code>
          * @return The secretId.
          */
         @java.lang.Override
-        public long getSecretId() {
+        public com.google.protobuf.ByteString getSecretId() {
           return secretId_;
         }
         /**
-         * <code>int64 secretId = 1;</code>
+         * <code>bytes secretId = 1;</code>
          * @param value The secretId to set.
          * @return This builder for chaining.
          */
-        public Builder setSecretId(long value) {
-
+        public Builder setSecretId(com.google.protobuf.ByteString value) {
+          if (value == null) { throw new NullPointerException(); }
           secretId_ = value;
           bitField0_ |= 0x00000001;
           onChanged();
           return this;
         }
         /**
-         * <code>int64 secretId = 1;</code>
+         * <code>bytes secretId = 1;</code>
          * @return This builder for chaining.
          */
         public Builder clearSecretId() {
           bitField0_ = (bitField0_ & ~0x00000001);
-          secretId_ = 0L;
+          secretId_ = getDefaultInstance().getSecretId();
           onChanged();
           return this;
         }
 
-        private com.google.protobuf.Internal.LongList versions_ = emptyLongList();
+        private com.google.protobuf.Internal.IntList versions_ = emptyIntList();
         private void ensureVersionsIsMutable() {
           if (!versions_.isModifiable()) {
             versions_ = makeMutableCopy(versions_);
@@ -1102,64 +1102,64 @@ public final class Secretidsversions {
           bitField0_ |= 0x00000002;
         }
         /**
-         * <code>repeated int64 versions = 2;</code>
+         * <code>repeated int32 versions = 2;</code>
          * @return A list containing the versions.
          */
-        public java.util.List<java.lang.Long>
+        public java.util.List<java.lang.Integer>
             getVersionsList() {
           versions_.makeImmutable();
           return versions_;
         }
         /**
-         * <code>repeated int64 versions = 2;</code>
+         * <code>repeated int32 versions = 2;</code>
          * @return The count of versions.
          */
         public int getVersionsCount() {
           return versions_.size();
         }
         /**
-         * <code>repeated int64 versions = 2;</code>
+         * <code>repeated int32 versions = 2;</code>
          * @param index The index of the element to return.
          * @return The versions at the given index.
          */
-        public long getVersions(int index) {
-          return versions_.getLong(index);
+        public int getVersions(int index) {
+          return versions_.getInt(index);
         }
         /**
-         * <code>repeated int64 versions = 2;</code>
+         * <code>repeated int32 versions = 2;</code>
          * @param index The index to set the value at.
          * @param value The versions to set.
          * @return This builder for chaining.
          */
         public Builder setVersions(
-            int index, long value) {
+            int index, int value) {
 
           ensureVersionsIsMutable();
-          versions_.setLong(index, value);
+          versions_.setInt(index, value);
           bitField0_ |= 0x00000002;
           onChanged();
           return this;
         }
         /**
-         * <code>repeated int64 versions = 2;</code>
+         * <code>repeated int32 versions = 2;</code>
          * @param value The versions to add.
          * @return This builder for chaining.
          */
-        public Builder addVersions(long value) {
+        public Builder addVersions(int value) {
 
           ensureVersionsIsMutable();
-          versions_.addLong(value);
+          versions_.addInt(value);
           bitField0_ |= 0x00000002;
           onChanged();
           return this;
         }
         /**
-         * <code>repeated int64 versions = 2;</code>
+         * <code>repeated int32 versions = 2;</code>
          * @param values The versions to add.
          * @return This builder for chaining.
          */
         public Builder addAllVersions(
-            java.lang.Iterable<? extends java.lang.Long> values) {
+            java.lang.Iterable<? extends java.lang.Integer> values) {
           ensureVersionsIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
               values, versions_);
@@ -1168,11 +1168,11 @@ public final class Secretidsversions {
           return this;
         }
         /**
-         * <code>repeated int64 versions = 2;</code>
+         * <code>repeated int32 versions = 2;</code>
          * @return This builder for chaining.
          */
         public Builder clearVersions() {
-          versions_ = emptyLongList();
+          versions_ = emptyIntList();
           bitField0_ = (bitField0_ & ~0x00000002);
           onChanged();
           return this;
@@ -2386,7 +2386,7 @@ public final class Secretidsversions {
       "sage.Result\022R\n\nsecretList\030\002 \003(\0132>.derec." +
       "message.GetSecretIdsVersionsResponseMess" +
       "age.VersionList\0321\n\013VersionList\022\020\n\010secret" +
-      "Id\030\001 \001(\003\022\020\n\010versions\030\002 \003(\003b\006proto3"
+      "Id\030\001 \001(\014\022\020\n\010versions\030\002 \003(\005b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

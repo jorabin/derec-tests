@@ -58,10 +58,10 @@ public final class Storeshare {
      * The helper should delete all other versions outside this list.
      * </pre>
      *
-     * <code>repeated int64 keepList = 3;</code>
+     * <code>repeated int32 keepList = 3;</code>
      * @return A list containing the keepList.
      */
-    java.util.List<java.lang.Long> getKeepListList();
+    java.util.List<java.lang.Integer> getKeepListList();
     /**
      * <pre>
      *
@@ -69,7 +69,7 @@ public final class Storeshare {
      * The helper should delete all other versions outside this list.
      * </pre>
      *
-     * <code>repeated int64 keepList = 3;</code>
+     * <code>repeated int32 keepList = 3;</code>
      * @return The count of keepList.
      */
     int getKeepListCount();
@@ -80,11 +80,11 @@ public final class Storeshare {
      * The helper should delete all other versions outside this list.
      * </pre>
      *
-     * <code>repeated int64 keepList = 3;</code>
+     * <code>repeated int32 keepList = 3;</code>
      * @param index The index of the element to return.
      * @return The keepList at the given index.
      */
-    long getKeepList(int index);
+    int getKeepList(int index);
   }
   /**
    * <pre>
@@ -116,7 +116,7 @@ public final class Storeshare {
       super(builder);
     }
     private StoreShareRequestMessage() {
-      keepList_ = emptyLongList();
+      keepList_ = emptyIntList();
     }
 
     @java.lang.Override
@@ -186,8 +186,8 @@ public final class Storeshare {
 
     public static final int KEEPLIST_FIELD_NUMBER = 3;
     @SuppressWarnings("serial")
-    private com.google.protobuf.Internal.LongList keepList_ =
-        emptyLongList();
+    private com.google.protobuf.Internal.IntList keepList_ =
+        emptyIntList();
     /**
      * <pre>
      *
@@ -195,11 +195,11 @@ public final class Storeshare {
      * The helper should delete all other versions outside this list.
      * </pre>
      *
-     * <code>repeated int64 keepList = 3;</code>
+     * <code>repeated int32 keepList = 3;</code>
      * @return A list containing the keepList.
      */
     @java.lang.Override
-    public java.util.List<java.lang.Long>
+    public java.util.List<java.lang.Integer>
         getKeepListList() {
       return keepList_;
     }
@@ -210,7 +210,7 @@ public final class Storeshare {
      * The helper should delete all other versions outside this list.
      * </pre>
      *
-     * <code>repeated int64 keepList = 3;</code>
+     * <code>repeated int32 keepList = 3;</code>
      * @return The count of keepList.
      */
     public int getKeepListCount() {
@@ -223,12 +223,12 @@ public final class Storeshare {
      * The helper should delete all other versions outside this list.
      * </pre>
      *
-     * <code>repeated int64 keepList = 3;</code>
+     * <code>repeated int32 keepList = 3;</code>
      * @param index The index of the element to return.
      * @return The keepList at the given index.
      */
-    public long getKeepList(int index) {
-      return keepList_.getLong(index);
+    public int getKeepList(int index) {
+      return keepList_.getInt(index);
     }
     private int keepListMemoizedSerializedSize = -1;
 
@@ -255,7 +255,7 @@ public final class Storeshare {
         output.writeUInt32NoTag(keepListMemoizedSerializedSize);
       }
       for (int i = 0; i < keepList_.size(); i++) {
-        output.writeInt64NoTag(keepList_.getLong(i));
+        output.writeInt32NoTag(keepList_.getInt(i));
       }
       getUnknownFields().writeTo(output);
     }
@@ -274,7 +274,7 @@ public final class Storeshare {
         int dataSize = 0;
         for (int i = 0; i < keepList_.size(); i++) {
           dataSize += com.google.protobuf.CodedOutputStream
-            .computeInt64SizeNoTag(keepList_.getLong(i));
+            .computeInt32SizeNoTag(keepList_.getInt(i));
         }
         size += dataSize;
         if (!getKeepListList().isEmpty()) {
@@ -484,7 +484,7 @@ public final class Storeshare {
           committedDeRecShareBuilder_.dispose();
           committedDeRecShareBuilder_ = null;
         }
-        keepList_ = emptyLongList();
+        keepList_ = emptyIntList();
         return this;
       }
 
@@ -624,9 +624,9 @@ public final class Storeshare {
                 break;
               } // case 10
               case 24: {
-                long v = input.readInt64();
+                int v = input.readInt32();
                 ensureKeepListIsMutable();
-                keepList_.addLong(v);
+                keepList_.addInt(v);
                 break;
               } // case 24
               case 26: {
@@ -634,7 +634,7 @@ public final class Storeshare {
                 int limit = input.pushLimit(length);
                 ensureKeepListIsMutable();
                 while (input.getBytesUntilLimit() > 0) {
-                  keepList_.addLong(input.readInt64());
+                  keepList_.addInt(input.readInt32());
                 }
                 input.popLimit(limit);
                 break;
@@ -831,7 +831,7 @@ public final class Storeshare {
         return committedDeRecShareBuilder_;
       }
 
-      private com.google.protobuf.Internal.LongList keepList_ = emptyLongList();
+      private com.google.protobuf.Internal.IntList keepList_ = emptyIntList();
       private void ensureKeepListIsMutable() {
         if (!keepList_.isModifiable()) {
           keepList_ = makeMutableCopy(keepList_);
@@ -845,10 +845,10 @@ public final class Storeshare {
        * The helper should delete all other versions outside this list.
        * </pre>
        *
-       * <code>repeated int64 keepList = 3;</code>
+       * <code>repeated int32 keepList = 3;</code>
        * @return A list containing the keepList.
        */
-      public java.util.List<java.lang.Long>
+      public java.util.List<java.lang.Integer>
           getKeepListList() {
         keepList_.makeImmutable();
         return keepList_;
@@ -860,7 +860,7 @@ public final class Storeshare {
        * The helper should delete all other versions outside this list.
        * </pre>
        *
-       * <code>repeated int64 keepList = 3;</code>
+       * <code>repeated int32 keepList = 3;</code>
        * @return The count of keepList.
        */
       public int getKeepListCount() {
@@ -873,12 +873,12 @@ public final class Storeshare {
        * The helper should delete all other versions outside this list.
        * </pre>
        *
-       * <code>repeated int64 keepList = 3;</code>
+       * <code>repeated int32 keepList = 3;</code>
        * @param index The index of the element to return.
        * @return The keepList at the given index.
        */
-      public long getKeepList(int index) {
-        return keepList_.getLong(index);
+      public int getKeepList(int index) {
+        return keepList_.getInt(index);
       }
       /**
        * <pre>
@@ -887,16 +887,16 @@ public final class Storeshare {
        * The helper should delete all other versions outside this list.
        * </pre>
        *
-       * <code>repeated int64 keepList = 3;</code>
+       * <code>repeated int32 keepList = 3;</code>
        * @param index The index to set the value at.
        * @param value The keepList to set.
        * @return This builder for chaining.
        */
       public Builder setKeepList(
-          int index, long value) {
+          int index, int value) {
 
         ensureKeepListIsMutable();
-        keepList_.setLong(index, value);
+        keepList_.setInt(index, value);
         bitField0_ |= 0x00000002;
         onChanged();
         return this;
@@ -908,14 +908,14 @@ public final class Storeshare {
        * The helper should delete all other versions outside this list.
        * </pre>
        *
-       * <code>repeated int64 keepList = 3;</code>
+       * <code>repeated int32 keepList = 3;</code>
        * @param value The keepList to add.
        * @return This builder for chaining.
        */
-      public Builder addKeepList(long value) {
+      public Builder addKeepList(int value) {
 
         ensureKeepListIsMutable();
-        keepList_.addLong(value);
+        keepList_.addInt(value);
         bitField0_ |= 0x00000002;
         onChanged();
         return this;
@@ -927,12 +927,12 @@ public final class Storeshare {
        * The helper should delete all other versions outside this list.
        * </pre>
        *
-       * <code>repeated int64 keepList = 3;</code>
+       * <code>repeated int32 keepList = 3;</code>
        * @param values The keepList to add.
        * @return This builder for chaining.
        */
       public Builder addAllKeepList(
-          java.lang.Iterable<? extends java.lang.Long> values) {
+          java.lang.Iterable<? extends java.lang.Integer> values) {
         ensureKeepListIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, keepList_);
@@ -947,11 +947,11 @@ public final class Storeshare {
        * The helper should delete all other versions outside this list.
        * </pre>
        *
-       * <code>repeated int64 keepList = 3;</code>
+       * <code>repeated int32 keepList = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearKeepList() {
-        keepList_ = emptyLongList();
+        keepList_ = emptyIntList();
         bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
@@ -2736,10 +2736,8 @@ public final class Storeshare {
     /**
      * <pre>
      *
-     * sharer-assigned identifier for the secret;
-     * this is an opaque 128-bit value also
-     * present in message header. Size chosen to
-     * accommodate UUID if sharer chooses
+     * Secret ID (any length from 1 to 16 bytes) for the requested share
+     * Must be unique for each secret created by a sharer.
      * </pre>
      *
      * <code>bytes secretId = 4;</code>
@@ -2754,9 +2752,6 @@ public final class Storeshare {
      * note that helper is entitled to ignore any
      * StoreShareRequestMessage with a version less
      * than or equal to the last seen version
-     *
-     * TODO: helper SHOULD save any version number received
-     * and must compare the content if already received
      * </pre>
      *
      * <code>int32 version = 5;</code>
@@ -2872,10 +2867,8 @@ public final class Storeshare {
     /**
      * <pre>
      *
-     * sharer-assigned identifier for the secret;
-     * this is an opaque 128-bit value also
-     * present in message header. Size chosen to
-     * accommodate UUID if sharer chooses
+     * Secret ID (any length from 1 to 16 bytes) for the requested share
+     * Must be unique for each secret created by a sharer.
      * </pre>
      *
      * <code>bytes secretId = 4;</code>
@@ -2895,9 +2888,6 @@ public final class Storeshare {
      * note that helper is entitled to ignore any
      * StoreShareRequestMessage with a version less
      * than or equal to the last seen version
-     *
-     * TODO: helper SHOULD save any version number received
-     * and must compare the content if already received
      * </pre>
      *
      * <code>int32 version = 5;</code>
@@ -3488,10 +3478,8 @@ public final class Storeshare {
       /**
        * <pre>
        *
-       * sharer-assigned identifier for the secret;
-       * this is an opaque 128-bit value also
-       * present in message header. Size chosen to
-       * accommodate UUID if sharer chooses
+       * Secret ID (any length from 1 to 16 bytes) for the requested share
+       * Must be unique for each secret created by a sharer.
        * </pre>
        *
        * <code>bytes secretId = 4;</code>
@@ -3504,10 +3492,8 @@ public final class Storeshare {
       /**
        * <pre>
        *
-       * sharer-assigned identifier for the secret;
-       * this is an opaque 128-bit value also
-       * present in message header. Size chosen to
-       * accommodate UUID if sharer chooses
+       * Secret ID (any length from 1 to 16 bytes) for the requested share
+       * Must be unique for each secret created by a sharer.
        * </pre>
        *
        * <code>bytes secretId = 4;</code>
@@ -3524,10 +3510,8 @@ public final class Storeshare {
       /**
        * <pre>
        *
-       * sharer-assigned identifier for the secret;
-       * this is an opaque 128-bit value also
-       * present in message header. Size chosen to
-       * accommodate UUID if sharer chooses
+       * Secret ID (any length from 1 to 16 bytes) for the requested share
+       * Must be unique for each secret created by a sharer.
        * </pre>
        *
        * <code>bytes secretId = 4;</code>
@@ -3548,9 +3532,6 @@ public final class Storeshare {
        * note that helper is entitled to ignore any
        * StoreShareRequestMessage with a version less
        * than or equal to the last seen version
-       *
-       * TODO: helper SHOULD save any version number received
-       * and must compare the content if already received
        * </pre>
        *
        * <code>int32 version = 5;</code>
@@ -3567,9 +3548,6 @@ public final class Storeshare {
        * note that helper is entitled to ignore any
        * StoreShareRequestMessage with a version less
        * than or equal to the last seen version
-       *
-       * TODO: helper SHOULD save any version number received
-       * and must compare the content if already received
        * </pre>
        *
        * <code>int32 version = 5;</code>
@@ -3590,9 +3568,6 @@ public final class Storeshare {
        * note that helper is entitled to ignore any
        * StoreShareRequestMessage with a version less
        * than or equal to the last seen version
-       *
-       * TODO: helper SHOULD save any version number received
-       * and must compare the content if already received
        * </pre>
        *
        * <code>int32 version = 5;</code>
@@ -3687,23 +3662,43 @@ public final class Storeshare {
 
     /**
      * <pre>
-     * The private encryption key used by the sharer.
+     * The private encryption key used by the sharer, in PEM encoding.
      * </pre>
      *
-     * <code>bytes privateEncryptionKey = 2;</code>
+     * <code>string privateEncryptionKey = 2;</code>
      * @return The privateEncryptionKey.
      */
-    com.google.protobuf.ByteString getPrivateEncryptionKey();
+    java.lang.String getPrivateEncryptionKey();
+    /**
+     * <pre>
+     * The private encryption key used by the sharer, in PEM encoding.
+     * </pre>
+     *
+     * <code>string privateEncryptionKey = 2;</code>
+     * @return The bytes for privateEncryptionKey.
+     */
+    com.google.protobuf.ByteString
+        getPrivateEncryptionKeyBytes();
 
     /**
      * <pre>
-     * The private signature key used by the sharer. 
+     * The private signature key used by the sharer, in PEM encoding. 
      * </pre>
      *
-     * <code>bytes privateSignatureKey = 3;</code>
+     * <code>string privateSignatureKey = 3;</code>
      * @return The privateSignatureKey.
      */
-    com.google.protobuf.ByteString getPrivateSignatureKey();
+    java.lang.String getPrivateSignatureKey();
+    /**
+     * <pre>
+     * The private signature key used by the sharer, in PEM encoding. 
+     * </pre>
+     *
+     * <code>string privateSignatureKey = 3;</code>
+     * @return The bytes for privateSignatureKey.
+     */
+    com.google.protobuf.ByteString
+        getPrivateSignatureKeyBytes();
 
     /**
      * <pre>
@@ -3734,51 +3729,10 @@ public final class Storeshare {
 
     /**
      * <pre>
-     * TODO: list of helpers 
-     * </pre>
-     *
-     * <code>repeated string helpers = 5;</code>
-     * @return A list containing the helpers.
-     */
-    java.util.List<java.lang.String>
-        getHelpersList();
-    /**
-     * <pre>
-     * TODO: list of helpers 
-     * </pre>
-     *
-     * <code>repeated string helpers = 5;</code>
-     * @return The count of helpers.
-     */
-    int getHelpersCount();
-    /**
-     * <pre>
-     * TODO: list of helpers 
-     * </pre>
-     *
-     * <code>repeated string helpers = 5;</code>
-     * @param index The index of the element to return.
-     * @return The helpers at the given index.
-     */
-    java.lang.String getHelpers(int index);
-    /**
-     * <pre>
-     * TODO: list of helpers 
-     * </pre>
-     *
-     * <code>repeated string helpers = 5;</code>
-     * @param index The index of the value to return.
-     * @return The bytes of the helpers at the given index.
-     */
-    com.google.protobuf.ByteString
-        getHelpersBytes(int index);
-
-    /**
-     * <pre>
      * Threshold for # of helpers for recovery 
      * </pre>
      *
-     * <code>int64 helperThresholdForRecovery = 6;</code>
+     * <code>int64 helperThresholdForRecovery = 5;</code>
      * @return The helperThresholdForRecovery.
      */
     long getHelperThresholdForRecovery();
@@ -3789,10 +3743,34 @@ public final class Storeshare {
      * to delete the old one
      * </pre>
      *
-     * <code>int64 helperThresholdForConfirmingShareReceipt = 7;</code>
+     * <code>int64 helperThresholdForConfirmingShareReceipt = 6;</code>
      * @return The helperThresholdForConfirmingShareReceipt.
      */
     long getHelperThresholdForConfirmingShareReceipt();
+
+    /**
+     * <code>repeated .derec.message.Secret.HelperSpecificInfo helpers = 7;</code>
+     */
+    java.util.List<derec.message.Storeshare.Secret.HelperSpecificInfo> 
+        getHelpersList();
+    /**
+     * <code>repeated .derec.message.Secret.HelperSpecificInfo helpers = 7;</code>
+     */
+    derec.message.Storeshare.Secret.HelperSpecificInfo getHelpers(int index);
+    /**
+     * <code>repeated .derec.message.Secret.HelperSpecificInfo helpers = 7;</code>
+     */
+    int getHelpersCount();
+    /**
+     * <code>repeated .derec.message.Secret.HelperSpecificInfo helpers = 7;</code>
+     */
+    java.util.List<? extends derec.message.Storeshare.Secret.HelperSpecificInfoOrBuilder> 
+        getHelpersOrBuilderList();
+    /**
+     * <code>repeated .derec.message.Secret.HelperSpecificInfo helpers = 7;</code>
+     */
+    derec.message.Storeshare.Secret.HelperSpecificInfoOrBuilder getHelpersOrBuilder(
+        int index);
   }
   /**
    * <pre>
@@ -3814,10 +3792,9 @@ public final class Storeshare {
     }
     private Secret() {
       secretData_ = com.google.protobuf.ByteString.EMPTY;
-      privateEncryptionKey_ = com.google.protobuf.ByteString.EMPTY;
-      privateSignatureKey_ = com.google.protobuf.ByteString.EMPTY;
-      helpers_ =
-          com.google.protobuf.LazyStringArrayList.emptyList();
+      privateEncryptionKey_ = "";
+      privateSignatureKey_ = "";
+      helpers_ = java.util.Collections.emptyList();
     }
 
     @java.lang.Override
@@ -3840,6 +3817,791 @@ public final class Storeshare {
               derec.message.Storeshare.Secret.class, derec.message.Storeshare.Secret.Builder.class);
     }
 
+    public interface HelperSpecificInfoOrBuilder extends
+        // @@protoc_insertion_point(interface_extends:derec.message.Secret.HelperSpecificInfo)
+        com.google.protobuf.MessageOrBuilder {
+
+      /**
+       * <pre>
+       *
+       * SHA-384 hash of helper's public encryption key
+       * </pre>
+       *
+       * <code>bytes helper = 1;</code>
+       * @return The helper.
+       */
+      com.google.protobuf.ByteString getHelper();
+
+      /**
+       * <pre>
+       *
+       * agreed upon parameters between helper and sharer
+       * </pre>
+       *
+       * <code>.derec.message.ParameterRange helperParams = 2;</code>
+       * @return Whether the helperParams field is set.
+       */
+      boolean hasHelperParams();
+      /**
+       * <pre>
+       *
+       * agreed upon parameters between helper and sharer
+       * </pre>
+       *
+       * <code>.derec.message.ParameterRange helperParams = 2;</code>
+       * @return The helperParams.
+       */
+      derec.message.Parameterrange.ParameterRange getHelperParams();
+      /**
+       * <pre>
+       *
+       * agreed upon parameters between helper and sharer
+       * </pre>
+       *
+       * <code>.derec.message.ParameterRange helperParams = 2;</code>
+       */
+      derec.message.Parameterrange.ParameterRangeOrBuilder getHelperParamsOrBuilder();
+    }
+    /**
+     * Protobuf type {@code derec.message.Secret.HelperSpecificInfo}
+     */
+    public static final class HelperSpecificInfo extends
+        com.google.protobuf.GeneratedMessageV3 implements
+        // @@protoc_insertion_point(message_implements:derec.message.Secret.HelperSpecificInfo)
+        HelperSpecificInfoOrBuilder {
+    private static final long serialVersionUID = 0L;
+      // Use HelperSpecificInfo.newBuilder() to construct.
+      private HelperSpecificInfo(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
+      }
+      private HelperSpecificInfo() {
+        helper_ = com.google.protobuf.ByteString.EMPTY;
+      }
+
+      @java.lang.Override
+      @SuppressWarnings({"unused"})
+      protected java.lang.Object newInstance(
+          UnusedPrivateParameter unused) {
+        return new HelperSpecificInfo();
+      }
+
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return derec.message.Storeshare.internal_static_derec_message_Secret_HelperSpecificInfo_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return derec.message.Storeshare.internal_static_derec_message_Secret_HelperSpecificInfo_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                derec.message.Storeshare.Secret.HelperSpecificInfo.class, derec.message.Storeshare.Secret.HelperSpecificInfo.Builder.class);
+      }
+
+      private int bitField0_;
+      public static final int HELPER_FIELD_NUMBER = 1;
+      private com.google.protobuf.ByteString helper_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <pre>
+       *
+       * SHA-384 hash of helper's public encryption key
+       * </pre>
+       *
+       * <code>bytes helper = 1;</code>
+       * @return The helper.
+       */
+      @java.lang.Override
+      public com.google.protobuf.ByteString getHelper() {
+        return helper_;
+      }
+
+      public static final int HELPERPARAMS_FIELD_NUMBER = 2;
+      private derec.message.Parameterrange.ParameterRange helperParams_;
+      /**
+       * <pre>
+       *
+       * agreed upon parameters between helper and sharer
+       * </pre>
+       *
+       * <code>.derec.message.ParameterRange helperParams = 2;</code>
+       * @return Whether the helperParams field is set.
+       */
+      @java.lang.Override
+      public boolean hasHelperParams() {
+        return ((bitField0_ & 0x00000001) != 0);
+      }
+      /**
+       * <pre>
+       *
+       * agreed upon parameters between helper and sharer
+       * </pre>
+       *
+       * <code>.derec.message.ParameterRange helperParams = 2;</code>
+       * @return The helperParams.
+       */
+      @java.lang.Override
+      public derec.message.Parameterrange.ParameterRange getHelperParams() {
+        return helperParams_ == null ? derec.message.Parameterrange.ParameterRange.getDefaultInstance() : helperParams_;
+      }
+      /**
+       * <pre>
+       *
+       * agreed upon parameters between helper and sharer
+       * </pre>
+       *
+       * <code>.derec.message.ParameterRange helperParams = 2;</code>
+       */
+      @java.lang.Override
+      public derec.message.Parameterrange.ParameterRangeOrBuilder getHelperParamsOrBuilder() {
+        return helperParams_ == null ? derec.message.Parameterrange.ParameterRange.getDefaultInstance() : helperParams_;
+      }
+
+      private byte memoizedIsInitialized = -1;
+      @java.lang.Override
+      public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
+      }
+
+      @java.lang.Override
+      public void writeTo(com.google.protobuf.CodedOutputStream output)
+                          throws java.io.IOException {
+        if (!helper_.isEmpty()) {
+          output.writeBytes(1, helper_);
+        }
+        if (((bitField0_ & 0x00000001) != 0)) {
+          output.writeMessage(2, getHelperParams());
+        }
+        getUnknownFields().writeTo(output);
+      }
+
+      @java.lang.Override
+      public int getSerializedSize() {
+        int size = memoizedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (!helper_.isEmpty()) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeBytesSize(1, helper_);
+        }
+        if (((bitField0_ & 0x00000001) != 0)) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeMessageSize(2, getHelperParams());
+        }
+        size += getUnknownFields().getSerializedSize();
+        memoizedSize = size;
+        return size;
+      }
+
+      @java.lang.Override
+      public boolean equals(final java.lang.Object obj) {
+        if (obj == this) {
+         return true;
+        }
+        if (!(obj instanceof derec.message.Storeshare.Secret.HelperSpecificInfo)) {
+          return super.equals(obj);
+        }
+        derec.message.Storeshare.Secret.HelperSpecificInfo other = (derec.message.Storeshare.Secret.HelperSpecificInfo) obj;
+
+        if (!getHelper()
+            .equals(other.getHelper())) return false;
+        if (hasHelperParams() != other.hasHelperParams()) return false;
+        if (hasHelperParams()) {
+          if (!getHelperParams()
+              .equals(other.getHelperParams())) return false;
+        }
+        if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+        return true;
+      }
+
+      @java.lang.Override
+      public int hashCode() {
+        if (memoizedHashCode != 0) {
+          return memoizedHashCode;
+        }
+        int hash = 41;
+        hash = (19 * hash) + getDescriptor().hashCode();
+        hash = (37 * hash) + HELPER_FIELD_NUMBER;
+        hash = (53 * hash) + getHelper().hashCode();
+        if (hasHelperParams()) {
+          hash = (37 * hash) + HELPERPARAMS_FIELD_NUMBER;
+          hash = (53 * hash) + getHelperParams().hashCode();
+        }
+        hash = (29 * hash) + getUnknownFields().hashCode();
+        memoizedHashCode = hash;
+        return hash;
+      }
+
+      public static derec.message.Storeshare.Secret.HelperSpecificInfo parseFrom(
+          java.nio.ByteBuffer data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static derec.message.Storeshare.Secret.HelperSpecificInfo parseFrom(
+          java.nio.ByteBuffer data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static derec.message.Storeshare.Secret.HelperSpecificInfo parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static derec.message.Storeshare.Secret.HelperSpecificInfo parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static derec.message.Storeshare.Secret.HelperSpecificInfo parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static derec.message.Storeshare.Secret.HelperSpecificInfo parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static derec.message.Storeshare.Secret.HelperSpecificInfo parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
+      }
+      public static derec.message.Storeshare.Secret.HelperSpecificInfo parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+
+      public static derec.message.Storeshare.Secret.HelperSpecificInfo parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input);
+      }
+
+      public static derec.message.Storeshare.Secret.HelperSpecificInfo parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static derec.message.Storeshare.Secret.HelperSpecificInfo parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
+      }
+      public static derec.message.Storeshare.Secret.HelperSpecificInfo parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+
+      @java.lang.Override
+      public Builder newBuilderForType() { return newBuilder(); }
+      public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+      }
+      public static Builder newBuilder(derec.message.Storeshare.Secret.HelperSpecificInfo prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      }
+      @java.lang.Override
+      public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+            ? new Builder() : new Builder().mergeFrom(this);
+      }
+
+      @java.lang.Override
+      protected Builder newBuilderForType(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+      }
+      /**
+       * Protobuf type {@code derec.message.Secret.HelperSpecificInfo}
+       */
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+          // @@protoc_insertion_point(builder_implements:derec.message.Secret.HelperSpecificInfo)
+          derec.message.Storeshare.Secret.HelperSpecificInfoOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return derec.message.Storeshare.internal_static_derec_message_Secret_HelperSpecificInfo_descriptor;
+        }
+
+        @java.lang.Override
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return derec.message.Storeshare.internal_static_derec_message_Secret_HelperSpecificInfo_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  derec.message.Storeshare.Secret.HelperSpecificInfo.class, derec.message.Storeshare.Secret.HelperSpecificInfo.Builder.class);
+        }
+
+        // Construct using derec.message.Storeshare.Secret.HelperSpecificInfo.newBuilder()
+        private Builder() {
+          maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          super(parent);
+          maybeForceBuilderInitialization();
+        }
+        private void maybeForceBuilderInitialization() {
+          if (com.google.protobuf.GeneratedMessageV3
+                  .alwaysUseFieldBuilders) {
+            getHelperParamsFieldBuilder();
+          }
+        }
+        @java.lang.Override
+        public Builder clear() {
+          super.clear();
+          bitField0_ = 0;
+          helper_ = com.google.protobuf.ByteString.EMPTY;
+          helperParams_ = null;
+          if (helperParamsBuilder_ != null) {
+            helperParamsBuilder_.dispose();
+            helperParamsBuilder_ = null;
+          }
+          return this;
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+          return derec.message.Storeshare.internal_static_derec_message_Secret_HelperSpecificInfo_descriptor;
+        }
+
+        @java.lang.Override
+        public derec.message.Storeshare.Secret.HelperSpecificInfo getDefaultInstanceForType() {
+          return derec.message.Storeshare.Secret.HelperSpecificInfo.getDefaultInstance();
+        }
+
+        @java.lang.Override
+        public derec.message.Storeshare.Secret.HelperSpecificInfo build() {
+          derec.message.Storeshare.Secret.HelperSpecificInfo result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(result);
+          }
+          return result;
+        }
+
+        @java.lang.Override
+        public derec.message.Storeshare.Secret.HelperSpecificInfo buildPartial() {
+          derec.message.Storeshare.Secret.HelperSpecificInfo result = new derec.message.Storeshare.Secret.HelperSpecificInfo(this);
+          if (bitField0_ != 0) { buildPartial0(result); }
+          onBuilt();
+          return result;
+        }
+
+        private void buildPartial0(derec.message.Storeshare.Secret.HelperSpecificInfo result) {
+          int from_bitField0_ = bitField0_;
+          if (((from_bitField0_ & 0x00000001) != 0)) {
+            result.helper_ = helper_;
+          }
+          int to_bitField0_ = 0;
+          if (((from_bitField0_ & 0x00000002) != 0)) {
+            result.helperParams_ = helperParamsBuilder_ == null
+                ? helperParams_
+                : helperParamsBuilder_.build();
+            to_bitField0_ |= 0x00000001;
+          }
+          result.bitField0_ |= to_bitField0_;
+        }
+
+        @java.lang.Override
+        public Builder clone() {
+          return super.clone();
+        }
+        @java.lang.Override
+        public Builder setField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return super.setField(field, value);
+        }
+        @java.lang.Override
+        public Builder clearField(
+            com.google.protobuf.Descriptors.FieldDescriptor field) {
+          return super.clearField(field);
+        }
+        @java.lang.Override
+        public Builder clearOneof(
+            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+          return super.clearOneof(oneof);
+        }
+        @java.lang.Override
+        public Builder setRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            int index, java.lang.Object value) {
+          return super.setRepeatedField(field, index, value);
+        }
+        @java.lang.Override
+        public Builder addRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return super.addRepeatedField(field, value);
+        }
+        @java.lang.Override
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+          if (other instanceof derec.message.Storeshare.Secret.HelperSpecificInfo) {
+            return mergeFrom((derec.message.Storeshare.Secret.HelperSpecificInfo)other);
+          } else {
+            super.mergeFrom(other);
+            return this;
+          }
+        }
+
+        public Builder mergeFrom(derec.message.Storeshare.Secret.HelperSpecificInfo other) {
+          if (other == derec.message.Storeshare.Secret.HelperSpecificInfo.getDefaultInstance()) return this;
+          if (other.getHelper() != com.google.protobuf.ByteString.EMPTY) {
+            setHelper(other.getHelper());
+          }
+          if (other.hasHelperParams()) {
+            mergeHelperParams(other.getHelperParams());
+          }
+          this.mergeUnknownFields(other.getUnknownFields());
+          onChanged();
+          return this;
+        }
+
+        @java.lang.Override
+        public final boolean isInitialized() {
+          return true;
+        }
+
+        @java.lang.Override
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          if (extensionRegistry == null) {
+            throw new java.lang.NullPointerException();
+          }
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                case 10: {
+                  helper_ = input.readBytes();
+                  bitField0_ |= 0x00000001;
+                  break;
+                } // case 10
+                case 18: {
+                  input.readMessage(
+                      getHelperParamsFieldBuilder().getBuilder(),
+                      extensionRegistry);
+                  bitField0_ |= 0x00000002;
+                  break;
+                } // case 18
+                default: {
+                  if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                    done = true; // was an endgroup tag
+                  }
+                  break;
+                } // default:
+              } // switch (tag)
+            } // while (!done)
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw e.unwrapIOException();
+          } finally {
+            onChanged();
+          } // finally
+          return this;
+        }
+        private int bitField0_;
+
+        private com.google.protobuf.ByteString helper_ = com.google.protobuf.ByteString.EMPTY;
+        /**
+         * <pre>
+         *
+         * SHA-384 hash of helper's public encryption key
+         * </pre>
+         *
+         * <code>bytes helper = 1;</code>
+         * @return The helper.
+         */
+        @java.lang.Override
+        public com.google.protobuf.ByteString getHelper() {
+          return helper_;
+        }
+        /**
+         * <pre>
+         *
+         * SHA-384 hash of helper's public encryption key
+         * </pre>
+         *
+         * <code>bytes helper = 1;</code>
+         * @param value The helper to set.
+         * @return This builder for chaining.
+         */
+        public Builder setHelper(com.google.protobuf.ByteString value) {
+          if (value == null) { throw new NullPointerException(); }
+          helper_ = value;
+          bitField0_ |= 0x00000001;
+          onChanged();
+          return this;
+        }
+        /**
+         * <pre>
+         *
+         * SHA-384 hash of helper's public encryption key
+         * </pre>
+         *
+         * <code>bytes helper = 1;</code>
+         * @return This builder for chaining.
+         */
+        public Builder clearHelper() {
+          bitField0_ = (bitField0_ & ~0x00000001);
+          helper_ = getDefaultInstance().getHelper();
+          onChanged();
+          return this;
+        }
+
+        private derec.message.Parameterrange.ParameterRange helperParams_;
+        private com.google.protobuf.SingleFieldBuilderV3<
+            derec.message.Parameterrange.ParameterRange, derec.message.Parameterrange.ParameterRange.Builder, derec.message.Parameterrange.ParameterRangeOrBuilder> helperParamsBuilder_;
+        /**
+         * <pre>
+         *
+         * agreed upon parameters between helper and sharer
+         * </pre>
+         *
+         * <code>.derec.message.ParameterRange helperParams = 2;</code>
+         * @return Whether the helperParams field is set.
+         */
+        public boolean hasHelperParams() {
+          return ((bitField0_ & 0x00000002) != 0);
+        }
+        /**
+         * <pre>
+         *
+         * agreed upon parameters between helper and sharer
+         * </pre>
+         *
+         * <code>.derec.message.ParameterRange helperParams = 2;</code>
+         * @return The helperParams.
+         */
+        public derec.message.Parameterrange.ParameterRange getHelperParams() {
+          if (helperParamsBuilder_ == null) {
+            return helperParams_ == null ? derec.message.Parameterrange.ParameterRange.getDefaultInstance() : helperParams_;
+          } else {
+            return helperParamsBuilder_.getMessage();
+          }
+        }
+        /**
+         * <pre>
+         *
+         * agreed upon parameters between helper and sharer
+         * </pre>
+         *
+         * <code>.derec.message.ParameterRange helperParams = 2;</code>
+         */
+        public Builder setHelperParams(derec.message.Parameterrange.ParameterRange value) {
+          if (helperParamsBuilder_ == null) {
+            if (value == null) {
+              throw new NullPointerException();
+            }
+            helperParams_ = value;
+          } else {
+            helperParamsBuilder_.setMessage(value);
+          }
+          bitField0_ |= 0x00000002;
+          onChanged();
+          return this;
+        }
+        /**
+         * <pre>
+         *
+         * agreed upon parameters between helper and sharer
+         * </pre>
+         *
+         * <code>.derec.message.ParameterRange helperParams = 2;</code>
+         */
+        public Builder setHelperParams(
+            derec.message.Parameterrange.ParameterRange.Builder builderForValue) {
+          if (helperParamsBuilder_ == null) {
+            helperParams_ = builderForValue.build();
+          } else {
+            helperParamsBuilder_.setMessage(builderForValue.build());
+          }
+          bitField0_ |= 0x00000002;
+          onChanged();
+          return this;
+        }
+        /**
+         * <pre>
+         *
+         * agreed upon parameters between helper and sharer
+         * </pre>
+         *
+         * <code>.derec.message.ParameterRange helperParams = 2;</code>
+         */
+        public Builder mergeHelperParams(derec.message.Parameterrange.ParameterRange value) {
+          if (helperParamsBuilder_ == null) {
+            if (((bitField0_ & 0x00000002) != 0) &&
+              helperParams_ != null &&
+              helperParams_ != derec.message.Parameterrange.ParameterRange.getDefaultInstance()) {
+              getHelperParamsBuilder().mergeFrom(value);
+            } else {
+              helperParams_ = value;
+            }
+          } else {
+            helperParamsBuilder_.mergeFrom(value);
+          }
+          if (helperParams_ != null) {
+            bitField0_ |= 0x00000002;
+            onChanged();
+          }
+          return this;
+        }
+        /**
+         * <pre>
+         *
+         * agreed upon parameters between helper and sharer
+         * </pre>
+         *
+         * <code>.derec.message.ParameterRange helperParams = 2;</code>
+         */
+        public Builder clearHelperParams() {
+          bitField0_ = (bitField0_ & ~0x00000002);
+          helperParams_ = null;
+          if (helperParamsBuilder_ != null) {
+            helperParamsBuilder_.dispose();
+            helperParamsBuilder_ = null;
+          }
+          onChanged();
+          return this;
+        }
+        /**
+         * <pre>
+         *
+         * agreed upon parameters between helper and sharer
+         * </pre>
+         *
+         * <code>.derec.message.ParameterRange helperParams = 2;</code>
+         */
+        public derec.message.Parameterrange.ParameterRange.Builder getHelperParamsBuilder() {
+          bitField0_ |= 0x00000002;
+          onChanged();
+          return getHelperParamsFieldBuilder().getBuilder();
+        }
+        /**
+         * <pre>
+         *
+         * agreed upon parameters between helper and sharer
+         * </pre>
+         *
+         * <code>.derec.message.ParameterRange helperParams = 2;</code>
+         */
+        public derec.message.Parameterrange.ParameterRangeOrBuilder getHelperParamsOrBuilder() {
+          if (helperParamsBuilder_ != null) {
+            return helperParamsBuilder_.getMessageOrBuilder();
+          } else {
+            return helperParams_ == null ?
+                derec.message.Parameterrange.ParameterRange.getDefaultInstance() : helperParams_;
+          }
+        }
+        /**
+         * <pre>
+         *
+         * agreed upon parameters between helper and sharer
+         * </pre>
+         *
+         * <code>.derec.message.ParameterRange helperParams = 2;</code>
+         */
+        private com.google.protobuf.SingleFieldBuilderV3<
+            derec.message.Parameterrange.ParameterRange, derec.message.Parameterrange.ParameterRange.Builder, derec.message.Parameterrange.ParameterRangeOrBuilder> 
+            getHelperParamsFieldBuilder() {
+          if (helperParamsBuilder_ == null) {
+            helperParamsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+                derec.message.Parameterrange.ParameterRange, derec.message.Parameterrange.ParameterRange.Builder, derec.message.Parameterrange.ParameterRangeOrBuilder>(
+                    getHelperParams(),
+                    getParentForChildren(),
+                    isClean());
+            helperParams_ = null;
+          }
+          return helperParamsBuilder_;
+        }
+        @java.lang.Override
+        public final Builder setUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.setUnknownFields(unknownFields);
+        }
+
+        @java.lang.Override
+        public final Builder mergeUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.mergeUnknownFields(unknownFields);
+        }
+
+
+        // @@protoc_insertion_point(builder_scope:derec.message.Secret.HelperSpecificInfo)
+      }
+
+      // @@protoc_insertion_point(class_scope:derec.message.Secret.HelperSpecificInfo)
+      private static final derec.message.Storeshare.Secret.HelperSpecificInfo DEFAULT_INSTANCE;
+      static {
+        DEFAULT_INSTANCE = new derec.message.Storeshare.Secret.HelperSpecificInfo();
+      }
+
+      public static derec.message.Storeshare.Secret.HelperSpecificInfo getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+      }
+
+      private static final com.google.protobuf.Parser<HelperSpecificInfo>
+          PARSER = new com.google.protobuf.AbstractParser<HelperSpecificInfo>() {
+        @java.lang.Override
+        public HelperSpecificInfo parsePartialFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          Builder builder = newBuilder();
+          try {
+            builder.mergeFrom(input, extensionRegistry);
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw e.setUnfinishedMessage(builder.buildPartial());
+          } catch (com.google.protobuf.UninitializedMessageException e) {
+            throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+          } catch (java.io.IOException e) {
+            throw new com.google.protobuf.InvalidProtocolBufferException(e)
+                .setUnfinishedMessage(builder.buildPartial());
+          }
+          return builder.buildPartial();
+        }
+      };
+
+      public static com.google.protobuf.Parser<HelperSpecificInfo> parser() {
+        return PARSER;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<HelperSpecificInfo> getParserForType() {
+        return PARSER;
+      }
+
+      @java.lang.Override
+      public derec.message.Storeshare.Secret.HelperSpecificInfo getDefaultInstanceForType() {
+        return DEFAULT_INSTANCE;
+      }
+
+    }
+
     private int bitField0_;
     public static final int SECRETDATA_FIELD_NUMBER = 1;
     private com.google.protobuf.ByteString secretData_ = com.google.protobuf.ByteString.EMPTY;
@@ -3860,33 +4622,97 @@ public final class Storeshare {
     }
 
     public static final int PRIVATEENCRYPTIONKEY_FIELD_NUMBER = 2;
-    private com.google.protobuf.ByteString privateEncryptionKey_ = com.google.protobuf.ByteString.EMPTY;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object privateEncryptionKey_ = "";
     /**
      * <pre>
-     * The private encryption key used by the sharer.
+     * The private encryption key used by the sharer, in PEM encoding.
      * </pre>
      *
-     * <code>bytes privateEncryptionKey = 2;</code>
+     * <code>string privateEncryptionKey = 2;</code>
      * @return The privateEncryptionKey.
      */
     @java.lang.Override
-    public com.google.protobuf.ByteString getPrivateEncryptionKey() {
-      return privateEncryptionKey_;
+    public java.lang.String getPrivateEncryptionKey() {
+      java.lang.Object ref = privateEncryptionKey_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        privateEncryptionKey_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * The private encryption key used by the sharer, in PEM encoding.
+     * </pre>
+     *
+     * <code>string privateEncryptionKey = 2;</code>
+     * @return The bytes for privateEncryptionKey.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getPrivateEncryptionKeyBytes() {
+      java.lang.Object ref = privateEncryptionKey_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        privateEncryptionKey_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int PRIVATESIGNATUREKEY_FIELD_NUMBER = 3;
-    private com.google.protobuf.ByteString privateSignatureKey_ = com.google.protobuf.ByteString.EMPTY;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object privateSignatureKey_ = "";
     /**
      * <pre>
-     * The private signature key used by the sharer. 
+     * The private signature key used by the sharer, in PEM encoding. 
      * </pre>
      *
-     * <code>bytes privateSignatureKey = 3;</code>
+     * <code>string privateSignatureKey = 3;</code>
      * @return The privateSignatureKey.
      */
     @java.lang.Override
-    public com.google.protobuf.ByteString getPrivateSignatureKey() {
-      return privateSignatureKey_;
+    public java.lang.String getPrivateSignatureKey() {
+      java.lang.Object ref = privateSignatureKey_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        privateSignatureKey_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * The private signature key used by the sharer, in PEM encoding. 
+     * </pre>
+     *
+     * <code>string privateSignatureKey = 3;</code>
+     * @return The bytes for privateSignatureKey.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getPrivateSignatureKeyBytes() {
+      java.lang.Object ref = privateSignatureKey_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        privateSignatureKey_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int CREATIONTIME_FIELD_NUMBER = 4;
@@ -3927,67 +4753,14 @@ public final class Storeshare {
       return creationTime_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : creationTime_;
     }
 
-    public static final int HELPERS_FIELD_NUMBER = 5;
-    @SuppressWarnings("serial")
-    private com.google.protobuf.LazyStringArrayList helpers_ =
-        com.google.protobuf.LazyStringArrayList.emptyList();
-    /**
-     * <pre>
-     * TODO: list of helpers 
-     * </pre>
-     *
-     * <code>repeated string helpers = 5;</code>
-     * @return A list containing the helpers.
-     */
-    public com.google.protobuf.ProtocolStringList
-        getHelpersList() {
-      return helpers_;
-    }
-    /**
-     * <pre>
-     * TODO: list of helpers 
-     * </pre>
-     *
-     * <code>repeated string helpers = 5;</code>
-     * @return The count of helpers.
-     */
-    public int getHelpersCount() {
-      return helpers_.size();
-    }
-    /**
-     * <pre>
-     * TODO: list of helpers 
-     * </pre>
-     *
-     * <code>repeated string helpers = 5;</code>
-     * @param index The index of the element to return.
-     * @return The helpers at the given index.
-     */
-    public java.lang.String getHelpers(int index) {
-      return helpers_.get(index);
-    }
-    /**
-     * <pre>
-     * TODO: list of helpers 
-     * </pre>
-     *
-     * <code>repeated string helpers = 5;</code>
-     * @param index The index of the value to return.
-     * @return The bytes of the helpers at the given index.
-     */
-    public com.google.protobuf.ByteString
-        getHelpersBytes(int index) {
-      return helpers_.getByteString(index);
-    }
-
-    public static final int HELPERTHRESHOLDFORRECOVERY_FIELD_NUMBER = 6;
+    public static final int HELPERTHRESHOLDFORRECOVERY_FIELD_NUMBER = 5;
     private long helperThresholdForRecovery_ = 0L;
     /**
      * <pre>
      * Threshold for # of helpers for recovery 
      * </pre>
      *
-     * <code>int64 helperThresholdForRecovery = 6;</code>
+     * <code>int64 helperThresholdForRecovery = 5;</code>
      * @return The helperThresholdForRecovery.
      */
     @java.lang.Override
@@ -3995,7 +4768,7 @@ public final class Storeshare {
       return helperThresholdForRecovery_;
     }
 
-    public static final int HELPERTHRESHOLDFORCONFIRMINGSHARERECEIPT_FIELD_NUMBER = 7;
+    public static final int HELPERTHRESHOLDFORCONFIRMINGSHARERECEIPT_FIELD_NUMBER = 6;
     private long helperThresholdForConfirmingShareReceipt_ = 0L;
     /**
      * <pre>
@@ -4003,12 +4776,53 @@ public final class Storeshare {
      * to delete the old one
      * </pre>
      *
-     * <code>int64 helperThresholdForConfirmingShareReceipt = 7;</code>
+     * <code>int64 helperThresholdForConfirmingShareReceipt = 6;</code>
      * @return The helperThresholdForConfirmingShareReceipt.
      */
     @java.lang.Override
     public long getHelperThresholdForConfirmingShareReceipt() {
       return helperThresholdForConfirmingShareReceipt_;
+    }
+
+    public static final int HELPERS_FIELD_NUMBER = 7;
+    @SuppressWarnings("serial")
+    private java.util.List<derec.message.Storeshare.Secret.HelperSpecificInfo> helpers_;
+    /**
+     * <code>repeated .derec.message.Secret.HelperSpecificInfo helpers = 7;</code>
+     */
+    @java.lang.Override
+    public java.util.List<derec.message.Storeshare.Secret.HelperSpecificInfo> getHelpersList() {
+      return helpers_;
+    }
+    /**
+     * <code>repeated .derec.message.Secret.HelperSpecificInfo helpers = 7;</code>
+     */
+    @java.lang.Override
+    public java.util.List<? extends derec.message.Storeshare.Secret.HelperSpecificInfoOrBuilder> 
+        getHelpersOrBuilderList() {
+      return helpers_;
+    }
+    /**
+     * <code>repeated .derec.message.Secret.HelperSpecificInfo helpers = 7;</code>
+     */
+    @java.lang.Override
+    public int getHelpersCount() {
+      return helpers_.size();
+    }
+    /**
+     * <code>repeated .derec.message.Secret.HelperSpecificInfo helpers = 7;</code>
+     */
+    @java.lang.Override
+    public derec.message.Storeshare.Secret.HelperSpecificInfo getHelpers(int index) {
+      return helpers_.get(index);
+    }
+    /**
+     * <code>repeated .derec.message.Secret.HelperSpecificInfo helpers = 7;</code>
+     */
+    @java.lang.Override
+    public derec.message.Storeshare.Secret.HelperSpecificInfoOrBuilder getHelpersOrBuilder(
+        int index) {
+      return helpers_.get(index);
     }
 
     private byte memoizedIsInitialized = -1;
@@ -4028,23 +4842,23 @@ public final class Storeshare {
       if (!secretData_.isEmpty()) {
         output.writeBytes(1, secretData_);
       }
-      if (!privateEncryptionKey_.isEmpty()) {
-        output.writeBytes(2, privateEncryptionKey_);
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(privateEncryptionKey_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, privateEncryptionKey_);
       }
-      if (!privateSignatureKey_.isEmpty()) {
-        output.writeBytes(3, privateSignatureKey_);
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(privateSignatureKey_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, privateSignatureKey_);
       }
       if (((bitField0_ & 0x00000001) != 0)) {
         output.writeMessage(4, getCreationTime());
       }
-      for (int i = 0; i < helpers_.size(); i++) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, helpers_.getRaw(i));
-      }
       if (helperThresholdForRecovery_ != 0L) {
-        output.writeInt64(6, helperThresholdForRecovery_);
+        output.writeInt64(5, helperThresholdForRecovery_);
       }
       if (helperThresholdForConfirmingShareReceipt_ != 0L) {
-        output.writeInt64(7, helperThresholdForConfirmingShareReceipt_);
+        output.writeInt64(6, helperThresholdForConfirmingShareReceipt_);
+      }
+      for (int i = 0; i < helpers_.size(); i++) {
+        output.writeMessage(7, helpers_.get(i));
       }
       getUnknownFields().writeTo(output);
     }
@@ -4059,33 +4873,27 @@ public final class Storeshare {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(1, secretData_);
       }
-      if (!privateEncryptionKey_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, privateEncryptionKey_);
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(privateEncryptionKey_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, privateEncryptionKey_);
       }
-      if (!privateSignatureKey_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, privateSignatureKey_);
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(privateSignatureKey_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, privateSignatureKey_);
       }
       if (((bitField0_ & 0x00000001) != 0)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(4, getCreationTime());
       }
-      {
-        int dataSize = 0;
-        for (int i = 0; i < helpers_.size(); i++) {
-          dataSize += computeStringSizeNoTag(helpers_.getRaw(i));
-        }
-        size += dataSize;
-        size += 1 * getHelpersList().size();
-      }
       if (helperThresholdForRecovery_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(6, helperThresholdForRecovery_);
+          .computeInt64Size(5, helperThresholdForRecovery_);
       }
       if (helperThresholdForConfirmingShareReceipt_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(7, helperThresholdForConfirmingShareReceipt_);
+          .computeInt64Size(6, helperThresholdForConfirmingShareReceipt_);
+      }
+      for (int i = 0; i < helpers_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(7, helpers_.get(i));
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -4113,12 +4921,12 @@ public final class Storeshare {
         if (!getCreationTime()
             .equals(other.getCreationTime())) return false;
       }
-      if (!getHelpersList()
-          .equals(other.getHelpersList())) return false;
       if (getHelperThresholdForRecovery()
           != other.getHelperThresholdForRecovery()) return false;
       if (getHelperThresholdForConfirmingShareReceipt()
           != other.getHelperThresholdForConfirmingShareReceipt()) return false;
+      if (!getHelpersList()
+          .equals(other.getHelpersList())) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -4140,16 +4948,16 @@ public final class Storeshare {
         hash = (37 * hash) + CREATIONTIME_FIELD_NUMBER;
         hash = (53 * hash) + getCreationTime().hashCode();
       }
-      if (getHelpersCount() > 0) {
-        hash = (37 * hash) + HELPERS_FIELD_NUMBER;
-        hash = (53 * hash) + getHelpersList().hashCode();
-      }
       hash = (37 * hash) + HELPERTHRESHOLDFORRECOVERY_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getHelperThresholdForRecovery());
       hash = (37 * hash) + HELPERTHRESHOLDFORCONFIRMINGSHARERECEIPT_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getHelperThresholdForConfirmingShareReceipt());
+      if (getHelpersCount() > 0) {
+        hash = (37 * hash) + HELPERS_FIELD_NUMBER;
+        hash = (53 * hash) + getHelpersList().hashCode();
+      }
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -4287,6 +5095,7 @@ public final class Storeshare {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
           getCreationTimeFieldBuilder();
+          getHelpersFieldBuilder();
         }
       }
       @java.lang.Override
@@ -4294,17 +5103,22 @@ public final class Storeshare {
         super.clear();
         bitField0_ = 0;
         secretData_ = com.google.protobuf.ByteString.EMPTY;
-        privateEncryptionKey_ = com.google.protobuf.ByteString.EMPTY;
-        privateSignatureKey_ = com.google.protobuf.ByteString.EMPTY;
+        privateEncryptionKey_ = "";
+        privateSignatureKey_ = "";
         creationTime_ = null;
         if (creationTimeBuilder_ != null) {
           creationTimeBuilder_.dispose();
           creationTimeBuilder_ = null;
         }
-        helpers_ =
-            com.google.protobuf.LazyStringArrayList.emptyList();
         helperThresholdForRecovery_ = 0L;
         helperThresholdForConfirmingShareReceipt_ = 0L;
+        if (helpersBuilder_ == null) {
+          helpers_ = java.util.Collections.emptyList();
+        } else {
+          helpers_ = null;
+          helpersBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000040);
         return this;
       }
 
@@ -4331,9 +5145,22 @@ public final class Storeshare {
       @java.lang.Override
       public derec.message.Storeshare.Secret buildPartial() {
         derec.message.Storeshare.Secret result = new derec.message.Storeshare.Secret(this);
+        buildPartialRepeatedFields(result);
         if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartialRepeatedFields(derec.message.Storeshare.Secret result) {
+        if (helpersBuilder_ == null) {
+          if (((bitField0_ & 0x00000040) != 0)) {
+            helpers_ = java.util.Collections.unmodifiableList(helpers_);
+            bitField0_ = (bitField0_ & ~0x00000040);
+          }
+          result.helpers_ = helpers_;
+        } else {
+          result.helpers_ = helpersBuilder_.build();
+        }
       }
 
       private void buildPartial0(derec.message.Storeshare.Secret result) {
@@ -4355,13 +5182,9 @@ public final class Storeshare {
           to_bitField0_ |= 0x00000001;
         }
         if (((from_bitField0_ & 0x00000010) != 0)) {
-          helpers_.makeImmutable();
-          result.helpers_ = helpers_;
-        }
-        if (((from_bitField0_ & 0x00000020) != 0)) {
           result.helperThresholdForRecovery_ = helperThresholdForRecovery_;
         }
-        if (((from_bitField0_ & 0x00000040) != 0)) {
+        if (((from_bitField0_ & 0x00000020) != 0)) {
           result.helperThresholdForConfirmingShareReceipt_ = helperThresholdForConfirmingShareReceipt_;
         }
         result.bitField0_ |= to_bitField0_;
@@ -4414,30 +5237,50 @@ public final class Storeshare {
         if (other.getSecretData() != com.google.protobuf.ByteString.EMPTY) {
           setSecretData(other.getSecretData());
         }
-        if (other.getPrivateEncryptionKey() != com.google.protobuf.ByteString.EMPTY) {
-          setPrivateEncryptionKey(other.getPrivateEncryptionKey());
+        if (!other.getPrivateEncryptionKey().isEmpty()) {
+          privateEncryptionKey_ = other.privateEncryptionKey_;
+          bitField0_ |= 0x00000002;
+          onChanged();
         }
-        if (other.getPrivateSignatureKey() != com.google.protobuf.ByteString.EMPTY) {
-          setPrivateSignatureKey(other.getPrivateSignatureKey());
+        if (!other.getPrivateSignatureKey().isEmpty()) {
+          privateSignatureKey_ = other.privateSignatureKey_;
+          bitField0_ |= 0x00000004;
+          onChanged();
         }
         if (other.hasCreationTime()) {
           mergeCreationTime(other.getCreationTime());
-        }
-        if (!other.helpers_.isEmpty()) {
-          if (helpers_.isEmpty()) {
-            helpers_ = other.helpers_;
-            bitField0_ |= 0x00000010;
-          } else {
-            ensureHelpersIsMutable();
-            helpers_.addAll(other.helpers_);
-          }
-          onChanged();
         }
         if (other.getHelperThresholdForRecovery() != 0L) {
           setHelperThresholdForRecovery(other.getHelperThresholdForRecovery());
         }
         if (other.getHelperThresholdForConfirmingShareReceipt() != 0L) {
           setHelperThresholdForConfirmingShareReceipt(other.getHelperThresholdForConfirmingShareReceipt());
+        }
+        if (helpersBuilder_ == null) {
+          if (!other.helpers_.isEmpty()) {
+            if (helpers_.isEmpty()) {
+              helpers_ = other.helpers_;
+              bitField0_ = (bitField0_ & ~0x00000040);
+            } else {
+              ensureHelpersIsMutable();
+              helpers_.addAll(other.helpers_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.helpers_.isEmpty()) {
+            if (helpersBuilder_.isEmpty()) {
+              helpersBuilder_.dispose();
+              helpersBuilder_ = null;
+              helpers_ = other.helpers_;
+              bitField0_ = (bitField0_ & ~0x00000040);
+              helpersBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getHelpersFieldBuilder() : null;
+            } else {
+              helpersBuilder_.addAllMessages(other.helpers_);
+            }
+          }
         }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
@@ -4471,12 +5314,12 @@ public final class Storeshare {
                 break;
               } // case 10
               case 18: {
-                privateEncryptionKey_ = input.readBytes();
+                privateEncryptionKey_ = input.readStringRequireUtf8();
                 bitField0_ |= 0x00000002;
                 break;
               } // case 18
               case 26: {
-                privateSignatureKey_ = input.readBytes();
+                privateSignatureKey_ = input.readStringRequireUtf8();
                 bitField0_ |= 0x00000004;
                 break;
               } // case 26
@@ -4487,22 +5330,29 @@ public final class Storeshare {
                 bitField0_ |= 0x00000008;
                 break;
               } // case 34
-              case 42: {
-                java.lang.String s = input.readStringRequireUtf8();
-                ensureHelpersIsMutable();
-                helpers_.add(s);
-                break;
-              } // case 42
-              case 48: {
+              case 40: {
                 helperThresholdForRecovery_ = input.readInt64();
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 40
+              case 48: {
+                helperThresholdForConfirmingShareReceipt_ = input.readInt64();
                 bitField0_ |= 0x00000020;
                 break;
               } // case 48
-              case 56: {
-                helperThresholdForConfirmingShareReceipt_ = input.readInt64();
-                bitField0_ |= 0x00000040;
+              case 58: {
+                derec.message.Storeshare.Secret.HelperSpecificInfo m =
+                    input.readMessage(
+                        derec.message.Storeshare.Secret.HelperSpecificInfo.parser(),
+                        extensionRegistry);
+                if (helpersBuilder_ == null) {
+                  ensureHelpersIsMutable();
+                  helpers_.add(m);
+                } else {
+                  helpersBuilder_.addMessage(m);
+                }
                 break;
-              } // case 56
+              } // case 58
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -4573,29 +5423,59 @@ public final class Storeshare {
         return this;
       }
 
-      private com.google.protobuf.ByteString privateEncryptionKey_ = com.google.protobuf.ByteString.EMPTY;
+      private java.lang.Object privateEncryptionKey_ = "";
       /**
        * <pre>
-       * The private encryption key used by the sharer.
+       * The private encryption key used by the sharer, in PEM encoding.
        * </pre>
        *
-       * <code>bytes privateEncryptionKey = 2;</code>
+       * <code>string privateEncryptionKey = 2;</code>
        * @return The privateEncryptionKey.
        */
-      @java.lang.Override
-      public com.google.protobuf.ByteString getPrivateEncryptionKey() {
-        return privateEncryptionKey_;
+      public java.lang.String getPrivateEncryptionKey() {
+        java.lang.Object ref = privateEncryptionKey_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          privateEncryptionKey_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
        * <pre>
-       * The private encryption key used by the sharer.
+       * The private encryption key used by the sharer, in PEM encoding.
        * </pre>
        *
-       * <code>bytes privateEncryptionKey = 2;</code>
+       * <code>string privateEncryptionKey = 2;</code>
+       * @return The bytes for privateEncryptionKey.
+       */
+      public com.google.protobuf.ByteString
+          getPrivateEncryptionKeyBytes() {
+        java.lang.Object ref = privateEncryptionKey_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          privateEncryptionKey_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * The private encryption key used by the sharer, in PEM encoding.
+       * </pre>
+       *
+       * <code>string privateEncryptionKey = 2;</code>
        * @param value The privateEncryptionKey to set.
        * @return This builder for chaining.
        */
-      public Builder setPrivateEncryptionKey(com.google.protobuf.ByteString value) {
+      public Builder setPrivateEncryptionKey(
+          java.lang.String value) {
         if (value == null) { throw new NullPointerException(); }
         privateEncryptionKey_ = value;
         bitField0_ |= 0x00000002;
@@ -4604,42 +5484,90 @@ public final class Storeshare {
       }
       /**
        * <pre>
-       * The private encryption key used by the sharer.
+       * The private encryption key used by the sharer, in PEM encoding.
        * </pre>
        *
-       * <code>bytes privateEncryptionKey = 2;</code>
+       * <code>string privateEncryptionKey = 2;</code>
        * @return This builder for chaining.
        */
       public Builder clearPrivateEncryptionKey() {
-        bitField0_ = (bitField0_ & ~0x00000002);
         privateEncryptionKey_ = getDefaultInstance().getPrivateEncryptionKey();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * The private encryption key used by the sharer, in PEM encoding.
+       * </pre>
+       *
+       * <code>string privateEncryptionKey = 2;</code>
+       * @param value The bytes for privateEncryptionKey to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPrivateEncryptionKeyBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        privateEncryptionKey_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.ByteString privateSignatureKey_ = com.google.protobuf.ByteString.EMPTY;
+      private java.lang.Object privateSignatureKey_ = "";
       /**
        * <pre>
-       * The private signature key used by the sharer. 
+       * The private signature key used by the sharer, in PEM encoding. 
        * </pre>
        *
-       * <code>bytes privateSignatureKey = 3;</code>
+       * <code>string privateSignatureKey = 3;</code>
        * @return The privateSignatureKey.
        */
-      @java.lang.Override
-      public com.google.protobuf.ByteString getPrivateSignatureKey() {
-        return privateSignatureKey_;
+      public java.lang.String getPrivateSignatureKey() {
+        java.lang.Object ref = privateSignatureKey_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          privateSignatureKey_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
        * <pre>
-       * The private signature key used by the sharer. 
+       * The private signature key used by the sharer, in PEM encoding. 
        * </pre>
        *
-       * <code>bytes privateSignatureKey = 3;</code>
+       * <code>string privateSignatureKey = 3;</code>
+       * @return The bytes for privateSignatureKey.
+       */
+      public com.google.protobuf.ByteString
+          getPrivateSignatureKeyBytes() {
+        java.lang.Object ref = privateSignatureKey_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          privateSignatureKey_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * The private signature key used by the sharer, in PEM encoding. 
+       * </pre>
+       *
+       * <code>string privateSignatureKey = 3;</code>
        * @param value The privateSignatureKey to set.
        * @return This builder for chaining.
        */
-      public Builder setPrivateSignatureKey(com.google.protobuf.ByteString value) {
+      public Builder setPrivateSignatureKey(
+          java.lang.String value) {
         if (value == null) { throw new NullPointerException(); }
         privateSignatureKey_ = value;
         bitField0_ |= 0x00000004;
@@ -4648,15 +5576,33 @@ public final class Storeshare {
       }
       /**
        * <pre>
-       * The private signature key used by the sharer. 
+       * The private signature key used by the sharer, in PEM encoding. 
        * </pre>
        *
-       * <code>bytes privateSignatureKey = 3;</code>
+       * <code>string privateSignatureKey = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearPrivateSignatureKey() {
-        bitField0_ = (bitField0_ & ~0x00000004);
         privateSignatureKey_ = getDefaultInstance().getPrivateSignatureKey();
+        bitField0_ = (bitField0_ & ~0x00000004);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * The private signature key used by the sharer, in PEM encoding. 
+       * </pre>
+       *
+       * <code>string privateSignatureKey = 3;</code>
+       * @param value The bytes for privateSignatureKey to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPrivateSignatureKeyBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        privateSignatureKey_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -4818,160 +5764,13 @@ public final class Storeshare {
         return creationTimeBuilder_;
       }
 
-      private com.google.protobuf.LazyStringArrayList helpers_ =
-          com.google.protobuf.LazyStringArrayList.emptyList();
-      private void ensureHelpersIsMutable() {
-        if (!helpers_.isModifiable()) {
-          helpers_ = new com.google.protobuf.LazyStringArrayList(helpers_);
-        }
-        bitField0_ |= 0x00000010;
-      }
-      /**
-       * <pre>
-       * TODO: list of helpers 
-       * </pre>
-       *
-       * <code>repeated string helpers = 5;</code>
-       * @return A list containing the helpers.
-       */
-      public com.google.protobuf.ProtocolStringList
-          getHelpersList() {
-        helpers_.makeImmutable();
-        return helpers_;
-      }
-      /**
-       * <pre>
-       * TODO: list of helpers 
-       * </pre>
-       *
-       * <code>repeated string helpers = 5;</code>
-       * @return The count of helpers.
-       */
-      public int getHelpersCount() {
-        return helpers_.size();
-      }
-      /**
-       * <pre>
-       * TODO: list of helpers 
-       * </pre>
-       *
-       * <code>repeated string helpers = 5;</code>
-       * @param index The index of the element to return.
-       * @return The helpers at the given index.
-       */
-      public java.lang.String getHelpers(int index) {
-        return helpers_.get(index);
-      }
-      /**
-       * <pre>
-       * TODO: list of helpers 
-       * </pre>
-       *
-       * <code>repeated string helpers = 5;</code>
-       * @param index The index of the value to return.
-       * @return The bytes of the helpers at the given index.
-       */
-      public com.google.protobuf.ByteString
-          getHelpersBytes(int index) {
-        return helpers_.getByteString(index);
-      }
-      /**
-       * <pre>
-       * TODO: list of helpers 
-       * </pre>
-       *
-       * <code>repeated string helpers = 5;</code>
-       * @param index The index to set the value at.
-       * @param value The helpers to set.
-       * @return This builder for chaining.
-       */
-      public Builder setHelpers(
-          int index, java.lang.String value) {
-        if (value == null) { throw new NullPointerException(); }
-        ensureHelpersIsMutable();
-        helpers_.set(index, value);
-        bitField0_ |= 0x00000010;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * TODO: list of helpers 
-       * </pre>
-       *
-       * <code>repeated string helpers = 5;</code>
-       * @param value The helpers to add.
-       * @return This builder for chaining.
-       */
-      public Builder addHelpers(
-          java.lang.String value) {
-        if (value == null) { throw new NullPointerException(); }
-        ensureHelpersIsMutable();
-        helpers_.add(value);
-        bitField0_ |= 0x00000010;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * TODO: list of helpers 
-       * </pre>
-       *
-       * <code>repeated string helpers = 5;</code>
-       * @param values The helpers to add.
-       * @return This builder for chaining.
-       */
-      public Builder addAllHelpers(
-          java.lang.Iterable<java.lang.String> values) {
-        ensureHelpersIsMutable();
-        com.google.protobuf.AbstractMessageLite.Builder.addAll(
-            values, helpers_);
-        bitField0_ |= 0x00000010;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * TODO: list of helpers 
-       * </pre>
-       *
-       * <code>repeated string helpers = 5;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearHelpers() {
-        helpers_ =
-          com.google.protobuf.LazyStringArrayList.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000010);;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * TODO: list of helpers 
-       * </pre>
-       *
-       * <code>repeated string helpers = 5;</code>
-       * @param value The bytes of the helpers to add.
-       * @return This builder for chaining.
-       */
-      public Builder addHelpersBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) { throw new NullPointerException(); }
-        checkByteStringIsUtf8(value);
-        ensureHelpersIsMutable();
-        helpers_.add(value);
-        bitField0_ |= 0x00000010;
-        onChanged();
-        return this;
-      }
-
       private long helperThresholdForRecovery_ ;
       /**
        * <pre>
        * Threshold for # of helpers for recovery 
        * </pre>
        *
-       * <code>int64 helperThresholdForRecovery = 6;</code>
+       * <code>int64 helperThresholdForRecovery = 5;</code>
        * @return The helperThresholdForRecovery.
        */
       @java.lang.Override
@@ -4983,14 +5782,14 @@ public final class Storeshare {
        * Threshold for # of helpers for recovery 
        * </pre>
        *
-       * <code>int64 helperThresholdForRecovery = 6;</code>
+       * <code>int64 helperThresholdForRecovery = 5;</code>
        * @param value The helperThresholdForRecovery to set.
        * @return This builder for chaining.
        */
       public Builder setHelperThresholdForRecovery(long value) {
 
         helperThresholdForRecovery_ = value;
-        bitField0_ |= 0x00000020;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -4999,11 +5798,11 @@ public final class Storeshare {
        * Threshold for # of helpers for recovery 
        * </pre>
        *
-       * <code>int64 helperThresholdForRecovery = 6;</code>
+       * <code>int64 helperThresholdForRecovery = 5;</code>
        * @return This builder for chaining.
        */
       public Builder clearHelperThresholdForRecovery() {
-        bitField0_ = (bitField0_ & ~0x00000020);
+        bitField0_ = (bitField0_ & ~0x00000010);
         helperThresholdForRecovery_ = 0L;
         onChanged();
         return this;
@@ -5016,7 +5815,7 @@ public final class Storeshare {
        * to delete the old one
        * </pre>
        *
-       * <code>int64 helperThresholdForConfirmingShareReceipt = 7;</code>
+       * <code>int64 helperThresholdForConfirmingShareReceipt = 6;</code>
        * @return The helperThresholdForConfirmingShareReceipt.
        */
       @java.lang.Override
@@ -5029,14 +5828,14 @@ public final class Storeshare {
        * to delete the old one
        * </pre>
        *
-       * <code>int64 helperThresholdForConfirmingShareReceipt = 7;</code>
+       * <code>int64 helperThresholdForConfirmingShareReceipt = 6;</code>
        * @param value The helperThresholdForConfirmingShareReceipt to set.
        * @return This builder for chaining.
        */
       public Builder setHelperThresholdForConfirmingShareReceipt(long value) {
 
         helperThresholdForConfirmingShareReceipt_ = value;
-        bitField0_ |= 0x00000040;
+        bitField0_ |= 0x00000020;
         onChanged();
         return this;
       }
@@ -5046,14 +5845,254 @@ public final class Storeshare {
        * to delete the old one
        * </pre>
        *
-       * <code>int64 helperThresholdForConfirmingShareReceipt = 7;</code>
+       * <code>int64 helperThresholdForConfirmingShareReceipt = 6;</code>
        * @return This builder for chaining.
        */
       public Builder clearHelperThresholdForConfirmingShareReceipt() {
-        bitField0_ = (bitField0_ & ~0x00000040);
+        bitField0_ = (bitField0_ & ~0x00000020);
         helperThresholdForConfirmingShareReceipt_ = 0L;
         onChanged();
         return this;
+      }
+
+      private java.util.List<derec.message.Storeshare.Secret.HelperSpecificInfo> helpers_ =
+        java.util.Collections.emptyList();
+      private void ensureHelpersIsMutable() {
+        if (!((bitField0_ & 0x00000040) != 0)) {
+          helpers_ = new java.util.ArrayList<derec.message.Storeshare.Secret.HelperSpecificInfo>(helpers_);
+          bitField0_ |= 0x00000040;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          derec.message.Storeshare.Secret.HelperSpecificInfo, derec.message.Storeshare.Secret.HelperSpecificInfo.Builder, derec.message.Storeshare.Secret.HelperSpecificInfoOrBuilder> helpersBuilder_;
+
+      /**
+       * <code>repeated .derec.message.Secret.HelperSpecificInfo helpers = 7;</code>
+       */
+      public java.util.List<derec.message.Storeshare.Secret.HelperSpecificInfo> getHelpersList() {
+        if (helpersBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(helpers_);
+        } else {
+          return helpersBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .derec.message.Secret.HelperSpecificInfo helpers = 7;</code>
+       */
+      public int getHelpersCount() {
+        if (helpersBuilder_ == null) {
+          return helpers_.size();
+        } else {
+          return helpersBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .derec.message.Secret.HelperSpecificInfo helpers = 7;</code>
+       */
+      public derec.message.Storeshare.Secret.HelperSpecificInfo getHelpers(int index) {
+        if (helpersBuilder_ == null) {
+          return helpers_.get(index);
+        } else {
+          return helpersBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .derec.message.Secret.HelperSpecificInfo helpers = 7;</code>
+       */
+      public Builder setHelpers(
+          int index, derec.message.Storeshare.Secret.HelperSpecificInfo value) {
+        if (helpersBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureHelpersIsMutable();
+          helpers_.set(index, value);
+          onChanged();
+        } else {
+          helpersBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .derec.message.Secret.HelperSpecificInfo helpers = 7;</code>
+       */
+      public Builder setHelpers(
+          int index, derec.message.Storeshare.Secret.HelperSpecificInfo.Builder builderForValue) {
+        if (helpersBuilder_ == null) {
+          ensureHelpersIsMutable();
+          helpers_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          helpersBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .derec.message.Secret.HelperSpecificInfo helpers = 7;</code>
+       */
+      public Builder addHelpers(derec.message.Storeshare.Secret.HelperSpecificInfo value) {
+        if (helpersBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureHelpersIsMutable();
+          helpers_.add(value);
+          onChanged();
+        } else {
+          helpersBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .derec.message.Secret.HelperSpecificInfo helpers = 7;</code>
+       */
+      public Builder addHelpers(
+          int index, derec.message.Storeshare.Secret.HelperSpecificInfo value) {
+        if (helpersBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureHelpersIsMutable();
+          helpers_.add(index, value);
+          onChanged();
+        } else {
+          helpersBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .derec.message.Secret.HelperSpecificInfo helpers = 7;</code>
+       */
+      public Builder addHelpers(
+          derec.message.Storeshare.Secret.HelperSpecificInfo.Builder builderForValue) {
+        if (helpersBuilder_ == null) {
+          ensureHelpersIsMutable();
+          helpers_.add(builderForValue.build());
+          onChanged();
+        } else {
+          helpersBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .derec.message.Secret.HelperSpecificInfo helpers = 7;</code>
+       */
+      public Builder addHelpers(
+          int index, derec.message.Storeshare.Secret.HelperSpecificInfo.Builder builderForValue) {
+        if (helpersBuilder_ == null) {
+          ensureHelpersIsMutable();
+          helpers_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          helpersBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .derec.message.Secret.HelperSpecificInfo helpers = 7;</code>
+       */
+      public Builder addAllHelpers(
+          java.lang.Iterable<? extends derec.message.Storeshare.Secret.HelperSpecificInfo> values) {
+        if (helpersBuilder_ == null) {
+          ensureHelpersIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, helpers_);
+          onChanged();
+        } else {
+          helpersBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .derec.message.Secret.HelperSpecificInfo helpers = 7;</code>
+       */
+      public Builder clearHelpers() {
+        if (helpersBuilder_ == null) {
+          helpers_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000040);
+          onChanged();
+        } else {
+          helpersBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .derec.message.Secret.HelperSpecificInfo helpers = 7;</code>
+       */
+      public Builder removeHelpers(int index) {
+        if (helpersBuilder_ == null) {
+          ensureHelpersIsMutable();
+          helpers_.remove(index);
+          onChanged();
+        } else {
+          helpersBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .derec.message.Secret.HelperSpecificInfo helpers = 7;</code>
+       */
+      public derec.message.Storeshare.Secret.HelperSpecificInfo.Builder getHelpersBuilder(
+          int index) {
+        return getHelpersFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .derec.message.Secret.HelperSpecificInfo helpers = 7;</code>
+       */
+      public derec.message.Storeshare.Secret.HelperSpecificInfoOrBuilder getHelpersOrBuilder(
+          int index) {
+        if (helpersBuilder_ == null) {
+          return helpers_.get(index);  } else {
+          return helpersBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .derec.message.Secret.HelperSpecificInfo helpers = 7;</code>
+       */
+      public java.util.List<? extends derec.message.Storeshare.Secret.HelperSpecificInfoOrBuilder> 
+           getHelpersOrBuilderList() {
+        if (helpersBuilder_ != null) {
+          return helpersBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(helpers_);
+        }
+      }
+      /**
+       * <code>repeated .derec.message.Secret.HelperSpecificInfo helpers = 7;</code>
+       */
+      public derec.message.Storeshare.Secret.HelperSpecificInfo.Builder addHelpersBuilder() {
+        return getHelpersFieldBuilder().addBuilder(
+            derec.message.Storeshare.Secret.HelperSpecificInfo.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .derec.message.Secret.HelperSpecificInfo helpers = 7;</code>
+       */
+      public derec.message.Storeshare.Secret.HelperSpecificInfo.Builder addHelpersBuilder(
+          int index) {
+        return getHelpersFieldBuilder().addBuilder(
+            index, derec.message.Storeshare.Secret.HelperSpecificInfo.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .derec.message.Secret.HelperSpecificInfo helpers = 7;</code>
+       */
+      public java.util.List<derec.message.Storeshare.Secret.HelperSpecificInfo.Builder> 
+           getHelpersBuilderList() {
+        return getHelpersFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          derec.message.Storeshare.Secret.HelperSpecificInfo, derec.message.Storeshare.Secret.HelperSpecificInfo.Builder, derec.message.Storeshare.Secret.HelperSpecificInfoOrBuilder> 
+          getHelpersFieldBuilder() {
+        if (helpersBuilder_ == null) {
+          helpersBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              derec.message.Storeshare.Secret.HelperSpecificInfo, derec.message.Storeshare.Secret.HelperSpecificInfo.Builder, derec.message.Storeshare.Secret.HelperSpecificInfoOrBuilder>(
+                  helpers_,
+                  ((bitField0_ & 0x00000040) != 0),
+                  getParentForChildren(),
+                  isClean());
+          helpers_ = null;
+        }
+        return helpersBuilder_;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -5144,10 +6183,10 @@ public final class Storeshare {
      * version number from the share message
      * </pre>
      *
-     * <code>int64 version = 2;</code>
+     * <code>int32 version = 2;</code>
      * @return The version.
      */
-    long getVersion();
+    int getVersion();
   }
   /**
    * Protobuf type {@code derec.message.StoreShareResponseMessage}
@@ -5212,18 +6251,18 @@ public final class Storeshare {
     }
 
     public static final int VERSION_FIELD_NUMBER = 2;
-    private long version_ = 0L;
+    private int version_ = 0;
     /**
      * <pre>
      *
      * version number from the share message
      * </pre>
      *
-     * <code>int64 version = 2;</code>
+     * <code>int32 version = 2;</code>
      * @return The version.
      */
     @java.lang.Override
-    public long getVersion() {
+    public int getVersion() {
       return version_;
     }
 
@@ -5244,8 +6283,8 @@ public final class Storeshare {
       if (((bitField0_ & 0x00000001) != 0)) {
         output.writeMessage(1, getResult());
       }
-      if (version_ != 0L) {
-        output.writeInt64(2, version_);
+      if (version_ != 0) {
+        output.writeInt32(2, version_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -5260,9 +6299,9 @@ public final class Storeshare {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getResult());
       }
-      if (version_ != 0L) {
+      if (version_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(2, version_);
+          .computeInt32Size(2, version_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -5302,8 +6341,7 @@ public final class Storeshare {
         hash = (53 * hash) + getResult().hashCode();
       }
       hash = (37 * hash) + VERSION_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getVersion());
+      hash = (53 * hash) + getVersion();
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -5446,7 +6484,7 @@ public final class Storeshare {
           resultBuilder_.dispose();
           resultBuilder_ = null;
         }
-        version_ = 0L;
+        version_ = 0;
         return this;
       }
 
@@ -5540,7 +6578,7 @@ public final class Storeshare {
         if (other.hasResult()) {
           mergeResult(other.getResult());
         }
-        if (other.getVersion() != 0L) {
+        if (other.getVersion() != 0) {
           setVersion(other.getVersion());
         }
         this.mergeUnknownFields(other.getUnknownFields());
@@ -5577,7 +6615,7 @@ public final class Storeshare {
                 break;
               } // case 10
               case 16: {
-                version_ = input.readInt64();
+                version_ = input.readInt32();
                 bitField0_ |= 0x00000002;
                 break;
               } // case 16
@@ -5719,18 +6757,18 @@ public final class Storeshare {
         return resultBuilder_;
       }
 
-      private long version_ ;
+      private int version_ ;
       /**
        * <pre>
        *
        * version number from the share message
        * </pre>
        *
-       * <code>int64 version = 2;</code>
+       * <code>int32 version = 2;</code>
        * @return The version.
        */
       @java.lang.Override
-      public long getVersion() {
+      public int getVersion() {
         return version_;
       }
       /**
@@ -5739,11 +6777,11 @@ public final class Storeshare {
        * version number from the share message
        * </pre>
        *
-       * <code>int64 version = 2;</code>
+       * <code>int32 version = 2;</code>
        * @param value The version to set.
        * @return This builder for chaining.
        */
-      public Builder setVersion(long value) {
+      public Builder setVersion(int value) {
 
         version_ = value;
         bitField0_ |= 0x00000002;
@@ -5756,12 +6794,12 @@ public final class Storeshare {
        * version number from the share message
        * </pre>
        *
-       * <code>int64 version = 2;</code>
+       * <code>int32 version = 2;</code>
        * @return This builder for chaining.
        */
       public Builder clearVersion() {
         bitField0_ = (bitField0_ & ~0x00000002);
-        version_ = 0L;
+        version_ = 0;
         onChanged();
         return this;
       }
@@ -5855,6 +6893,11 @@ public final class Storeshare {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_derec_message_Secret_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_derec_message_Secret_HelperSpecificInfo_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_derec_message_Secret_HelperSpecificInfo_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_derec_message_StoreShareResponseMessage_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -5869,30 +6912,35 @@ public final class Storeshare {
   static {
     java.lang.String[] descriptorData = {
       "\n\020storeshare.proto\022\rderec.message\032\014resul" +
-      "t.proto\032\037google/protobuf/timestamp.proto" +
-      "\"m\n\030StoreShareRequestMessage\022?\n\023committe" +
-      "dDeRecShare\030\001 \001(\0132\".derec.message.Commit" +
-      "tedDeRecShare\022\020\n\010keepList\030\003 \003(\003\"\256\001\n\023Comm" +
-      "ittedDeRecShare\022\022\n\ndeRecShare\030\001 \001(\014\022\022\n\nc" +
-      "ommitment\030\002 \001(\014\022B\n\nmerklePath\030\003 \003(\0132..de" +
-      "rec.message.CommittedDeRecShare.SiblingH" +
-      "ash\032+\n\013SiblingHash\022\016\n\006isLeft\030\001 \001(\010\022\014\n\004ha" +
-      "sh\030\002 \001(\014\"^\n\nDeRecShare\022\027\n\017encryptedSecre" +
-      "t\030\001 \001(\014\022\t\n\001x\030\002 \001(\014\022\t\n\001y\030\003 \001(\014\022\020\n\010secretI" +
-      "d\030\004 \001(\014\022\017\n\007version\030\005 \001(\005\"\360\001\n\006Secret\022\022\n\ns" +
-      "ecretData\030\001 \001(\014\022\034\n\024privateEncryptionKey\030" +
-      "\002 \001(\014\022\033\n\023privateSignatureKey\030\003 \001(\014\0220\n\014cr" +
-      "eationTime\030\004 \001(\0132\032.google.protobuf.Times" +
-      "tamp\022\017\n\007helpers\030\005 \003(\t\022\"\n\032helperThreshold" +
-      "ForRecovery\030\006 \001(\003\0220\n(helperThresholdForC" +
-      "onfirmingShareReceipt\030\007 \001(\003\"S\n\031StoreShar" +
-      "eResponseMessage\022%\n\006result\030\001 \001(\0132\025.derec" +
-      ".message.Result\022\017\n\007version\030\002 \001(\003b\006proto3"
+      "t.proto\032\024parameterrange.proto\032\037google/pr" +
+      "otobuf/timestamp.proto\"m\n\030StoreShareRequ" +
+      "estMessage\022?\n\023committedDeRecShare\030\001 \001(\0132" +
+      "\".derec.message.CommittedDeRecShare\022\020\n\010k" +
+      "eepList\030\003 \003(\005\"\256\001\n\023CommittedDeRecShare\022\022\n" +
+      "\ndeRecShare\030\001 \001(\014\022\022\n\ncommitment\030\002 \001(\014\022B\n" +
+      "\nmerklePath\030\003 \003(\0132..derec.message.Commit" +
+      "tedDeRecShare.SiblingHash\032+\n\013SiblingHash" +
+      "\022\016\n\006isLeft\030\001 \001(\010\022\014\n\004hash\030\002 \001(\014\"^\n\nDeRecS" +
+      "hare\022\027\n\017encryptedSecret\030\001 \001(\014\022\t\n\001x\030\002 \001(\014" +
+      "\022\t\n\001y\030\003 \001(\014\022\020\n\010secretId\030\004 \001(\014\022\017\n\007version" +
+      "\030\005 \001(\005\"\365\002\n\006Secret\022\022\n\nsecretData\030\001 \001(\014\022\034\n" +
+      "\024privateEncryptionKey\030\002 \001(\t\022\033\n\023privateSi" +
+      "gnatureKey\030\003 \001(\t\0220\n\014creationTime\030\004 \001(\0132\032" +
+      ".google.protobuf.Timestamp\022\"\n\032helperThre" +
+      "sholdForRecovery\030\005 \001(\003\0220\n(helperThreshol" +
+      "dForConfirmingShareReceipt\030\006 \001(\003\0229\n\007help" +
+      "ers\030\007 \003(\0132(.derec.message.Secret.HelperS" +
+      "pecificInfo\032Y\n\022HelperSpecificInfo\022\016\n\006hel" +
+      "per\030\001 \001(\014\0223\n\014helperParams\030\002 \001(\0132\035.derec." +
+      "message.ParameterRange\"S\n\031StoreShareResp" +
+      "onseMessage\022%\n\006result\030\001 \001(\0132\025.derec.mess" +
+      "age.Result\022\017\n\007version\030\002 \001(\005b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           derec.message.ResultOuterClass.getDescriptor(),
+          derec.message.Parameterrange.getDescriptor(),
           com.google.protobuf.TimestampProto.getDescriptor(),
         });
     internal_static_derec_message_StoreShareRequestMessage_descriptor =
@@ -5924,7 +6972,13 @@ public final class Storeshare {
     internal_static_derec_message_Secret_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_derec_message_Secret_descriptor,
-        new java.lang.String[] { "SecretData", "PrivateEncryptionKey", "PrivateSignatureKey", "CreationTime", "Helpers", "HelperThresholdForRecovery", "HelperThresholdForConfirmingShareReceipt", });
+        new java.lang.String[] { "SecretData", "PrivateEncryptionKey", "PrivateSignatureKey", "CreationTime", "HelperThresholdForRecovery", "HelperThresholdForConfirmingShareReceipt", "Helpers", });
+    internal_static_derec_message_Secret_HelperSpecificInfo_descriptor =
+      internal_static_derec_message_Secret_descriptor.getNestedTypes().get(0);
+    internal_static_derec_message_Secret_HelperSpecificInfo_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_derec_message_Secret_HelperSpecificInfo_descriptor,
+        new java.lang.String[] { "Helper", "HelperParams", });
     internal_static_derec_message_StoreShareResponseMessage_descriptor =
       getDescriptor().getMessageTypes().get(4);
     internal_static_derec_message_StoreShareResponseMessage_fieldAccessorTable = new
@@ -5932,6 +6986,7 @@ public final class Storeshare {
         internal_static_derec_message_StoreShareResponseMessage_descriptor,
         new java.lang.String[] { "Result", "Version", });
     derec.message.ResultOuterClass.getDescriptor();
+    derec.message.Parameterrange.getDescriptor();
     com.google.protobuf.TimestampProto.getDescriptor();
   }
 

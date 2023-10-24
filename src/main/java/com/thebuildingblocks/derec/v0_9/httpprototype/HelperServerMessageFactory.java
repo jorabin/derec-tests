@@ -18,7 +18,6 @@
 package com.thebuildingblocks.derec.v0_9.httpprototype;
 
 import com.google.protobuf.ByteString;
-import derec.message.*;
 import derec.message.Derecmessage.DeRecMessage.HelperMessageBody;
 
 import static derec.message.Pair.*;
@@ -29,7 +28,7 @@ import static derec.message.Verify.*;
 
 public class HelperServerMessageFactory {
 
-    public static HelperMessageBody getShareResponseMessageBody(StatusEnum status, String message, long version){
+    public static HelperMessageBody getShareResponseMessageBody(StatusEnum status, String message, int version){
         return HelperMessageBody.newBuilder()
                 .setStoreShareResponseMessage(StoreShareResponseMessage.newBuilder()
                         .setVersion(version)
