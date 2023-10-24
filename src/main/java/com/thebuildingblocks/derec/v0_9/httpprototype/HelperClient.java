@@ -17,9 +17,9 @@
 
 package com.thebuildingblocks.derec.v0_9.httpprototype;
 
-import com.thebuildingblocks.derec.v0_9.interfaces.DeRecHelperInfo;
-import com.thebuildingblocks.derec.v0_9.interfaces.DeRecHelperStatus;
-import com.thebuildingblocks.derec.v0_9.interfaces.DeRecStatusNotification;
+import org.derecalliance.derec.api.DeRecHelperInfo;
+import org.derecalliance.derec.api.DeRecHelperStatus;
+import org.derecalliance.derec.api.DeRecStatusNotification;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,8 +44,8 @@ import static com.thebuildingblocks.derec.v0_9.httpprototype.HelperClientMessage
 import static com.thebuildingblocks.derec.v0_9.httpprototype.HelperClientResponseProcessing.*;
 import static com.thebuildingblocks.derec.v0_9.httpprototype.Version.ResultType.SHARE;
 import static com.thebuildingblocks.derec.v0_9.httpprototype.Version.ResultType.VERIFY;
-import static com.thebuildingblocks.derec.v0_9.interfaces.DeRecHelperStatus.PairingStatus.*;
-import static com.thebuildingblocks.derec.v0_9.interfaces.DeRecStatusNotification.StandardNotificationType.*;
+import static org.derecalliance.derec.api.DeRecHelperStatus.PairingStatus.*;
+import static org.derecalliance.derec.api.DeRecStatusNotification.StandardNotificationType.*;
 
 /**
  * Sharer's view of a helper for a single secret, there will be multiple entries for the

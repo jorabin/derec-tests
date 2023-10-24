@@ -17,7 +17,7 @@
 
 package com.thebuildingblocks.derec.v0_9.httpprototype;
 
-import com.thebuildingblocks.derec.v0_9.interfaces.DeRecHelperInfo;
+import org.derecalliance.derec.api.DeRecHelperInfo;
 
 import java.net.URI;
 import java.security.KeyPair;

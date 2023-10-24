@@ -17,9 +17,9 @@
 
 package com.thebuildingblocks.derec.v0_9.httpprototype;
 
-import com.thebuildingblocks.derec.v0_9.interfaces.DeRecSecret;
-import com.thebuildingblocks.derec.v0_9.interfaces.DeRecStatusNotification;
-import com.thebuildingblocks.derec.v0_9.interfaces.DeRecVersion;
+import org.derecalliance.derec.api.DeRecSecret;
+import org.derecalliance.derec.api.DeRecStatusNotification;
+import org.derecalliance.derec.api.DeRecVersion;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,9 +31,9 @@ import java.util.stream.IntStream;
 
 import static com.thebuildingblocks.derec.v0_9.httpprototype.Version.ResultType.SHARE;
 import static com.thebuildingblocks.derec.v0_9.httpprototype.Version.ResultType.VERIFY;
-import static com.thebuildingblocks.derec.v0_9.interfaces.DeRecStatusNotification.NotificationSeverity.NORMAL;
-import static com.thebuildingblocks.derec.v0_9.interfaces.DeRecStatusNotification.NotificationSeverity.WARNING;
-import static com.thebuildingblocks.derec.v0_9.interfaces.DeRecStatusNotification.StandardNotificationType.*;
+import static org.derecalliance.derec.api.DeRecStatusNotification.NotificationSeverity.NORMAL;
+import static org.derecalliance.derec.api.DeRecStatusNotification.NotificationSeverity.WARNING;
+import static org.derecalliance.derec.api.DeRecStatusNotification.StandardNotificationType.*;
 
 
 /**

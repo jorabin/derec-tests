@@ -19,7 +19,7 @@ package com.thebuildingblocks.derec.v0_9.test;
 
 import com.thebuildingblocks.derec.v0_9.httpprototype.Secret;
 import com.thebuildingblocks.derec.v0_9.httpprototype.Util;
-import com.thebuildingblocks.derec.v0_9.interfaces.DeRecStatusNotification;
+import org.derecalliance.derec.api.DeRecStatusNotification;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

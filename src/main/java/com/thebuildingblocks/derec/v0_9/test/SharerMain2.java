@@ -21,10 +21,10 @@ import com.thebuildingblocks.derec.v0_9.httpprototype.Secret;
 import com.thebuildingblocks.derec.v0_9.httpprototype.Sharer;
 import com.thebuildingblocks.derec.v0_9.httpprototype.Util;
 import com.thebuildingblocks.derec.v0_9.httpprototype.Version;
-import com.thebuildingblocks.derec.v0_9.interfaces.DeRecHelperInfo;
-import com.thebuildingblocks.derec.v0_9.interfaces.DeRecSecret;
-import com.thebuildingblocks.derec.v0_9.interfaces.DeRecStatusNotification;
-import com.thebuildingblocks.derec.v0_9.interfaces.DeRecVersion;
+import org.derecalliance.derec.api.DeRecHelperInfo;
+import org.derecalliance.derec.api.DeRecSecret;
+import org.derecalliance.derec.api.DeRecStatusNotification;
+import org.derecalliance.derec.api.DeRecVersion;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -17,7 +17,7 @@
 
 package com.thebuildingblocks.derec.v0_9.httpprototype;
 
-import com.thebuildingblocks.derec.v0_9.interfaces.*;
+import org.derecalliance.derec.api.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,8 +29,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
 
 import static com.thebuildingblocks.derec.v0_9.httpprototype.Sharer.defaultRetryParameters;
-import static com.thebuildingblocks.derec.v0_9.interfaces.DeRecStatusNotification.NotificationSeverity.ERROR;
-import static com.thebuildingblocks.derec.v0_9.interfaces.DeRecStatusNotification.StandardNotificationType.UPDATE_FAILED;
+import static org.derecalliance.derec.api.DeRecStatusNotification.NotificationSeverity.ERROR;
+import static org.derecalliance.derec.api.DeRecStatusNotification.StandardNotificationType.UPDATE_FAILED;
 
 /**
  * Implements the idea of Helper Controller, which coordinates helpers in respect of a single secret

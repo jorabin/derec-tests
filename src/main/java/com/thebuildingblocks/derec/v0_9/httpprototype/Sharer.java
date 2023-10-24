@@ -17,9 +17,9 @@
 
 package com.thebuildingblocks.derec.v0_9.httpprototype;
 
-import com.thebuildingblocks.derec.v0_9.interfaces.DeRecHelperInfo;
-import com.thebuildingblocks.derec.v0_9.interfaces.DeRecSharer;
-import com.thebuildingblocks.derec.v0_9.interfaces.DeRecStatusNotification;
+import org.derecalliance.derec.api.DeRecHelperInfo;
+import org.derecalliance.derec.api.DeRecSharer;
+import org.derecalliance.derec.api.DeRecStatusNotification;
 
 import java.security.KeyPair;
 import java.security.cert.X509Certificate;

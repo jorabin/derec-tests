@@ -23,7 +23,7 @@ import com.sun.net.httpserver.HttpContext;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
-import com.thebuildingblocks.derec.v0_9.interfaces.DeRecHelperInfo;
+import org.derecalliance.derec.api.DeRecHelperInfo;
 import derec.message.*;
 import derec.message.Communicationinfo.CommunicationInfoKeyValue;
 import derec.message.Derecmessage.DeRecMessage;

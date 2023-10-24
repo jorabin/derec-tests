@@ -17,9 +17,9 @@
 
 package com.thebuildingblocks.derec.v0_9.test;
 
-import com.thebuildingblocks.derec.v0_9.interfaces.DeRecHelperInfo;
-import com.thebuildingblocks.derec.v0_9.interfaces.DeRecSecret;
-import com.thebuildingblocks.derec.v0_9.interfaces.DeRecSharer;
+import org.derecalliance.derec.api.DeRecHelperInfo;
+import org.derecalliance.derec.api.DeRecSecret;
+import org.derecalliance.derec.api.DeRecSharer;
 
 import java.util.*;
 import java.util.stream.Collectors;

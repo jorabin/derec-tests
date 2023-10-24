@@ -18,7 +18,7 @@
 package com.thebuildingblocks.derec.v0_9.httpprototype;
 
 import com.google.protobuf.ByteString;
-import com.thebuildingblocks.derec.v0_9.interfaces.DeRecHelperInfo;
+import org.derecalliance.derec.api.DeRecHelperInfo;
 import derec.message.Derecmessage.DeRecMessage.SharerMessageBody;
 
 import static derec.message.Communicationinfo.*;

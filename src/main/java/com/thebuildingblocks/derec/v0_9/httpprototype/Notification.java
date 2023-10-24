@@ -17,10 +17,10 @@
 
 package com.thebuildingblocks.derec.v0_9.httpprototype;
 
-import com.thebuildingblocks.derec.v0_9.interfaces.DeRecHelperStatus;
-import com.thebuildingblocks.derec.v0_9.interfaces.DeRecSecret;
-import com.thebuildingblocks.derec.v0_9.interfaces.DeRecStatusNotification;
-import com.thebuildingblocks.derec.v0_9.interfaces.DeRecVersion;
+import org.derecalliance.derec.api.DeRecHelperStatus;
+import org.derecalliance.derec.api.DeRecSecret;
+import org.derecalliance.derec.api.DeRecStatusNotification;
+import org.derecalliance.derec.api.DeRecVersion;
 
 import java.util.Optional;
 

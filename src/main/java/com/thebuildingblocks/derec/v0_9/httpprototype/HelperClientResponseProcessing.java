@@ -17,8 +17,8 @@
 
 package com.thebuildingblocks.derec.v0_9.httpprototype;
 
-import com.thebuildingblocks.derec.v0_9.interfaces.DeRecHelperStatus;
-import com.thebuildingblocks.derec.v0_9.interfaces.DeRecStatusNotification;
+import org.derecalliance.derec.api.DeRecHelperStatus;
+import org.derecalliance.derec.api.DeRecStatusNotification;
 import derec.message.*;
 import derec.message.Derecmessage.DeRecMessage.HelperMessageBody.BodyCase;
 
@@ -31,8 +31,8 @@ import java.util.function.Consumer;
 
 import static com.thebuildingblocks.derec.v0_9.httpprototype.Version.ResultType.SHARE;
 import static com.thebuildingblocks.derec.v0_9.httpprototype.Version.ResultType.VERIFY;
-import static com.thebuildingblocks.derec.v0_9.interfaces.DeRecHelperStatus.PairingStatus.*;
-import static com.thebuildingblocks.derec.v0_9.interfaces.DeRecStatusNotification.StandardNotificationType.*;
+import static org.derecalliance.derec.api.DeRecHelperStatus.PairingStatus.*;
+import static org.derecalliance.derec.api.DeRecStatusNotification.StandardNotificationType.*;
 import static derec.message.Derecmessage.DeRecMessage.HelperMessageBody.BodyCase.*;
 import static derec.message.ResultOuterClass.StatusEnum.OK;
 

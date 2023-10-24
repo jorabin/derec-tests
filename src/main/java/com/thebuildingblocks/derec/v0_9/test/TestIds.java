@@ -17,7 +17,7 @@
 
 package com.thebuildingblocks.derec.v0_9.test;
 
-import com.thebuildingblocks.derec.v0_9.interfaces.DeRecHelperInfo;
+import org.derecalliance.derec.api.DeRecHelperInfo;
 
 import java.security.KeyPair;
 import java.security.PublicKey;

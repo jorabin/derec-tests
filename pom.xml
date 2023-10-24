@@ -17,6 +17,16 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>org.derecalliance.derec</groupId>
+			<artifactId>derec-api</artifactId>
+			<version>0.9-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.graalvm.sdk</groupId>
+			<artifactId>graal-sdk</artifactId>
+			<version>22.3.3</version>
+		</dependency>
+		<dependency>
 			<groupId>com.codahale</groupId>
 			<artifactId>shamir</artifactId>
 			<version>0.7.0</version>
@@ -65,7 +75,6 @@
 	<profiles>
 		<profile>
 			<id>build protobuf sources</id>
-
 			<build>
 				<plugins>
 					<plugin>
