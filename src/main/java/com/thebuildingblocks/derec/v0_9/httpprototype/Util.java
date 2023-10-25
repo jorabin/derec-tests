@@ -18,16 +18,38 @@
 package com.thebuildingblocks.derec.v0_9.httpprototype;
 
 
+import java.io.InputStream;
+import java.net.http.HttpResponse;
 import java.nio.ByteBuffer;
 import java.time.Duration;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
+import java.util.function.Function;
 
 /**
  * placeholder for stuff needed in a few places
  */
 
 public class Util {
+
+    /**
+     * Get message from exception or cause if no message
+     */
+    public static String getMessageForException(Throwable throwable) {
+        String message = throwable.getCause().getMessage();
+        return Objects.nonNull(message) ? message : throwable.getCause().getClass().getName();
+    }
+
+    /**
+     * function to check response is 200 and return the body as an input stream  or throw exception if not
+     */
+    public static Function<HttpResponse<InputStream>, InputStream> httpStatusChecker = response -> {
+        if (response.statusCode() != 200) {
+            throw new IllegalStateException("HTTP Status " + response.statusCode());
+        }
+        return response.body();
+    };
 
     /**
      * Placeholder for some way of describing and agreeing retry parameters

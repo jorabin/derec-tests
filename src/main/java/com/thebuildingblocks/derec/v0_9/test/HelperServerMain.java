@@ -105,7 +105,7 @@ public class HelperServerMain {
                         .build();
                 exchange.sendResponseHeaders(200, 0);
                 try (OutputStream os = exchange.getResponseBody()) {
-                    reply.writeTo(exchange.getResponseBody());
+                    reply.writeTo(os);
                 }
             } catch (Throwable t) {
                 logger.error("Exception processing message: {}", t.getMessage());

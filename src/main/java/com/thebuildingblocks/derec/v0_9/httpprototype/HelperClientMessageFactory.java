@@ -19,7 +19,6 @@ package com.thebuildingblocks.derec.v0_9.httpprototype;
 
 import com.google.protobuf.ByteString;
 import com.google.protobuf.Timestamp;
-import derec.message.Secretidsversions;
 import derec.message.Secretidsversions.GetSecretIdsVersionsRequestMessage;
 import org.derecalliance.derec.api.DeRecIdentity;
 import derec.message.Derecmessage.DeRecMessage.SharerMessageBody;

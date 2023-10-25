@@ -37,50 +37,63 @@ import java.util.function.Consumer;
 
 import static org.derecalliance.derec.api.DeRecStatusNotification.NotificationSeverity.NORMAL;
 import static org.derecalliance.derec.api.DeRecStatusNotification.NotificationSeverity.WARNING;
-import static org.derecalliance.derec.api.DeRecStatusNotification.StandardNotificationType.LIST_SECRET_AVAILABLE;
-import static org.derecalliance.derec.api.DeRecStatusNotification.StandardNotificationType.LIST_SECRET_FAILED;
+import static org.derecalliance.derec.api.DeRecStatusNotification.StandardNotificationType.*;
 
+/**
+ * Functionality to get a list of secrets and versions from a helper.
+ */
 public class Recovery {
+    /**
+     * Get a list of secrets belonging to the named sharer from the named helper.
+     * @param sharerInfo sharer
+     * @param helperInfo helper
+     * @param listener a listener for success/fail events
+     * @return a Future containing a Map of secret ids to corresponding versions
+     */
     public static Future<Map<byte[], List<Integer>>> getSecretIds(
             DeRecIdentity sharerInfo,
             DeRecIdentity helperInfo,
             Consumer<DeRecStatusNotification> listener) {
 
-        HttpClient httpClient =
-                HttpClient.newBuilder()
-                        .connectTimeout(Util.RetryParameters.DEFAULT.getConnectTimeout())
-                        .build();
-
+        // protocol info describing the sharer and helper
         ProtocolInfo protocolInfo = ProtocolInfo.newBuilder()
                 .sharerPublicKeyDigest(sharerInfo.getPublicKeyDigest())
                 .helperPublicKeyDigest(helperInfo.getPublicKeyDigest())
                 .build();
 
+        // build the request message
         DeRecMessage message = HelperClientMessageFactory.getMessage(protocolInfo,
                 HelperClientMessageFactory.getSecretsIdsVersionsMessageBody());
 
+        // build the request
         HttpRequest httpRequest =
                 HttpRequest.newBuilder()
                         .uri(helperInfo.getAddress())
                         .POST(HttpRequest.BodyPublishers.ofByteArray(message.toByteArray()))
                         .build();
 
+        // the result of the operation
+        Map<byte[], List<Integer>> result = new HashMap<>();
+
+        // build an HttpClient (TODO ideally we would share the client between multiple requests)
+        HttpClient httpClient =
+                HttpClient.newBuilder()
+                        .connectTimeout(Util.RetryParameters.DEFAULT.getConnectTimeout())
+                        .build();
+
+        // send the request
         return httpClient.sendAsync(httpRequest, HttpResponse.BodyHandlers.ofInputStream())
+                // check the status, throw exception if not 200,n exception is caught below
+                .thenApply(Util.httpStatusChecker)
+                // process the input stream which is the response message
                 .thenApply(r -> {
-                    Map<byte[], List<Integer>> result = new HashMap<>();
-                    if (r.statusCode() != 200) {
-                        listener.accept(Notification.newBuilder()
-                                        .severity(WARNING)
-                                        .message(String.format("Helper %s HTTP %d", helperInfo.getName(), r.statusCode()))
-                                        .build(LIST_SECRET_FAILED));
-                        return result;
-                    }
-
-                    HelperClientMessageDeserializer deserializer = HelperClientMessageDeserializer.newInstance(r.body(),
+                    // deserialize the message
+                    HelperClientMessageDeserializer deserializer = HelperClientMessageDeserializer.newInstance(r,
                             DeRecMessage.HelperMessageBody.BodyCase.GETSECRETIDSVERSIONSRESPONSEMESSAGE);
-
+                    // get the response (todo handle if not a response)
                     GetSecretIdsVersionsResponseMessage response =
                             deserializer.getBody().getGetSecretIdsVersionsResponseMessage();
+                    // report bad status, return empty list (todo should this be a failure on the future)
                     if (!response.getResult().getStatus().equals(ResultOuterClass.StatusEnum.OK)) {
                         listener.accept(Notification.newBuilder()
                                 .severity(WARNING)
@@ -88,13 +101,23 @@ public class Recovery {
                                 .build(LIST_SECRET_FAILED));
                         return result;
                     }
+                    // loop over the secrets and put in map
                     for (GetSecretIdsVersionsResponseMessage.VersionList versions : response.getSecretListList()) {
                         result.put(versions.getSecretId().toByteArray(), new ArrayList<>(versions.getVersionsList()));
                     }
+                    // report success
                     listener.accept(Notification.newBuilder()
                             .severity(NORMAL)
                             .message(response.getResult().getMemo())
                             .build(LIST_SECRET_AVAILABLE));
+                    return result;
+                })
+                .exceptionally(t -> {
+                    // report failure
+                    listener.accept(Notification.newBuilder()
+                            .severity(WARNING)
+                            .message(Util.getMessageForException(t))
+                            .build(LIST_SECRET_FAILED));
                     return result;
                 });
     }
