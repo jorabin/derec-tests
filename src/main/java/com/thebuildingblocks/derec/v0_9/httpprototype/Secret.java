@@ -30,6 +30,7 @@ import java.util.function.Consumer;
 
 import static com.thebuildingblocks.derec.v0_9.httpprototype.Sharer.defaultRetryParameters;
 import static org.derecalliance.derec.api.DeRecStatusNotification.NotificationSeverity.ERROR;
+import static org.derecalliance.derec.api.DeRecStatusNotification.NotificationSeverity.WARNING;
 import static org.derecalliance.derec.api.DeRecStatusNotification.StandardNotificationType.UPDATE_FAILED;
 
 /**
@@ -40,9 +41,10 @@ import static org.derecalliance.derec.api.DeRecStatusNotification.StandardNotifi
  * are intended to be safe.
  */
 public class Secret implements Closeable, DeRecSecret {
+    public static final Secret EMPTY_SECRET = Secret.newBuilder().secretId(new DeRecSecret.Id(new byte[16])).build();
     /* -- basic details of the secret -- */
      Sharer sharer;
-     private byte[] secretId; // the ID of the secret
+     private DeRecSecret.Id secretId; // the ID of the secret
      List<Consumer<DeRecStatusNotification>> notificationListeners = new ArrayList<>(); // listeners for events
 
     /* -- interoperability for the secret -- */
@@ -201,8 +203,9 @@ public class Secret implements Closeable, DeRecSecret {
             notifyStatus(Notification.newBuilder()
                     .secret(this)
                     .type(DeRecStatusNotification.StandardNotificationType.SECRET_UNAVAILABLE)
-                    .severity(ERROR)
-                    .message(String.format("Not enough helpers - %d paired, % d needed", pairedHelpers.size(), thresholdSecretRecovery))
+                    .severity(WARNING)
+                    .message(String.format("Not enough helpers - %d added, %d paired, % d needed",
+                            helpers.size(), pairedHelpers.size(), thresholdSecretRecovery))
                     .build());
         }
 
@@ -283,7 +286,7 @@ public class Secret implements Closeable, DeRecSecret {
     }
 
     @Override
-    public byte[] getSecretId() {
+    public DeRecSecret.Id getSecretId() {
         return secretId;
     }
 
@@ -310,7 +313,7 @@ public class Secret implements Closeable, DeRecSecret {
             return this;
         }
 
-        public Builder secretId(byte[] secretId) {
+        public Builder secretId(DeRecSecret.Id secretId) {
             secret.secretId = secretId;
             return this;
         }

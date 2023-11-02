@@ -22,6 +22,7 @@ import derec.message.Derecmessage.DeRecMessage;
 import derec.message.ResultOuterClass;
 import derec.message.Secretidsversions.GetSecretIdsVersionsResponseMessage;
 import org.derecalliance.derec.api.DeRecIdentity;
+import org.derecalliance.derec.api.DeRecSecret;
 import org.derecalliance.derec.api.DeRecStatusNotification;
 
 
@@ -50,7 +51,7 @@ public class Recovery {
      * @param listener a listener for success/fail events
      * @return a Future containing a Map of secret ids to corresponding versions
      */
-    public static Future<Map<byte[], List<Integer>>> getSecretIds(
+    public static Future<Map<DeRecSecret.Id, List<Integer>>> getSecretIds(
             DeRecIdentity sharerInfo,
             DeRecIdentity helperInfo,
             Consumer<DeRecStatusNotification> listener) {
@@ -73,7 +74,7 @@ public class Recovery {
                         .build();
 
         // the result of the operation
-        Map<byte[], List<Integer>> result = new HashMap<>();
+        Map<DeRecSecret.Id, List<Integer>> result = new HashMap<>();
 
         // build an HttpClient (TODO ideally we would share the client between multiple requests)
         HttpClient httpClient =
@@ -84,7 +85,7 @@ public class Recovery {
         // send the request
         return httpClient.sendAsync(httpRequest, HttpResponse.BodyHandlers.ofInputStream())
                 // check the status, throw exception if not 200,n exception is caught below
-                .thenApply(Util.httpStatusChecker)
+                .thenApply(HttpHelper.httpStatusChecker)
                 // process the input stream which is the response message
                 .thenApply(r -> {
                     // deserialize the message
@@ -103,10 +104,11 @@ public class Recovery {
                     }
                     // loop over the secrets and put in map
                     for (GetSecretIdsVersionsResponseMessage.VersionList versions : response.getSecretListList()) {
-                        result.put(versions.getSecretId().toByteArray(), new ArrayList<>(versions.getVersionsList()));
+                        result.put(new DeRecSecret.Id(versions.getSecretId().toByteArray()), new ArrayList<>(versions.getVersionsList()));
                     }
                     // report success
                     listener.accept(Notification.newBuilder()
+                            .secret(Secret.EMPTY_SECRET) // todo refigure this
                             .severity(NORMAL)
                             .message(response.getResult().getMemo())
                             .build(LIST_SECRET_AVAILABLE));
@@ -116,7 +118,7 @@ public class Recovery {
                     // report failure
                     listener.accept(Notification.newBuilder()
                             .severity(WARNING)
-                            .message(Util.getMessageForException(t))
+                            .message(HttpHelper.getMessageForException(t))
                             .build(LIST_SECRET_FAILED));
                     return result;
                 });

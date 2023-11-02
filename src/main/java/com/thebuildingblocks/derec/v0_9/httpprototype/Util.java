@@ -18,14 +18,12 @@
 package com.thebuildingblocks.derec.v0_9.httpprototype;
 
 
-import java.io.InputStream;
-import java.net.http.HttpResponse;
+import org.derecalliance.derec.api.DeRecSecret;
+
 import java.nio.ByteBuffer;
 import java.time.Duration;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
-import java.util.function.Function;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * placeholder for stuff needed in a few places
@@ -33,23 +31,38 @@ import java.util.function.Function;
 
 public class Util {
 
-    /**
-     * Get message from exception or cause if no message
-     */
-    public static String getMessageForException(Throwable throwable) {
-        String message = throwable.getCause().getMessage();
-        return Objects.nonNull(message) ? message : throwable.getCause().getClass().getName();
+    public static final List<ProtocolVersion> availableVersions = List.of(new ProtocolVersion(0, 9));
+
+    public static UUID asUuid(byte[] bytes) {
+        ByteBuffer bb = ByteBuffer.wrap(bytes);
+        long firstLong = bb.getLong();
+        long secondLong = bb.getLong();
+        return new UUID(firstLong, secondLong);
     }
 
-    /**
-     * function to check response is 200 and return the body as an input stream  or throw exception if not
-     */
-    public static Function<HttpResponse<InputStream>, InputStream> httpStatusChecker = response -> {
-        if (response.statusCode() != 200) {
-            throw new IllegalStateException("HTTP Status " + response.statusCode());
-        }
-        return response.body();
-    };
+    public static UUID asUuid(DeRecSecret.Id id) {
+        return asUuid(id.getBytes());
+    }
+
+    public static byte[] asBytes(UUID uuid) {
+        ByteBuffer bb = ByteBuffer.wrap(new byte[16]);
+        bb.putLong(uuid.getMostSignificantBits());
+        bb.putLong(uuid.getLeastSignificantBits());
+        return bb.array();
+    }
+
+    public static DeRecSecret.Id asSecretId(UUID uuid) {
+        return new DeRecSecret.Id(asBytes(uuid));
+    }
+
+    public static <V extends Collection<W>, W> Map<UUID, V> asUuidMap(Map<DeRecSecret.Id, V> secretIdMap) {
+        return secretIdMap.entrySet().stream().collect(Collectors.toMap(e -> asUuid(e.getKey()),
+                Map.Entry::getValue,
+                (a, b) -> {
+                    a.addAll(b);
+                    return a;
+                }));
+    }
 
     /**
      * Placeholder for some way of describing and agreeing retry parameters
@@ -70,7 +83,7 @@ public class Util {
         public Duration getResponseTimeout() {
             return timeout;
         }
-    };
+    }
 
     /**
      * Placeholder for some way of counting retries
@@ -81,27 +94,11 @@ public class Util {
 
     public static class ProtocolVersion {
         int majorVersion;
+        int minorVersion;
 
         public ProtocolVersion(int majorVersion, int minorVersion) {
             this.majorVersion = majorVersion;
             this.minorVersion = minorVersion;
         }
-
-        int minorVersion;
-    }
-    public static final List<ProtocolVersion> availableVersions = List.of(new ProtocolVersion(0, 9));
-
-    public static UUID asUuid(byte[] bytes) {
-        ByteBuffer bb = ByteBuffer.wrap(bytes);
-        long firstLong = bb.getLong();
-        long secondLong = bb.getLong();
-        return new UUID(firstLong, secondLong);
-    }
-
-    public static byte[] asBytes(UUID uuid) {
-        ByteBuffer bb = ByteBuffer.wrap(new byte[16]);
-        bb.putLong(uuid.getMostSignificantBits());
-        bb.putLong(uuid.getLeastSignificantBits());
-        return bb.array();
     }
 }

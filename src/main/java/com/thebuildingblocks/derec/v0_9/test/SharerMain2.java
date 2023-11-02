@@ -55,7 +55,7 @@ public class SharerMain2 {
         // build a sharer
         Sharer me = Sharer.newBuilder()
                 .id(new DeRecIdentity("Incremental Inge", "mailto:test@example.org", null, pem))
-                .keyPair(keyPairGenerator.generateKeyPair())
+                .keyPair(keyPair)
                 .notificationListener(Notifier::logNotification)
                 .build();
         // get a secret

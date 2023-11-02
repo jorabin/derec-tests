@@ -34,7 +34,7 @@ public class Notifier {
     public static final String ANSI_PURPLE = "\u001B[35m";
     public static final String ANSI_CYAN = "\u001B[36m";
     public static final String ANSI_WHITE = "\u001B[37m";
-    static void logNotification(DeRecStatusNotification t) {
+    public static void logNotification(DeRecStatusNotification t) {
         String v = t.getVersion().isEmpty() ? "" : "/" + t.getVersion().get().getVersionNumber();
         String p = t.getHelper().isEmpty() ? "" : "/" + t.getHelper().get().getId().getName();
         Secret s = ((Secret) t.getSecret());

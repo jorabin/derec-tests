@@ -23,10 +23,12 @@ import com.sun.net.httpserver.HttpContext;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
+import com.thebuildingblocks.derec.v0_9.httpprototype.HelperServerShare;
 import org.derecalliance.derec.api.DeRecIdentity;
 import derec.message.*;
 import derec.message.Communicationinfo.CommunicationInfoKeyValue;
 import derec.message.Derecmessage.DeRecMessage;
+import org.derecalliance.derec.api.DeRecSecret;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,37 +45,76 @@ import static derec.message.Storeshare.*;
 import static derec.message.Unpair.*;
 import static derec.message.Verify.*;
 
-public class HelperServerMain {
-    static Logger logger = LoggerFactory.getLogger(HelperServerMain.class);
-    static HttpServer server;
+public class TestHelperServer {
+    static Logger logger = LoggerFactory.getLogger(TestHelperServer.class);
+    HttpServer server;
 
+    public HttpServer getServer() {
+        return server;
+    }
+
+    public List<HttpContext> getContexts() {
+        return contexts;
+    }
+
+    private final List<HttpContext> contexts = new ArrayList<>();
+
+    public TestHelperServer(){
+
+    }
     public static void main(String[] args) throws IOException {
-        server = HttpServer.create(new InetSocketAddress(8080), 10);
-        for (DeRecIdentity id : DEFAULT_IDS) {
+        TestHelperServer ths = new TestHelperServer();
+        ths.startServer(8080, DEFAULT_IDS);
+        System.out.println("Hit enter to exit");
+        Scanner sc = new Scanner(System.in);
+        sc.nextLine();
+        ths.stopServer();
+    }
+
+    public void stopServer() {
+        server.stop(0);
+        System.out.println("Server stopped");
+    }
+
+    public void startServer(int port, DeRecIdentity[] ids) throws IOException {
+        server = HttpServer.create(new InetSocketAddress(port), 10);
+        for (DeRecIdentity id : ids) {
             if (id.getName().startsWith("no")) {
                 continue;
             }
             HttpContext context = server.createContext(id.getAddress().getPath(), new HelperHandler(id));
             logger.info("Started helper {}", context.getPath());
+            contexts.add(context);
         }
         logger.info("Server started");
         server.start();
-        System.out.println("Hit enter to exit");
-        Scanner sc = new Scanner(System.in);
-        sc.nextLine();
-        server.stop(0);
-        System.out.println("Server stopped");
     }
 
     public static class HelperHandler implements HttpHandler {
+
         private final DeRecIdentity id;
+
+        HelperServerShare.Storage storage = new HelperServerShare.Storage() {
+            final Map<ByteString, List<HelperServerShare>> shares = new HashMap<>();
+
+            @Override
+            public void putShare(ByteString sha384Hash, HelperServerShare share) {
+                List<HelperServerShare> list = shares.computeIfAbsent(sha384Hash, k -> new ArrayList<>());
+                list.add(share);
+            }
+
+            @Override
+            public List<HelperServerShare> getShares(ByteString sha384Hash) {
+                return shares.get(sha384Hash);
+            }
+        };
 
         public HelperHandler(DeRecIdentity id) {
             this.id = id;
         }
 
         @Override
-        public void handle(HttpExchange exchange) throws IOException {
+        public void handle(HttpExchange exchange) {
             try {
                 DeRecMessage message = parseFrom(exchange.getRequestBody());
                 SharerMessageBodies messageBodies =
@@ -85,6 +126,7 @@ public class HelperServerMain {
                         case UNPAIRREQUESTMESSAGE -> processUnPairRequest(message, messageBody.getUnpairRequestMessage());
                         case STORESHAREREQUESTMESSAGE -> processShareRequest(message, messageBody.getStoreShareRequestMessage());
                         case VERIFYSHAREREQUESTMESSAGE -> processVerifyShareRequestMessage(message, messageBody.getVerifyShareRequestMessage());
+                        case GETSECRETIDSVERSIONSREQUESTMESSAGE -> processGetSecretIdsVersionsRequestMessage(message, messageBody.getGetSecretIdsVersionsRequestMessage());
                         default -> {
                             logger.warn("Unhandled message received {}", messageBody.getBodyCase());
                             exchange.sendResponseHeaders(400, -1);
@@ -122,8 +164,15 @@ public class HelperServerMain {
                                                       StoreShareRequestMessage storeShareRequestMessage) throws InvalidProtocolBufferException {
             logger.info("{} received {}", id.getName(), storeShareRequestMessage.getClass().getSimpleName());
             ByteString shareBytes = storeShareRequestMessage.getCommittedDeRecShare().getDeRecShare();
+
+            // parse the raw bytes of the incoming message
             DeRecShare share = DeRecShare.parseFrom(shareBytes);
             logger.info("Share version was {}", share.getVersion());
+            // and save it
+            HelperServerShare hss = new HelperServerShare(new DeRecSecret.Id(share.getSecretId().toByteArray()),
+                    share.getVersion(), share.getEncryptedSecret().toByteArray());
+            storage.putShare(message.getSender(), hss);
+
             return getShareResponseMessageBody(ResultOuterClass.StatusEnum.OK, "Share stored", share.getVersion());
         }
 
@@ -142,6 +191,10 @@ public class HelperServerMain {
             logger.info("{} received {} \"{}\"", id.getName(), pairRequestMessage.getClass().getSimpleName(),
                     communicationInfo.get("name"));
             return getPairResponseMessageBody();
+        }
+
+        private HelperMessageBody processGetSecretIdsVersionsRequestMessage(DeRecMessage message, Secretidsversions.GetSecretIdsVersionsRequestMessage getSecretIdsVersionsRequestMessage) {
+            return getGetSecretIdsVersionsResponseMessageBody(storage.getShares(message.getSender()));
         }
     }
 }

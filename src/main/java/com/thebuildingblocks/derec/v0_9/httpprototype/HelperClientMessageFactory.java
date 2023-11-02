@@ -22,6 +22,7 @@ import com.google.protobuf.Timestamp;
 import derec.message.Secretidsversions.GetSecretIdsVersionsRequestMessage;
 import org.derecalliance.derec.api.DeRecIdentity;
 import derec.message.Derecmessage.DeRecMessage.SharerMessageBody;
+import org.derecalliance.derec.api.DeRecSecret;
 
 import static derec.message.Communicationinfo.*;
 import static derec.message.Derecmessage.*;
@@ -39,7 +40,7 @@ public class HelperClientMessageFactory {
     public static class ProtocolInfo {
         private int versionMinor = 9;
         private int versionMajor = 0;
-        private byte[] secretId = new byte[0];
+        private DeRecSecret.Id secretId = new DeRecSecret.Id(new byte[16]);
         private byte[] sharerPublicKeyDigest;
         private byte[] helperPublicKeyDigest;
 
@@ -51,7 +52,7 @@ public class HelperClientMessageFactory {
             ProtocolInfo protocolInfo = new ProtocolInfo();
             private Builder(){}
 
-            Builder secretId(byte[] secretId) {
+            Builder secretId(DeRecSecret.Id secretId) {
                 protocolInfo.secretId = secretId;
                 return this;
             }
@@ -90,7 +91,8 @@ public class HelperClientMessageFactory {
     public static SharerMessageBody getShareRequestMessageBody (Version.Share share) {
         ByteString bytes = DeRecShare.newBuilder()
                 .setVersion(share.version.versionNumber)
-                .setSecretId(ByteString.copyFrom(share.version.secret.getSecretId()))
+                .setSecretId(ByteString.copyFrom(share.version.secret.getSecretId().getBytes()))
+                .setEncryptedSecret(ByteString.copyFrom(share.shareContent))
                 .build()
                 .toByteString();
         return SharerMessageBody.newBuilder()
@@ -133,7 +135,7 @@ public class HelperClientMessageFactory {
                 .setProtocolVersionMajor(info.versionMajor)
                 .setReceiver(ByteString.copyFrom(info.helperPublicKeyDigest))
                 .setSender(ByteString.copyFrom(info.sharerPublicKeyDigest))
-                .setSecretId(ByteString.copyFrom(info.secretId))
+                .setSecretId(ByteString.copyFrom(info.secretId.getBytes()))
                 .setTimestamp(Timestamp.newBuilder().setSeconds(System.currentTimeMillis()).build())
                 .setMessageBodies(MessageBodies.newBuilder()
                         .setSharerMessageBodies(SharerMessageBodies.newBuilder()

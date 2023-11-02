@@ -37,7 +37,7 @@ public class Sharer implements DeRecSharer{
     public static int defaultThresholdRecovery = 3;
     public static int defaultHelpersRequiredForDeletion = 4; // number of helpers that need to confirm a new share
 
-    private final Map<byte[], Secret> secrets; // a map of secret id to each secret that the sharer wishes to share
+    private final Map<DeRecSecret.Id, Secret> secrets; // a map of secret id to each secret that the sharer wishes to share
     public DeRecIdentity id; // sharer's id
     public KeyPair keyPair; // public/private key pair
     // before deleting an old share
@@ -63,10 +63,10 @@ public class Sharer implements DeRecSharer{
     @Override
     public Secret newSecret(String description, byte[] bytesToProtect, List<DeRecIdentity> helperIds) {
         UUID secretId = UUID.randomUUID();
-        return newSecret(Util.asBytes(secretId), description, bytesToProtect, helperIds);
+        return newSecret(Util.asSecretId(secretId), description, bytesToProtect, helperIds);
     }
 
-    public Secret newSecret(byte[] secretId, String description, byte[] bytesToProtect) {
+    public Secret newSecret(DeRecSecret.Id secretId, String description, byte[] bytesToProtect) {
         return newSecret(secretId, description, bytesToProtect, Collections.emptyList());
     }
 
@@ -78,7 +78,7 @@ public class Sharer implements DeRecSharer{
      * @return a newly shared secret
      */
     @Override
-    public Secret newSecret(byte[] secretId, String description, byte[] bytesToProtect, List<DeRecIdentity> helperIds) {
+    public Secret newSecret(DeRecSecret.Id secretId, String description, byte[] bytesToProtect, List<DeRecIdentity> helperIds) {
         if (secrets.containsKey(secretId)) {
             throw new IllegalStateException("Secret with that Id already exists");
         }
@@ -99,7 +99,7 @@ public class Sharer implements DeRecSharer{
     }
 
     @Override
-    public Secret getSecret(byte[] secretId) {
+    public Secret getSecret(DeRecSecret.Id secretId) {
         return secrets.get(secretId);
     }
 
@@ -109,12 +109,12 @@ public class Sharer implements DeRecSharer{
     }
 
     @Override
-    public Future<Map<byte[], List<Integer>>> getSecretIdsAsync(DeRecIdentity deRecHelperInfo) {
+    public Future<Map<DeRecSecret.Id, List<Integer>>> getSecretIdsAsync(DeRecIdentity deRecHelperInfo) {
         return Recovery.getSecretIds(this.id, deRecHelperInfo, listener);
     }
 
     @Override
-    public DeRecSecret recoverSecret(byte[] bytes, int i, List<? extends DeRecIdentity> list) {
+    public DeRecSecret recoverSecret(DeRecSecret.Id id, int version, List<? extends DeRecIdentity> list) {
         return null;
     }
 

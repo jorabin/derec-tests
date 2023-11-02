@@ -74,7 +74,7 @@ public class Version implements DeRecVersion {
     }
 
     @Override
-    public long getVersionNumber() {
+    public int getVersionNumber() {
         return versionNumber;
     }
 
@@ -146,6 +146,10 @@ public class Version implements DeRecVersion {
                 // TODO get the configured reverification stuff
                 Util.RetryParameters.DEFAULT.reverification.getSeconds(),
                 Util.RetryParameters.DEFAULT.reverification.getSeconds(), TimeUnit.SECONDS);
+    }
+
+    public List<Share> getShares(){
+        return shares;
     }
 
     synchronized public void verify() {
@@ -239,6 +243,10 @@ public class Version implements DeRecVersion {
         public Share(byte[] shareContent, Version version) {
             this.version = version;
             this.shareContent = shareContent;
+        }
+
+        public HelperClient getHelper(){
+            return helper;
         }
 
         public void processResult(ResultType updateType, boolean success, String message) {

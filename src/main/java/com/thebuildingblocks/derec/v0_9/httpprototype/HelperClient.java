@@ -24,7 +24,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.Closeable;
-import java.io.InputStream;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -38,7 +37,6 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.function.BiConsumer;
-import java.util.function.Function;
 
 import static com.thebuildingblocks.derec.v0_9.httpprototype.HelperClientMessageFactory.*;
 import static com.thebuildingblocks.derec.v0_9.httpprototype.HelperClientResponseProcessing.*;
@@ -114,11 +112,11 @@ public class HelperClient implements DeRecHelperStatus, Closeable {
                 .build();
 
         pairingFuture = httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofInputStream())
-                .thenApply(Util.httpStatusChecker)
+                .thenApply(HttpHelper.httpStatusChecker)
                 .thenApply(r -> pairProcessResponse(r, this))
                 .exceptionally(t -> {
                     this.status = FAILED;
-                    notifier.accept(HELPER_NOT_PAIRED, Util.getMessageForException(t));
+                    notifier.accept(HELPER_NOT_PAIRED, HttpHelper.getMessageForException(t));
                     return this;
                 });
     }
@@ -144,10 +142,10 @@ public class HelperClient implements DeRecHelperStatus, Closeable {
         }
 
         share.future = httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofInputStream())
-                .thenApply(Util.httpStatusChecker)
+                .thenApply(HttpHelper.httpStatusChecker)
                 .thenApply(inputStream -> HelperClientResponseProcessing.storeShareResponseHandler(inputStream, share))
                 .exceptionally(throwable -> {
-                    share.processResult(SHARE, false, Util.getMessageForException(throwable));
+                    share.processResult(SHARE, false, HttpHelper.getMessageForException(throwable));
                     return share;
                 });
     }
@@ -170,10 +168,10 @@ public class HelperClient implements DeRecHelperStatus, Closeable {
                 .build();
 
         share.future = httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofInputStream())
-                .thenApply(Util.httpStatusChecker)
+                .thenApply(HttpHelper.httpStatusChecker)
                 .thenApply(inputStream -> HelperClientResponseProcessing.verifyResponseHandler(inputStream, share))
                 .exceptionally(throwable -> {
-                    share.processResult(VERIFY, false, Util.getMessageForException(throwable));
+                    share.processResult(VERIFY, false, HttpHelper.getMessageForException(throwable));
                     return share;
                 });
     }
@@ -196,11 +194,11 @@ public class HelperClient implements DeRecHelperStatus, Closeable {
 
 
         pairingFuture = httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofInputStream())
-                .thenApply(Util.httpStatusChecker)
+                .thenApply(HttpHelper.httpStatusChecker)
                 .thenApply(r -> unPairProcessResponse(r, this))
                 .exceptionally(t -> {
                     this.status = FAILED;
-                    notifier.accept(HELPER_UNPAIRED, Util.getMessageForException(t));
+                    notifier.accept(HELPER_UNPAIRED, HttpHelper.getMessageForException(t));
                     return this;
                 });
     }
