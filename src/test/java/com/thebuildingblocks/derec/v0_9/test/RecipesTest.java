@@ -19,13 +19,17 @@ package com.thebuildingblocks.derec.v0_9.test;
 
 import com.thebuildingblocks.derec.v0_9.httpprototype.Secret;
 import com.thebuildingblocks.derec.v0_9.httpprototype.Sharer;
+import org.derecalliance.derec.api.DeRecIdentity;
 import org.junit.*;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.security.KeyPair;
 import java.util.Arrays;
 
+import static com.thebuildingblocks.derec.v0_9.httpprototype.Cryptography.keyPairGenerator;
 import static com.thebuildingblocks.derec.v0_9.test.TestIds.DEFAULT_IDS;
+import static com.thebuildingblocks.derec.v0_9.test.TestIds.pemFrom;
 
 public class RecipesTest {
     static TestHelperServer server;
@@ -45,7 +49,14 @@ public class RecipesTest {
 
     @Before
     public void setUp() {
-        sharer = Sharer.newBuilder().build();
+        KeyPair keyPair = keyPairGenerator.generateKeyPair();
+        String pem = pemFrom(keyPair.getPublic());
+        // build a sharer
+        sharer = Sharer.newBuilder()
+                .id(new DeRecIdentity("Incremental Inge", "mailto:test@example.org", null, pem))
+                .keyPair(keyPair)
+                .notificationListener(Notifier::logNotification)
+                .build();
         secret1 = sharer.newSecret("my first secret",
                 "quite hush hush".getBytes(StandardCharsets.UTF_8),
                 Arrays.asList(DEFAULT_IDS));

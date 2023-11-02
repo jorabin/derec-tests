@@ -140,6 +140,11 @@ public class Secret implements Closeable, DeRecSecret {
     }
 
 
+    @Override
+    public Version update() {
+        return update(getVersions().lastEntry().getValue().getProtectedValue());
+    }
+
     /**
      * Update a secret synchronously. The call blocks until the thresholdSecretRecovery number of successful
      * confirmations is received from helpers, or until all confirmations have been received/failed with timeout.
@@ -169,6 +174,11 @@ public class Secret implements Closeable, DeRecSecret {
                     .build(UPDATE_FAILED));
         }
         return versions.lastEntry().getValue();
+    }
+
+    @Override
+    public Future<Version> updateAsync() {
+        return updateAsync(getVersions().lastEntry().getValue().getProtectedValue());
     }
 
     /**
