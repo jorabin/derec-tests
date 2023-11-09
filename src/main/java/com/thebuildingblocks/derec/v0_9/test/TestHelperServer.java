@@ -25,9 +25,9 @@ import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 import com.thebuildingblocks.derec.v0_9.httpprototype.HelperServerShare;
 import org.derecalliance.derec.api.DeRecIdentity;
-import derec.message.*;
-import derec.message.Communicationinfo.CommunicationInfoKeyValue;
-import derec.message.Derecmessage.DeRecMessage;
+import org.derecalliance.derec.protobuf.*;
+import org.derecalliance.derec.protobuf.Communicationinfo.CommunicationInfoKeyValue;
+import org.derecalliance.derec.protobuf.Derecmessage.DeRecMessage;
 import org.derecalliance.derec.api.DeRecSecret;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,10 +40,10 @@ import java.util.stream.Collectors;
 
 import static com.thebuildingblocks.derec.v0_9.httpprototype.HelperServerMessageFactory.*;
 import static com.thebuildingblocks.derec.v0_9.test.TestIds.DEFAULT_IDS;
-import static derec.message.Derecmessage.DeRecMessage.*;
-import static derec.message.Storeshare.*;
-import static derec.message.Unpair.*;
-import static derec.message.Verify.*;
+import static org.derecalliance.derec.protobuf.Derecmessage.DeRecMessage.*;
+import static org.derecalliance.derec.protobuf.Storeshare.*;
+import static org.derecalliance.derec.protobuf.Unpair.*;
+import static org.derecalliance.derec.protobuf.Verify.*;
 
 public class TestHelperServer {
     static Logger logger = LoggerFactory.getLogger(TestHelperServer.class);

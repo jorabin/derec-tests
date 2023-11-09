@@ -17,10 +17,10 @@
 
 package com.thebuildingblocks.derec.v0_9.httpprototype;
 
-import derec.message.Derecmessage;
-import derec.message.Derecmessage.DeRecMessage;
-import derec.message.Derecmessage.DeRecMessage.HelperMessageBody;
-import derec.message.ResultOuterClass;
+import org.derecalliance.derec.protobuf.Derecmessage;
+import org.derecalliance.derec.protobuf.Derecmessage.DeRecMessage;
+import org.derecalliance.derec.protobuf.Derecmessage.DeRecMessage.HelperMessageBody;
+import org.derecalliance.derec.protobuf.ResultOuterClass;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -55,7 +55,7 @@ public class HelperClientMessageDeserializer {
             case VERIFYSHARERESPONSEMESSAGE -> klass.cast(body.getVerifyShareResponseMessage());
             case GETSECRETIDSVERSIONSRESPONSEMESSAGE -> klass.cast(body.getGetSecretIdsVersionsResponseMessage());
             case GETSHARERESPONSEMESSAGE -> klass.cast(body.getGetShareResponseMessage());
-            case MESSAGINGERRORMESSAGE -> klass.cast(body.getMessagingErrorMessage());
+            case ERRORRESPONSEMESSAGE -> klass.cast(body.getErrorResponseMessage());
             case BODY_NOT_SET -> throw new IllegalArgumentException("Body is not set for " + body.getBodyCase());
         };
     }
@@ -68,7 +68,7 @@ public class HelperClientMessageDeserializer {
             case VERIFYSHARERESPONSEMESSAGE -> body.getVerifyShareResponseMessage().getResult();
             case GETSECRETIDSVERSIONSRESPONSEMESSAGE -> body.getGetSecretIdsVersionsResponseMessage().getResult();
             case GETSHARERESPONSEMESSAGE -> body.getGetShareResponseMessage().getResult();
-            case MESSAGINGERRORMESSAGE -> body.getMessagingErrorMessage().getResult();
+            case ERRORRESPONSEMESSAGE -> body.getErrorResponseMessage().getResult();
             case BODY_NOT_SET -> throw new IllegalArgumentException("Body is not set for " + body.getBodyCase());
         };
     }

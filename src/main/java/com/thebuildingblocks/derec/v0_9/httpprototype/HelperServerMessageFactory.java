@@ -18,9 +18,9 @@
 package com.thebuildingblocks.derec.v0_9.httpprototype;
 
 import com.google.protobuf.ByteString;
-import derec.message.Derecmessage.DeRecMessage.HelperMessageBody;
-import derec.message.Secretidsversions.GetSecretIdsVersionsResponseMessage;
-import derec.message.Secretidsversions.GetSecretIdsVersionsResponseMessage.VersionList;
+import org.derecalliance.derec.protobuf.Derecmessage.DeRecMessage.HelperMessageBody;
+import org.derecalliance.derec.protobuf.Secretidsversions.GetSecretIdsVersionsResponseMessage;
+import org.derecalliance.derec.protobuf.Secretidsversions.GetSecretIdsVersionsResponseMessage.VersionList;
 import org.derecalliance.derec.api.DeRecSecret;
 
 import java.util.ArrayList;
@@ -28,11 +28,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static derec.message.Pair.*;
-import static derec.message.ResultOuterClass.*;
-import static derec.message.Storeshare.*;
-import static derec.message.Unpair.*;
-import static derec.message.Verify.*;
+import static org.derecalliance.derec.protobuf.Pair.*;
+import static org.derecalliance.derec.protobuf.ResultOuterClass.*;
+import static org.derecalliance.derec.protobuf.Storeshare.*;
+import static org.derecalliance.derec.protobuf.Unpair.*;
+import static org.derecalliance.derec.protobuf.Verify.*;
 
 public class HelperServerMessageFactory {
 

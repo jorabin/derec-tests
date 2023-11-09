@@ -72,6 +72,17 @@
 		</plugins>
 	</build>
 
+	<!-- snapshot builds are held in GitHub packages -->
+	<repositories>
+		<repository>
+			<id>github</id>
+			<url>https://maven.pkg.github.com/the-building-blocks/*</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
 	<profiles>
 		<profile>
 			<id>build protobuf sources</id>

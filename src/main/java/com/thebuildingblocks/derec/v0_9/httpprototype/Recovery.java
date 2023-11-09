@@ -18,9 +18,9 @@
 package com.thebuildingblocks.derec.v0_9.httpprototype;
 
 import com.thebuildingblocks.derec.v0_9.httpprototype.HelperClientMessageFactory.ProtocolInfo;
-import derec.message.Derecmessage.DeRecMessage;
-import derec.message.ResultOuterClass;
-import derec.message.Secretidsversions.GetSecretIdsVersionsResponseMessage;
+import org.derecalliance.derec.protobuf.Derecmessage.DeRecMessage;
+import org.derecalliance.derec.protobuf.ResultOuterClass;
+import org.derecalliance.derec.protobuf.Secretidsversions.GetSecretIdsVersionsResponseMessage;
 import org.derecalliance.derec.api.DeRecIdentity;
 import org.derecalliance.derec.api.DeRecSecret;
 import org.derecalliance.derec.api.DeRecStatusNotification;

@@ -19,18 +19,18 @@ package com.thebuildingblocks.derec.v0_9.httpprototype;
 
 import com.google.protobuf.ByteString;
 import com.google.protobuf.Timestamp;
-import derec.message.Secretidsversions.GetSecretIdsVersionsRequestMessage;
+import org.derecalliance.derec.protobuf.Secretidsversions.GetSecretIdsVersionsRequestMessage;
 import org.derecalliance.derec.api.DeRecIdentity;
-import derec.message.Derecmessage.DeRecMessage.SharerMessageBody;
+import org.derecalliance.derec.protobuf.Derecmessage.DeRecMessage.SharerMessageBody;
 import org.derecalliance.derec.api.DeRecSecret;
 
-import static derec.message.Communicationinfo.*;
-import static derec.message.Derecmessage.*;
-import static derec.message.Derecmessage.DeRecMessage.*;
-import static derec.message.Pair.*;
-import static derec.message.Storeshare.*;
-import static derec.message.Unpair.*;
-import static derec.message.Verify.*;
+import static org.derecalliance.derec.protobuf.Communicationinfo.*;
+import static org.derecalliance.derec.protobuf.Derecmessage.*;
+import static org.derecalliance.derec.protobuf.Derecmessage.DeRecMessage.*;
+import static org.derecalliance.derec.protobuf.Pair.*;
+import static org.derecalliance.derec.protobuf.Storeshare.*;
+import static org.derecalliance.derec.protobuf.Unpair.*;
+import static org.derecalliance.derec.protobuf.Verify.*;
 
 /**
  * Provides a binding between the world of Protobuf Messages and DeRec Classes for requests from client

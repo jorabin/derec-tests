@@ -19,8 +19,8 @@ package com.thebuildingblocks.derec.v0_9.httpprototype;
 
 import org.derecalliance.derec.api.DeRecHelperStatus;
 import org.derecalliance.derec.api.DeRecStatusNotification;
-import derec.message.*;
-import derec.message.Derecmessage.DeRecMessage.HelperMessageBody.BodyCase;
+import org.derecalliance.derec.protobuf.*;
+import org.derecalliance.derec.protobuf.Derecmessage.DeRecMessage.HelperMessageBody.BodyCase;
 
 import java.io.InputStream;
 import java.util.Arrays;
@@ -33,8 +33,8 @@ import static com.thebuildingblocks.derec.v0_9.httpprototype.Version.ResultType.
 import static com.thebuildingblocks.derec.v0_9.httpprototype.Version.ResultType.VERIFY;
 import static org.derecalliance.derec.api.DeRecHelperStatus.PairingStatus.*;
 import static org.derecalliance.derec.api.DeRecStatusNotification.StandardNotificationType.*;
-import static derec.message.Derecmessage.DeRecMessage.HelperMessageBody.BodyCase.*;
-import static derec.message.ResultOuterClass.StatusEnum.OK;
+import static org.derecalliance.derec.protobuf.Derecmessage.DeRecMessage.HelperMessageBody.BodyCase.*;
+import static org.derecalliance.derec.protobuf.ResultOuterClass.StatusEnum.OK;
 
 /**
  * Provides a binding between the world of Protobuf Messages and DeRec Classes for responses to client

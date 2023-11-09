@@ -17,7 +17,7 @@
 
 package com.thebuildingblocks.derec.v0_9.httpprototype;
 
-import derec.message.Derecmessage;
+import org.derecalliance.derec.protobuf.Derecmessage;
 import org.derecalliance.derec.api.DeRecIdentity;
 import org.derecalliance.derec.api.DeRecIdentity;
 import org.derecalliance.derec.api.DeRecSecret;
