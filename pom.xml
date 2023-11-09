@@ -74,10 +74,10 @@
 
 	<!-- snapshot builds of derec-api-java are held in GitHub packages
 	these are not public at the moment so there will need to be a PAT
-	put in the servers/server/password section of users local settings.xml -->
+	put in the servers/server/password section of user's local settings.xml -->
 	<repositories>
 		<repository>
-			<id>github</id>
+			<id>tbb-github</id>
 			<url>https://maven.pkg.github.com/the-building-blocks/*</url>
 			<snapshots>
 				<enabled>true</enabled>
