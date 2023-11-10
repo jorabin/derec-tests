@@ -20,6 +20,9 @@
 			<groupId>org.derecalliance.derec</groupId>
 			<artifactId>derec-api</artifactId>
 			<version>0.9-SNAPSHOT</version>
+			<!-- to allow for build in GitHub codespaces (can't set up access to GitHub repo) -->
+			<scope>system</scope>
+			<systemPath>${project.basedir}/src/main/resources/derec-api-0.9-SNAPSHOT.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>org.graalvm.sdk</groupId>
@@ -72,9 +75,11 @@
 		</plugins>
 	</build>
 
-	<!-- snapshot builds of derec-api-java are held in GitHub packages
-	these are not public at the moment so there will need to be a PAT
-	put in the servers/server/password section of user's local settings.xml -->
+	<!-- snapshot builds of derec-api-java (would have been) held in GitHub packages
+	these are not public and can't be accessed without a PAT
+	put in the servers/server/password section of user's local settings.xml
+	but can't see how to do that when using codespaces -->
+<!--
 	<repositories>
 		<repository>
 			<id>tbb-github</id>
@@ -84,6 +89,7 @@
 			</snapshots>
 		</repository>
 	</repositories>
+-->
 
 	<profiles>
 		<profile>
