@@ -16,7 +16,11 @@ jobs:
         java-version: '17'
         distribution: 'zulu'
         cache: maven
+        server-id: tbb-github
+        server-username: GITHUB_USER_REF
+        server-passowrd: GITHUB_TOKEN_REF
     - name: Build with Maven
       run: mvn -B package --file pom.xml
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_USER_REF: noone
+        GITHUB_TOKEN_REF: ${{ secrets.PACKAGE_AACESS_TOKEN}}
