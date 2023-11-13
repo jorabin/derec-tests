@@ -18,7 +18,7 @@ jobs:
         cache: maven
         server-id: tbb-github
         server-username: GITHUB_USER_REF
-        server-passowrd: GITHUB_TOKEN_REF
+        server-password: GITHUB_TOKEN_REF
     - name: Build with Maven
       run: mvn -B package --file pom.xml
       env:
