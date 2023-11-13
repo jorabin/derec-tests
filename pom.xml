@@ -78,11 +78,10 @@
 		</plugins>
 	</build>
 
-	<!-- snapshot builds of derec-api-java (would have been) held in GitHub packages
+	<!-- snapshot builds of derec-api-java are held in GitHub packages
 	these are not public and can't be accessed without a PAT
 	put in the servers/server/password section of user's local settings.xml
-	but can't see how to do that when using codespaces -->
-<!--
+	see ./devcontainers.settings.xml -->
 	<repositories>
 		<repository>
 			<id>tbb-github</id>
@@ -92,7 +91,6 @@
 			</snapshots>
 		</repository>
 	</repositories>
--->
 
 	<profiles>
 		<profile>

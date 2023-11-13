@@ -36,15 +36,16 @@ Step 2: Make the PAT available as a secret for the repo using the library
 
 Settings/Secrets and variables/codespaces
 
-Save as PACKAGE_ACCESS_TOKEN
+Save as PACKAGE_ACCESS_TOKEN, this is made available to codespace as an
+environment variable, referenced below
 
 -->
 <settings>
 	<servers>
 		<server>
 			<id>tbb-github</id>
-			<username>username</username>
-			<password>{$env.PACKAGE_ACCESS_TOKEN}</password>
+			<username>nobody</username>
+			<password>${env.PACKAGE_ACCESS_TOKEN}</password>
 		</server>
 	</servers>
 </settings>
