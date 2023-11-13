@@ -4,6 +4,8 @@
 
 A prototype implementation of [DeRec over HTTP](https://github.com/jorabin/derec-tests/tree/master/src/main/java/com/thebuildingblocks/derec/v0_9) called version 0.9.
 
+[![Java CI with Maven](https://github.com/jorabin/derec-tests/actions/workflows/maven.yml/badge.svg)](https://github.com/jorabin/derec-tests/actions/workflows/maven.yml)
+
 ## Cryptography
 
 Tests of [Shamir Secret Sharing and various prototypes of encryption](https://github.com/jorabin/derec-tests/tree/master/src/main/java/com/thebuildingblocks/derec/crypto) for DeRec:
