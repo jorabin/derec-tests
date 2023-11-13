@@ -1,0 +1,7 @@
+{
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  // otherwise auto-detection wrongly detects Java 11
+  "containerEnv": {
+    "DISABLE_JAVA_BUILD": "true"
+  }
+}
