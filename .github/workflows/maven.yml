@@ -23,4 +23,4 @@ jobs:
       run: mvn -B package --file pom.xml
       env:
         GITHUB_USER_REF: noone
-        GITHUB_TOKEN_REF: ${{ secrets.PACKAGE_AACESS_TOKEN}}
+        GITHUB_TOKEN_REF: ${{ secrets.PACKAGE_ACCESS_TOKEN}}
