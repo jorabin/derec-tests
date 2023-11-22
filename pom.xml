@@ -17,17 +17,6 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>org.derecalliance.derec</groupId>
-			<artifactId>derec-api</artifactId>
-			<version>0.9-SNAPSHOT</version>
-			<!-- to allow for build in GitHub codespaces (if you can't set up access to GitHub repo)
-			see devcontainer-settings.xml you can put the jar into resources -->
-			<!--
-			<scope>system</scope>
-			<systemPath>${project.basedir}/src/main/resources/derec-api-0.9-SNAPSHOT.jar</systemPath>
-			-->
-		</dependency>
-		<dependency>
 			<groupId>org.graalvm.sdk</groupId>
 			<artifactId>graal-sdk</artifactId>
 			<version>22.3.3</version>
