@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package com.thebuildingblocks.derec.v0_9.httpprototype;
+package com.thebuildingblocks.keypr.helper;
 
 import com.google.protobuf.ByteString;
 import org.derecalliance.derec.protobuf.Derecmessage.DeRecMessage.HelperMessageBody;

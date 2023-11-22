@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package com.thebuildingblocks.derec.v0_9.httpprototype;
+package com.thebuildingblocks.keypr.common;
 
 import java.security.KeyPairGenerator;
 import java.security.MessageDigest;

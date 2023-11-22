@@ -17,7 +17,7 @@
 
 package com.thebuildingblocks.keypr.sharer.tools;
 
-import com.thebuildingblocks.derec.v0_9.httpprototype.Secret;
+import com.thebuildingblocks.keypr.sharer.Secret;
 import org.derecalliance.derec.api.DeRecStatusNotification;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

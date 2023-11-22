@@ -15,8 +15,9 @@
  * limitations under the License.
  */
 
-package com.thebuildingblocks.derec.v0_9.httpprototype;
+package com.thebuildingblocks.keypr.sharer;
 
+import com.thebuildingblocks.keypr.common.Util;
 import org.derecalliance.derec.api.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +29,7 @@ import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
 
-import static com.thebuildingblocks.derec.v0_9.httpprototype.Sharer.defaultRetryParameters;
+import static com.thebuildingblocks.keypr.sharer.Sharer.defaultRetryParameters;
 import static org.derecalliance.derec.api.DeRecStatusNotification.NotificationSeverity.ERROR;
 import static org.derecalliance.derec.api.DeRecStatusNotification.NotificationSeverity.WARNING;
 import static org.derecalliance.derec.api.DeRecStatusNotification.StandardNotificationType.UPDATE_FAILED;

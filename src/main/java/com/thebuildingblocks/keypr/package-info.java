@@ -22,4 +22,4 @@
  * success or failure of the underlying communication/transport mechanism.
  *
  */
-package com.thebuildingblocks.derec.v0_9.httpprototype;
+package com.thebuildingblocks.keypr;

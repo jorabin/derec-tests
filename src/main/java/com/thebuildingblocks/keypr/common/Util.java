@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package com.thebuildingblocks.derec.v0_9.httpprototype;
+package com.thebuildingblocks.keypr.common;
 
 
 import org.derecalliance.derec.api.DeRecSecret;
@@ -71,10 +71,10 @@ public class Util {
         public static RetryParameters DEFAULT = new RetryParameters();
         public long pairingWaitSecs = 5; // time to wait for pairings to complete or fail
         int maxRetries = 0; // don't retry on failure
-        Duration timeout = Duration.ofSeconds(5); // timeout if no response received
-        Duration connectTimeout = Duration.ofSeconds(5);
-        Duration reverification = Duration.ofSeconds(20); // re-verify every
-        Duration updateDelay = Duration.ofSeconds(30); // max update frequency
+        public Duration timeout = Duration.ofSeconds(5); // timeout if no response received
+        public Duration connectTimeout = Duration.ofSeconds(5);
+        public Duration reverification = Duration.ofSeconds(20); // re-verify every
+        public Duration updateDelay = Duration.ofSeconds(30); // max update frequency
 
         public Duration getConnectTimeout() {
             return connectTimeout;

@@ -15,9 +15,10 @@
  * limitations under the License.
  */
 
-package com.thebuildingblocks.derec.v0_9.httpprototype;
+package com.thebuildingblocks.keypr.sharer;
 
-import com.thebuildingblocks.derec.v0_9.httpprototype.HelperClientMessageFactory.ProtocolInfo;
+import com.thebuildingblocks.keypr.common.Util;
+import com.thebuildingblocks.keypr.sharer.HelperClientMessageFactory.ProtocolInfo;
 import org.derecalliance.derec.protobuf.Derecmessage.DeRecMessage;
 import org.derecalliance.derec.protobuf.ResultOuterClass;
 import org.derecalliance.derec.protobuf.Secretidsversions.GetSecretIdsVersionsResponseMessage;

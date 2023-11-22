@@ -15,12 +15,11 @@
  * limitations under the License.
  */
 
-package com.thebuildingblocks.derec.v0_9.httpprototype;
+package com.thebuildingblocks.keypr.helper;
 
 // map of the shares of the secretIds of the sharers
 
 import com.google.protobuf.ByteString;
-import org.derecalliance.derec.api.DeRecIdentity;
 import org.derecalliance.derec.api.DeRecSecret;
 
 import java.util.List;

@@ -17,6 +17,9 @@
 
 package com.thebuildingblocks.derec.v0_9.httpprototype;
 
+import com.thebuildingblocks.keypr.sharer.HelperClient;
+import com.thebuildingblocks.keypr.sharer.Secret;
+import com.thebuildingblocks.keypr.sharer.Sharer;
 import com.thebuildingblocks.keypr.sharer.tools.Recipes;
 import com.thebuildingblocks.keypr.sharer.tools.TestHelperServer;
 import com.thebuildingblocks.keypr.sharer.tools.Notifier;
@@ -35,7 +38,7 @@ import java.util.*;
 import java.util.concurrent.*;
 import java.util.stream.Collectors;
 
-import static com.thebuildingblocks.derec.v0_9.httpprototype.Cryptography.keyPairGenerator;
+import static com.thebuildingblocks.keypr.common.Cryptography.keyPairGenerator;
 import static com.thebuildingblocks.keypr.common.TestIds.DEFAULT_IDS;
 import static com.thebuildingblocks.keypr.common.TestIds.pemFrom;
 import static org.junit.Assert.*;

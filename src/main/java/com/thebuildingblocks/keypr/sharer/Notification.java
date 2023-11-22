@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package com.thebuildingblocks.derec.v0_9.httpprototype;
+package com.thebuildingblocks.keypr.sharer;
 
 import org.derecalliance.derec.api.DeRecHelperStatus;
 import org.derecalliance.derec.api.DeRecSecret;

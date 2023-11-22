@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package com.thebuildingblocks.derec.v0_9.httpprototype;
+package com.thebuildingblocks.keypr.sharer;
 
 import org.derecalliance.derec.api.DeRecHelperStatus;
 import org.derecalliance.derec.api.DeRecStatusNotification;
@@ -29,8 +29,8 @@ import java.util.Map;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
-import static com.thebuildingblocks.derec.v0_9.httpprototype.Version.ResultType.SHARE;
-import static com.thebuildingblocks.derec.v0_9.httpprototype.Version.ResultType.VERIFY;
+import static com.thebuildingblocks.keypr.sharer.Version.ResultType.SHARE;
+import static com.thebuildingblocks.keypr.sharer.Version.ResultType.VERIFY;
 import static org.derecalliance.derec.api.DeRecHelperStatus.PairingStatus.*;
 import static org.derecalliance.derec.api.DeRecStatusNotification.StandardNotificationType.*;
 import static org.derecalliance.derec.protobuf.Derecmessage.DeRecMessage.HelperMessageBody.BodyCase.*;

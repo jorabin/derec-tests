@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package com.thebuildingblocks.derec.v0_9.httpprototype;
+package com.thebuildingblocks.keypr.helper;
 
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
@@ -35,7 +35,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import static com.thebuildingblocks.derec.v0_9.httpprototype.HelperServerMessageFactory.*;
+import static com.thebuildingblocks.keypr.helper.HelperServerMessageFactory.*;
 import static org.derecalliance.derec.protobuf.Derecmessage.DeRecMessage.parseFrom;
 
 public class HelperServerResponseProcessing {

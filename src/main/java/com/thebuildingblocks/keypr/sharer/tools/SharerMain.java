@@ -17,8 +17,8 @@
 
 package com.thebuildingblocks.keypr.sharer.tools;
 
-import com.thebuildingblocks.derec.v0_9.httpprototype.Secret;
-import com.thebuildingblocks.derec.v0_9.httpprototype.Sharer;
+import com.thebuildingblocks.keypr.sharer.Secret;
+import com.thebuildingblocks.keypr.sharer.Sharer;
 import org.derecalliance.derec.api.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +28,7 @@ import java.security.KeyPair;
 import java.util.Arrays;
 import java.util.Scanner;
 
-import static com.thebuildingblocks.derec.v0_9.httpprototype.Cryptography.keyPairGenerator;
+import static com.thebuildingblocks.keypr.common.Cryptography.keyPairGenerator;
 import static com.thebuildingblocks.keypr.common.TestIds.DEFAULT_IDS;
 import static com.thebuildingblocks.keypr.common.TestIds.pemFrom;
 

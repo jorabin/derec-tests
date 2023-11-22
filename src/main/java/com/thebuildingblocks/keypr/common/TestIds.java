@@ -25,7 +25,7 @@ import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.thebuildingblocks.derec.v0_9.httpprototype.Cryptography.keyPairGenerator;
+import static com.thebuildingblocks.keypr.common.Cryptography.keyPairGenerator;
 
 public class TestIds {
 

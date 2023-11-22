@@ -17,10 +17,10 @@
 
 package com.thebuildingblocks.keypr.sharer.tools;
 
-import com.thebuildingblocks.derec.v0_9.httpprototype.Secret;
-import com.thebuildingblocks.derec.v0_9.httpprototype.Sharer;
-import com.thebuildingblocks.derec.v0_9.httpprototype.Version;
-import com.thebuildingblocks.derec.v0_9.httpprototype.HelperClient;
+import com.thebuildingblocks.keypr.sharer.Secret;
+import com.thebuildingblocks.keypr.sharer.Sharer;
+import com.thebuildingblocks.keypr.sharer.Version;
+import com.thebuildingblocks.keypr.sharer.HelperClient;
 import org.derecalliance.derec.api.*;
 
 import java.util.*;

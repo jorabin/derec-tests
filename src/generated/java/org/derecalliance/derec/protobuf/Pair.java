@@ -166,7 +166,7 @@ public final class Pair {
     /**
      * <pre>
      *
-     * public key (PEM encoded) used for signing messages from the initiator;
+     * public key (PEM encoded - RFC 7468) used for signing messages from the initiator
      * </pre>
      *
      * <code>string publicSignatureKey = 3;</code>
@@ -176,7 +176,7 @@ public final class Pair {
     /**
      * <pre>
      *
-     * public key (PEM encoded) used for signing messages from the initiator;
+     * public key (PEM encoded - RFC 7468) used for signing messages from the initiator
      * </pre>
      *
      * <code>string publicSignatureKey = 3;</code>
@@ -188,7 +188,7 @@ public final class Pair {
     /**
      * <pre>
      *
-     * public key (PEM encoded) used for encrypting messages to the initiator;
+     * public key (PEM encoded - RFC 7468) used for encrypting messages to the initiator
      * </pre>
      *
      * <code>string publicEncryptionKey = 4;</code>
@@ -198,7 +198,7 @@ public final class Pair {
     /**
      * <pre>
      *
-     * public key (PEM encoded) used for encrypting messages to the initiator;
+     * public key (PEM encoded - RFC 7468) used for encrypting messages to the initiator
      * </pre>
      *
      * <code>string publicEncryptionKey = 4;</code>
@@ -209,12 +209,28 @@ public final class Pair {
 
     /**
      * <pre>
+     **
+     * A number used to later identify the publicEncryptionKey. 
+     * When any message is later sent to this initiator, and it is encrypted
+     * with the publicEncryptionKey, this identifier is also sent, so the recipient 
+     * knows which key to use to decrypt it. If the recipient creates multiple 
+     * keys for multiple pairings, then they should remember the publicKeyId that
+     * they chose for each one, so they won't have to try all the keys during decryption. 
+     * </pre>
+     *
+     * <code>int32 publicKeyId = 5;</code>
+     * @return The publicKeyId.
+     */
+    int getPublicKeyId();
+
+    /**
+     * <pre>
      *
      * sender’s app-readable contact information,
      * such as name, phone number, etc.
      * </pre>
      *
-     * <code>.org.derecalliance.derec.protobuf.CommunicationInfo communicationInfo = 5;</code>
+     * <code>.org.derecalliance.derec.protobuf.CommunicationInfo communicationInfo = 6;</code>
      * @return Whether the communicationInfo field is set.
      */
     boolean hasCommunicationInfo();
@@ -225,7 +241,7 @@ public final class Pair {
      * such as name, phone number, etc.
      * </pre>
      *
-     * <code>.org.derecalliance.derec.protobuf.CommunicationInfo communicationInfo = 5;</code>
+     * <code>.org.derecalliance.derec.protobuf.CommunicationInfo communicationInfo = 6;</code>
      * @return The communicationInfo.
      */
     org.derecalliance.derec.protobuf.Communicationinfo.CommunicationInfo getCommunicationInfo();
@@ -236,20 +252,20 @@ public final class Pair {
      * such as name, phone number, etc.
      * </pre>
      *
-     * <code>.org.derecalliance.derec.protobuf.CommunicationInfo communicationInfo = 5;</code>
+     * <code>.org.derecalliance.derec.protobuf.CommunicationInfo communicationInfo = 6;</code>
      */
     org.derecalliance.derec.protobuf.Communicationinfo.CommunicationInfoOrBuilder getCommunicationInfoOrBuilder();
 
     /**
      * <pre>
      *
-     * 32-byte (random) nonce to identify the pairing session
+     * 64-bit (random) nonce to identify the pairing session
      * </pre>
      *
-     * <code>bytes nonce = 6;</code>
+     * <code>int64 nonce = 7;</code>
      * @return The nonce.
      */
-    com.google.protobuf.ByteString getNonce();
+    long getNonce();
 
     /**
      * <pre>
@@ -257,7 +273,7 @@ public final class Pair {
      * The parameter range for the sender.
      * </pre>
      *
-     * <code>.org.derecalliance.derec.protobuf.ParameterRange parameterRange = 7;</code>
+     * <code>.org.derecalliance.derec.protobuf.ParameterRange parameterRange = 8;</code>
      * @return Whether the parameterRange field is set.
      */
     boolean hasParameterRange();
@@ -267,7 +283,7 @@ public final class Pair {
      * The parameter range for the sender.
      * </pre>
      *
-     * <code>.org.derecalliance.derec.protobuf.ParameterRange parameterRange = 7;</code>
+     * <code>.org.derecalliance.derec.protobuf.ParameterRange parameterRange = 8;</code>
      * @return The parameterRange.
      */
     org.derecalliance.derec.protobuf.Parameterrange.ParameterRange getParameterRange();
@@ -277,7 +293,7 @@ public final class Pair {
      * The parameter range for the sender.
      * </pre>
      *
-     * <code>.org.derecalliance.derec.protobuf.ParameterRange parameterRange = 7;</code>
+     * <code>.org.derecalliance.derec.protobuf.ParameterRange parameterRange = 8;</code>
      */
     org.derecalliance.derec.protobuf.Parameterrange.ParameterRangeOrBuilder getParameterRangeOrBuilder();
   }
@@ -311,7 +327,6 @@ public final class Pair {
       senderKind_ = 0;
       publicSignatureKey_ = "";
       publicEncryptionKey_ = "";
-      nonce_ = com.google.protobuf.ByteString.EMPTY;
     }
 
     @java.lang.Override
@@ -369,7 +384,7 @@ public final class Pair {
     /**
      * <pre>
      *
-     * public key (PEM encoded) used for signing messages from the initiator;
+     * public key (PEM encoded - RFC 7468) used for signing messages from the initiator
      * </pre>
      *
      * <code>string publicSignatureKey = 3;</code>
@@ -391,7 +406,7 @@ public final class Pair {
     /**
      * <pre>
      *
-     * public key (PEM encoded) used for signing messages from the initiator;
+     * public key (PEM encoded - RFC 7468) used for signing messages from the initiator
      * </pre>
      *
      * <code>string publicSignatureKey = 3;</code>
@@ -418,7 +433,7 @@ public final class Pair {
     /**
      * <pre>
      *
-     * public key (PEM encoded) used for encrypting messages to the initiator;
+     * public key (PEM encoded - RFC 7468) used for encrypting messages to the initiator
      * </pre>
      *
      * <code>string publicEncryptionKey = 4;</code>
@@ -440,7 +455,7 @@ public final class Pair {
     /**
      * <pre>
      *
-     * public key (PEM encoded) used for encrypting messages to the initiator;
+     * public key (PEM encoded - RFC 7468) used for encrypting messages to the initiator
      * </pre>
      *
      * <code>string publicEncryptionKey = 4;</code>
@@ -461,7 +476,28 @@ public final class Pair {
       }
     }
 
-    public static final int COMMUNICATIONINFO_FIELD_NUMBER = 5;
+    public static final int PUBLICKEYID_FIELD_NUMBER = 5;
+    private int publicKeyId_ = 0;
+    /**
+     * <pre>
+     **
+     * A number used to later identify the publicEncryptionKey. 
+     * When any message is later sent to this initiator, and it is encrypted
+     * with the publicEncryptionKey, this identifier is also sent, so the recipient 
+     * knows which key to use to decrypt it. If the recipient creates multiple 
+     * keys for multiple pairings, then they should remember the publicKeyId that
+     * they chose for each one, so they won't have to try all the keys during decryption. 
+     * </pre>
+     *
+     * <code>int32 publicKeyId = 5;</code>
+     * @return The publicKeyId.
+     */
+    @java.lang.Override
+    public int getPublicKeyId() {
+      return publicKeyId_;
+    }
+
+    public static final int COMMUNICATIONINFO_FIELD_NUMBER = 6;
     private org.derecalliance.derec.protobuf.Communicationinfo.CommunicationInfo communicationInfo_;
     /**
      * <pre>
@@ -470,7 +506,7 @@ public final class Pair {
      * such as name, phone number, etc.
      * </pre>
      *
-     * <code>.org.derecalliance.derec.protobuf.CommunicationInfo communicationInfo = 5;</code>
+     * <code>.org.derecalliance.derec.protobuf.CommunicationInfo communicationInfo = 6;</code>
      * @return Whether the communicationInfo field is set.
      */
     @java.lang.Override
@@ -484,7 +520,7 @@ public final class Pair {
      * such as name, phone number, etc.
      * </pre>
      *
-     * <code>.org.derecalliance.derec.protobuf.CommunicationInfo communicationInfo = 5;</code>
+     * <code>.org.derecalliance.derec.protobuf.CommunicationInfo communicationInfo = 6;</code>
      * @return The communicationInfo.
      */
     @java.lang.Override
@@ -498,30 +534,30 @@ public final class Pair {
      * such as name, phone number, etc.
      * </pre>
      *
-     * <code>.org.derecalliance.derec.protobuf.CommunicationInfo communicationInfo = 5;</code>
+     * <code>.org.derecalliance.derec.protobuf.CommunicationInfo communicationInfo = 6;</code>
      */
     @java.lang.Override
     public org.derecalliance.derec.protobuf.Communicationinfo.CommunicationInfoOrBuilder getCommunicationInfoOrBuilder() {
       return communicationInfo_ == null ? org.derecalliance.derec.protobuf.Communicationinfo.CommunicationInfo.getDefaultInstance() : communicationInfo_;
     }
 
-    public static final int NONCE_FIELD_NUMBER = 6;
-    private com.google.protobuf.ByteString nonce_ = com.google.protobuf.ByteString.EMPTY;
+    public static final int NONCE_FIELD_NUMBER = 7;
+    private long nonce_ = 0L;
     /**
      * <pre>
      *
-     * 32-byte (random) nonce to identify the pairing session
+     * 64-bit (random) nonce to identify the pairing session
      * </pre>
      *
-     * <code>bytes nonce = 6;</code>
+     * <code>int64 nonce = 7;</code>
      * @return The nonce.
      */
     @java.lang.Override
-    public com.google.protobuf.ByteString getNonce() {
+    public long getNonce() {
       return nonce_;
     }
 
-    public static final int PARAMETERRANGE_FIELD_NUMBER = 7;
+    public static final int PARAMETERRANGE_FIELD_NUMBER = 8;
     private org.derecalliance.derec.protobuf.Parameterrange.ParameterRange parameterRange_;
     /**
      * <pre>
@@ -529,7 +565,7 @@ public final class Pair {
      * The parameter range for the sender.
      * </pre>
      *
-     * <code>.org.derecalliance.derec.protobuf.ParameterRange parameterRange = 7;</code>
+     * <code>.org.derecalliance.derec.protobuf.ParameterRange parameterRange = 8;</code>
      * @return Whether the parameterRange field is set.
      */
     @java.lang.Override
@@ -542,7 +578,7 @@ public final class Pair {
      * The parameter range for the sender.
      * </pre>
      *
-     * <code>.org.derecalliance.derec.protobuf.ParameterRange parameterRange = 7;</code>
+     * <code>.org.derecalliance.derec.protobuf.ParameterRange parameterRange = 8;</code>
      * @return The parameterRange.
      */
     @java.lang.Override
@@ -555,7 +591,7 @@ public final class Pair {
      * The parameter range for the sender.
      * </pre>
      *
-     * <code>.org.derecalliance.derec.protobuf.ParameterRange parameterRange = 7;</code>
+     * <code>.org.derecalliance.derec.protobuf.ParameterRange parameterRange = 8;</code>
      */
     @java.lang.Override
     public org.derecalliance.derec.protobuf.Parameterrange.ParameterRangeOrBuilder getParameterRangeOrBuilder() {
@@ -585,14 +621,17 @@ public final class Pair {
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(publicEncryptionKey_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, publicEncryptionKey_);
       }
-      if (((bitField0_ & 0x00000001) != 0)) {
-        output.writeMessage(5, getCommunicationInfo());
+      if (publicKeyId_ != 0) {
+        output.writeInt32(5, publicKeyId_);
       }
-      if (!nonce_.isEmpty()) {
-        output.writeBytes(6, nonce_);
+      if (((bitField0_ & 0x00000001) != 0)) {
+        output.writeMessage(6, getCommunicationInfo());
+      }
+      if (nonce_ != 0L) {
+        output.writeInt64(7, nonce_);
       }
       if (((bitField0_ & 0x00000002) != 0)) {
-        output.writeMessage(7, getParameterRange());
+        output.writeMessage(8, getParameterRange());
       }
       getUnknownFields().writeTo(output);
     }
@@ -613,17 +652,21 @@ public final class Pair {
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(publicEncryptionKey_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, publicEncryptionKey_);
       }
+      if (publicKeyId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(5, publicKeyId_);
+      }
       if (((bitField0_ & 0x00000001) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(5, getCommunicationInfo());
+          .computeMessageSize(6, getCommunicationInfo());
       }
-      if (!nonce_.isEmpty()) {
+      if (nonce_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(6, nonce_);
+          .computeInt64Size(7, nonce_);
       }
       if (((bitField0_ & 0x00000002) != 0)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(7, getParameterRange());
+          .computeMessageSize(8, getParameterRange());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -645,13 +688,15 @@ public final class Pair {
           .equals(other.getPublicSignatureKey())) return false;
       if (!getPublicEncryptionKey()
           .equals(other.getPublicEncryptionKey())) return false;
+      if (getPublicKeyId()
+          != other.getPublicKeyId()) return false;
       if (hasCommunicationInfo() != other.hasCommunicationInfo()) return false;
       if (hasCommunicationInfo()) {
         if (!getCommunicationInfo()
             .equals(other.getCommunicationInfo())) return false;
       }
-      if (!getNonce()
-          .equals(other.getNonce())) return false;
+      if (getNonce()
+          != other.getNonce()) return false;
       if (hasParameterRange() != other.hasParameterRange()) return false;
       if (hasParameterRange()) {
         if (!getParameterRange()
@@ -674,12 +719,15 @@ public final class Pair {
       hash = (53 * hash) + getPublicSignatureKey().hashCode();
       hash = (37 * hash) + PUBLICENCRYPTIONKEY_FIELD_NUMBER;
       hash = (53 * hash) + getPublicEncryptionKey().hashCode();
+      hash = (37 * hash) + PUBLICKEYID_FIELD_NUMBER;
+      hash = (53 * hash) + getPublicKeyId();
       if (hasCommunicationInfo()) {
         hash = (37 * hash) + COMMUNICATIONINFO_FIELD_NUMBER;
         hash = (53 * hash) + getCommunicationInfo().hashCode();
       }
       hash = (37 * hash) + NONCE_FIELD_NUMBER;
-      hash = (53 * hash) + getNonce().hashCode();
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getNonce());
       if (hasParameterRange()) {
         hash = (37 * hash) + PARAMETERRANGE_FIELD_NUMBER;
         hash = (53 * hash) + getParameterRange().hashCode();
@@ -839,12 +887,13 @@ public final class Pair {
         senderKind_ = 0;
         publicSignatureKey_ = "";
         publicEncryptionKey_ = "";
+        publicKeyId_ = 0;
         communicationInfo_ = null;
         if (communicationInfoBuilder_ != null) {
           communicationInfoBuilder_.dispose();
           communicationInfoBuilder_ = null;
         }
-        nonce_ = com.google.protobuf.ByteString.EMPTY;
+        nonce_ = 0L;
         parameterRange_ = null;
         if (parameterRangeBuilder_ != null) {
           parameterRangeBuilder_.dispose();
@@ -892,17 +941,20 @@ public final class Pair {
         if (((from_bitField0_ & 0x00000004) != 0)) {
           result.publicEncryptionKey_ = publicEncryptionKey_;
         }
-        int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.publicKeyId_ = publicKeyId_;
+        }
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000010) != 0)) {
           result.communicationInfo_ = communicationInfoBuilder_ == null
               ? communicationInfo_
               : communicationInfoBuilder_.build();
           to_bitField0_ |= 0x00000001;
         }
-        if (((from_bitField0_ & 0x00000010) != 0)) {
+        if (((from_bitField0_ & 0x00000020) != 0)) {
           result.nonce_ = nonce_;
         }
-        if (((from_bitField0_ & 0x00000020) != 0)) {
+        if (((from_bitField0_ & 0x00000040) != 0)) {
           result.parameterRange_ = parameterRangeBuilder_ == null
               ? parameterRange_
               : parameterRangeBuilder_.build();
@@ -968,10 +1020,13 @@ public final class Pair {
           bitField0_ |= 0x00000004;
           onChanged();
         }
+        if (other.getPublicKeyId() != 0) {
+          setPublicKeyId(other.getPublicKeyId());
+        }
         if (other.hasCommunicationInfo()) {
           mergeCommunicationInfo(other.getCommunicationInfo());
         }
-        if (other.getNonce() != com.google.protobuf.ByteString.EMPTY) {
+        if (other.getNonce() != 0L) {
           setNonce(other.getNonce());
         }
         if (other.hasParameterRange()) {
@@ -1018,25 +1073,30 @@ public final class Pair {
                 bitField0_ |= 0x00000004;
                 break;
               } // case 34
-              case 42: {
+              case 40: {
+                publicKeyId_ = input.readInt32();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 40
+              case 50: {
                 input.readMessage(
                     getCommunicationInfoFieldBuilder().getBuilder(),
                     extensionRegistry);
-                bitField0_ |= 0x00000008;
-                break;
-              } // case 42
-              case 50: {
-                nonce_ = input.readBytes();
                 bitField0_ |= 0x00000010;
                 break;
               } // case 50
-              case 58: {
+              case 56: {
+                nonce_ = input.readInt64();
+                bitField0_ |= 0x00000020;
+                break;
+              } // case 56
+              case 66: {
                 input.readMessage(
                     getParameterRangeFieldBuilder().getBuilder(),
                     extensionRegistry);
-                bitField0_ |= 0x00000020;
+                bitField0_ |= 0x00000040;
                 break;
-              } // case 58
+              } // case 66
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -1136,7 +1196,7 @@ public final class Pair {
       /**
        * <pre>
        *
-       * public key (PEM encoded) used for signing messages from the initiator;
+       * public key (PEM encoded - RFC 7468) used for signing messages from the initiator
        * </pre>
        *
        * <code>string publicSignatureKey = 3;</code>
@@ -1157,7 +1217,7 @@ public final class Pair {
       /**
        * <pre>
        *
-       * public key (PEM encoded) used for signing messages from the initiator;
+       * public key (PEM encoded - RFC 7468) used for signing messages from the initiator
        * </pre>
        *
        * <code>string publicSignatureKey = 3;</code>
@@ -1179,7 +1239,7 @@ public final class Pair {
       /**
        * <pre>
        *
-       * public key (PEM encoded) used for signing messages from the initiator;
+       * public key (PEM encoded - RFC 7468) used for signing messages from the initiator
        * </pre>
        *
        * <code>string publicSignatureKey = 3;</code>
@@ -1197,7 +1257,7 @@ public final class Pair {
       /**
        * <pre>
        *
-       * public key (PEM encoded) used for signing messages from the initiator;
+       * public key (PEM encoded - RFC 7468) used for signing messages from the initiator
        * </pre>
        *
        * <code>string publicSignatureKey = 3;</code>
@@ -1212,7 +1272,7 @@ public final class Pair {
       /**
        * <pre>
        *
-       * public key (PEM encoded) used for signing messages from the initiator;
+       * public key (PEM encoded - RFC 7468) used for signing messages from the initiator
        * </pre>
        *
        * <code>string publicSignatureKey = 3;</code>
@@ -1233,7 +1293,7 @@ public final class Pair {
       /**
        * <pre>
        *
-       * public key (PEM encoded) used for encrypting messages to the initiator;
+       * public key (PEM encoded - RFC 7468) used for encrypting messages to the initiator
        * </pre>
        *
        * <code>string publicEncryptionKey = 4;</code>
@@ -1254,7 +1314,7 @@ public final class Pair {
       /**
        * <pre>
        *
-       * public key (PEM encoded) used for encrypting messages to the initiator;
+       * public key (PEM encoded - RFC 7468) used for encrypting messages to the initiator
        * </pre>
        *
        * <code>string publicEncryptionKey = 4;</code>
@@ -1276,7 +1336,7 @@ public final class Pair {
       /**
        * <pre>
        *
-       * public key (PEM encoded) used for encrypting messages to the initiator;
+       * public key (PEM encoded - RFC 7468) used for encrypting messages to the initiator
        * </pre>
        *
        * <code>string publicEncryptionKey = 4;</code>
@@ -1294,7 +1354,7 @@ public final class Pair {
       /**
        * <pre>
        *
-       * public key (PEM encoded) used for encrypting messages to the initiator;
+       * public key (PEM encoded - RFC 7468) used for encrypting messages to the initiator
        * </pre>
        *
        * <code>string publicEncryptionKey = 4;</code>
@@ -1309,7 +1369,7 @@ public final class Pair {
       /**
        * <pre>
        *
-       * public key (PEM encoded) used for encrypting messages to the initiator;
+       * public key (PEM encoded - RFC 7468) used for encrypting messages to the initiator
        * </pre>
        *
        * <code>string publicEncryptionKey = 4;</code>
@@ -1326,6 +1386,68 @@ public final class Pair {
         return this;
       }
 
+      private int publicKeyId_ ;
+      /**
+       * <pre>
+       **
+       * A number used to later identify the publicEncryptionKey. 
+       * When any message is later sent to this initiator, and it is encrypted
+       * with the publicEncryptionKey, this identifier is also sent, so the recipient 
+       * knows which key to use to decrypt it. If the recipient creates multiple 
+       * keys for multiple pairings, then they should remember the publicKeyId that
+       * they chose for each one, so they won't have to try all the keys during decryption. 
+       * </pre>
+       *
+       * <code>int32 publicKeyId = 5;</code>
+       * @return The publicKeyId.
+       */
+      @java.lang.Override
+      public int getPublicKeyId() {
+        return publicKeyId_;
+      }
+      /**
+       * <pre>
+       **
+       * A number used to later identify the publicEncryptionKey. 
+       * When any message is later sent to this initiator, and it is encrypted
+       * with the publicEncryptionKey, this identifier is also sent, so the recipient 
+       * knows which key to use to decrypt it. If the recipient creates multiple 
+       * keys for multiple pairings, then they should remember the publicKeyId that
+       * they chose for each one, so they won't have to try all the keys during decryption. 
+       * </pre>
+       *
+       * <code>int32 publicKeyId = 5;</code>
+       * @param value The publicKeyId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPublicKeyId(int value) {
+
+        publicKeyId_ = value;
+        bitField0_ |= 0x00000008;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       **
+       * A number used to later identify the publicEncryptionKey. 
+       * When any message is later sent to this initiator, and it is encrypted
+       * with the publicEncryptionKey, this identifier is also sent, so the recipient 
+       * knows which key to use to decrypt it. If the recipient creates multiple 
+       * keys for multiple pairings, then they should remember the publicKeyId that
+       * they chose for each one, so they won't have to try all the keys during decryption. 
+       * </pre>
+       *
+       * <code>int32 publicKeyId = 5;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPublicKeyId() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        publicKeyId_ = 0;
+        onChanged();
+        return this;
+      }
+
       private org.derecalliance.derec.protobuf.Communicationinfo.CommunicationInfo communicationInfo_;
       private com.google.protobuf.SingleFieldBuilderV3<
           org.derecalliance.derec.protobuf.Communicationinfo.CommunicationInfo, org.derecalliance.derec.protobuf.Communicationinfo.CommunicationInfo.Builder, org.derecalliance.derec.protobuf.Communicationinfo.CommunicationInfoOrBuilder> communicationInfoBuilder_;
@@ -1336,11 +1458,11 @@ public final class Pair {
        * such as name, phone number, etc.
        * </pre>
        *
-       * <code>.org.derecalliance.derec.protobuf.CommunicationInfo communicationInfo = 5;</code>
+       * <code>.org.derecalliance.derec.protobuf.CommunicationInfo communicationInfo = 6;</code>
        * @return Whether the communicationInfo field is set.
        */
       public boolean hasCommunicationInfo() {
-        return ((bitField0_ & 0x00000008) != 0);
+        return ((bitField0_ & 0x00000010) != 0);
       }
       /**
        * <pre>
@@ -1349,7 +1471,7 @@ public final class Pair {
        * such as name, phone number, etc.
        * </pre>
        *
-       * <code>.org.derecalliance.derec.protobuf.CommunicationInfo communicationInfo = 5;</code>
+       * <code>.org.derecalliance.derec.protobuf.CommunicationInfo communicationInfo = 6;</code>
        * @return The communicationInfo.
        */
       public org.derecalliance.derec.protobuf.Communicationinfo.CommunicationInfo getCommunicationInfo() {
@@ -1366,7 +1488,7 @@ public final class Pair {
        * such as name, phone number, etc.
        * </pre>
        *
-       * <code>.org.derecalliance.derec.protobuf.CommunicationInfo communicationInfo = 5;</code>
+       * <code>.org.derecalliance.derec.protobuf.CommunicationInfo communicationInfo = 6;</code>
        */
       public Builder setCommunicationInfo(org.derecalliance.derec.protobuf.Communicationinfo.CommunicationInfo value) {
         if (communicationInfoBuilder_ == null) {
@@ -1377,7 +1499,7 @@ public final class Pair {
         } else {
           communicationInfoBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -1388,7 +1510,7 @@ public final class Pair {
        * such as name, phone number, etc.
        * </pre>
        *
-       * <code>.org.derecalliance.derec.protobuf.CommunicationInfo communicationInfo = 5;</code>
+       * <code>.org.derecalliance.derec.protobuf.CommunicationInfo communicationInfo = 6;</code>
        */
       public Builder setCommunicationInfo(
           org.derecalliance.derec.protobuf.Communicationinfo.CommunicationInfo.Builder builderForValue) {
@@ -1397,7 +1519,7 @@ public final class Pair {
         } else {
           communicationInfoBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -1408,11 +1530,11 @@ public final class Pair {
        * such as name, phone number, etc.
        * </pre>
        *
-       * <code>.org.derecalliance.derec.protobuf.CommunicationInfo communicationInfo = 5;</code>
+       * <code>.org.derecalliance.derec.protobuf.CommunicationInfo communicationInfo = 6;</code>
        */
       public Builder mergeCommunicationInfo(org.derecalliance.derec.protobuf.Communicationinfo.CommunicationInfo value) {
         if (communicationInfoBuilder_ == null) {
-          if (((bitField0_ & 0x00000008) != 0) &&
+          if (((bitField0_ & 0x00000010) != 0) &&
             communicationInfo_ != null &&
             communicationInfo_ != org.derecalliance.derec.protobuf.Communicationinfo.CommunicationInfo.getDefaultInstance()) {
             getCommunicationInfoBuilder().mergeFrom(value);
@@ -1423,7 +1545,7 @@ public final class Pair {
           communicationInfoBuilder_.mergeFrom(value);
         }
         if (communicationInfo_ != null) {
-          bitField0_ |= 0x00000008;
+          bitField0_ |= 0x00000010;
           onChanged();
         }
         return this;
@@ -1435,10 +1557,10 @@ public final class Pair {
        * such as name, phone number, etc.
        * </pre>
        *
-       * <code>.org.derecalliance.derec.protobuf.CommunicationInfo communicationInfo = 5;</code>
+       * <code>.org.derecalliance.derec.protobuf.CommunicationInfo communicationInfo = 6;</code>
        */
       public Builder clearCommunicationInfo() {
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000010);
         communicationInfo_ = null;
         if (communicationInfoBuilder_ != null) {
           communicationInfoBuilder_.dispose();
@@ -1454,10 +1576,10 @@ public final class Pair {
        * such as name, phone number, etc.
        * </pre>
        *
-       * <code>.org.derecalliance.derec.protobuf.CommunicationInfo communicationInfo = 5;</code>
+       * <code>.org.derecalliance.derec.protobuf.CommunicationInfo communicationInfo = 6;</code>
        */
       public org.derecalliance.derec.protobuf.Communicationinfo.CommunicationInfo.Builder getCommunicationInfoBuilder() {
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000010;
         onChanged();
         return getCommunicationInfoFieldBuilder().getBuilder();
       }
@@ -1468,7 +1590,7 @@ public final class Pair {
        * such as name, phone number, etc.
        * </pre>
        *
-       * <code>.org.derecalliance.derec.protobuf.CommunicationInfo communicationInfo = 5;</code>
+       * <code>.org.derecalliance.derec.protobuf.CommunicationInfo communicationInfo = 6;</code>
        */
       public org.derecalliance.derec.protobuf.Communicationinfo.CommunicationInfoOrBuilder getCommunicationInfoOrBuilder() {
         if (communicationInfoBuilder_ != null) {
@@ -1485,7 +1607,7 @@ public final class Pair {
        * such as name, phone number, etc.
        * </pre>
        *
-       * <code>.org.derecalliance.derec.protobuf.CommunicationInfo communicationInfo = 5;</code>
+       * <code>.org.derecalliance.derec.protobuf.CommunicationInfo communicationInfo = 6;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           org.derecalliance.derec.protobuf.Communicationinfo.CommunicationInfo, org.derecalliance.derec.protobuf.Communicationinfo.CommunicationInfo.Builder, org.derecalliance.derec.protobuf.Communicationinfo.CommunicationInfoOrBuilder> 
@@ -1501,49 +1623,49 @@ public final class Pair {
         return communicationInfoBuilder_;
       }
 
-      private com.google.protobuf.ByteString nonce_ = com.google.protobuf.ByteString.EMPTY;
+      private long nonce_ ;
       /**
        * <pre>
        *
-       * 32-byte (random) nonce to identify the pairing session
+       * 64-bit (random) nonce to identify the pairing session
        * </pre>
        *
-       * <code>bytes nonce = 6;</code>
+       * <code>int64 nonce = 7;</code>
        * @return The nonce.
        */
       @java.lang.Override
-      public com.google.protobuf.ByteString getNonce() {
+      public long getNonce() {
         return nonce_;
       }
       /**
        * <pre>
        *
-       * 32-byte (random) nonce to identify the pairing session
+       * 64-bit (random) nonce to identify the pairing session
        * </pre>
        *
-       * <code>bytes nonce = 6;</code>
+       * <code>int64 nonce = 7;</code>
        * @param value The nonce to set.
        * @return This builder for chaining.
        */
-      public Builder setNonce(com.google.protobuf.ByteString value) {
-        if (value == null) { throw new NullPointerException(); }
+      public Builder setNonce(long value) {
+
         nonce_ = value;
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000020;
         onChanged();
         return this;
       }
       /**
        * <pre>
        *
-       * 32-byte (random) nonce to identify the pairing session
+       * 64-bit (random) nonce to identify the pairing session
        * </pre>
        *
-       * <code>bytes nonce = 6;</code>
+       * <code>int64 nonce = 7;</code>
        * @return This builder for chaining.
        */
       public Builder clearNonce() {
-        bitField0_ = (bitField0_ & ~0x00000010);
-        nonce_ = getDefaultInstance().getNonce();
+        bitField0_ = (bitField0_ & ~0x00000020);
+        nonce_ = 0L;
         onChanged();
         return this;
       }
@@ -1557,11 +1679,11 @@ public final class Pair {
        * The parameter range for the sender.
        * </pre>
        *
-       * <code>.org.derecalliance.derec.protobuf.ParameterRange parameterRange = 7;</code>
+       * <code>.org.derecalliance.derec.protobuf.ParameterRange parameterRange = 8;</code>
        * @return Whether the parameterRange field is set.
        */
       public boolean hasParameterRange() {
-        return ((bitField0_ & 0x00000020) != 0);
+        return ((bitField0_ & 0x00000040) != 0);
       }
       /**
        * <pre>
@@ -1569,7 +1691,7 @@ public final class Pair {
        * The parameter range for the sender.
        * </pre>
        *
-       * <code>.org.derecalliance.derec.protobuf.ParameterRange parameterRange = 7;</code>
+       * <code>.org.derecalliance.derec.protobuf.ParameterRange parameterRange = 8;</code>
        * @return The parameterRange.
        */
       public org.derecalliance.derec.protobuf.Parameterrange.ParameterRange getParameterRange() {
@@ -1585,7 +1707,7 @@ public final class Pair {
        * The parameter range for the sender.
        * </pre>
        *
-       * <code>.org.derecalliance.derec.protobuf.ParameterRange parameterRange = 7;</code>
+       * <code>.org.derecalliance.derec.protobuf.ParameterRange parameterRange = 8;</code>
        */
       public Builder setParameterRange(org.derecalliance.derec.protobuf.Parameterrange.ParameterRange value) {
         if (parameterRangeBuilder_ == null) {
@@ -1596,7 +1718,7 @@ public final class Pair {
         } else {
           parameterRangeBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000020;
+        bitField0_ |= 0x00000040;
         onChanged();
         return this;
       }
@@ -1606,7 +1728,7 @@ public final class Pair {
        * The parameter range for the sender.
        * </pre>
        *
-       * <code>.org.derecalliance.derec.protobuf.ParameterRange parameterRange = 7;</code>
+       * <code>.org.derecalliance.derec.protobuf.ParameterRange parameterRange = 8;</code>
        */
       public Builder setParameterRange(
           org.derecalliance.derec.protobuf.Parameterrange.ParameterRange.Builder builderForValue) {
@@ -1615,7 +1737,7 @@ public final class Pair {
         } else {
           parameterRangeBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000020;
+        bitField0_ |= 0x00000040;
         onChanged();
         return this;
       }
@@ -1625,11 +1747,11 @@ public final class Pair {
        * The parameter range for the sender.
        * </pre>
        *
-       * <code>.org.derecalliance.derec.protobuf.ParameterRange parameterRange = 7;</code>
+       * <code>.org.derecalliance.derec.protobuf.ParameterRange parameterRange = 8;</code>
        */
       public Builder mergeParameterRange(org.derecalliance.derec.protobuf.Parameterrange.ParameterRange value) {
         if (parameterRangeBuilder_ == null) {
-          if (((bitField0_ & 0x00000020) != 0) &&
+          if (((bitField0_ & 0x00000040) != 0) &&
             parameterRange_ != null &&
             parameterRange_ != org.derecalliance.derec.protobuf.Parameterrange.ParameterRange.getDefaultInstance()) {
             getParameterRangeBuilder().mergeFrom(value);
@@ -1640,7 +1762,7 @@ public final class Pair {
           parameterRangeBuilder_.mergeFrom(value);
         }
         if (parameterRange_ != null) {
-          bitField0_ |= 0x00000020;
+          bitField0_ |= 0x00000040;
           onChanged();
         }
         return this;
@@ -1651,10 +1773,10 @@ public final class Pair {
        * The parameter range for the sender.
        * </pre>
        *
-       * <code>.org.derecalliance.derec.protobuf.ParameterRange parameterRange = 7;</code>
+       * <code>.org.derecalliance.derec.protobuf.ParameterRange parameterRange = 8;</code>
        */
       public Builder clearParameterRange() {
-        bitField0_ = (bitField0_ & ~0x00000020);
+        bitField0_ = (bitField0_ & ~0x00000040);
         parameterRange_ = null;
         if (parameterRangeBuilder_ != null) {
           parameterRangeBuilder_.dispose();
@@ -1669,10 +1791,10 @@ public final class Pair {
        * The parameter range for the sender.
        * </pre>
        *
-       * <code>.org.derecalliance.derec.protobuf.ParameterRange parameterRange = 7;</code>
+       * <code>.org.derecalliance.derec.protobuf.ParameterRange parameterRange = 8;</code>
        */
       public org.derecalliance.derec.protobuf.Parameterrange.ParameterRange.Builder getParameterRangeBuilder() {
-        bitField0_ |= 0x00000020;
+        bitField0_ |= 0x00000040;
         onChanged();
         return getParameterRangeFieldBuilder().getBuilder();
       }
@@ -1682,7 +1804,7 @@ public final class Pair {
        * The parameter range for the sender.
        * </pre>
        *
-       * <code>.org.derecalliance.derec.protobuf.ParameterRange parameterRange = 7;</code>
+       * <code>.org.derecalliance.derec.protobuf.ParameterRange parameterRange = 8;</code>
        */
       public org.derecalliance.derec.protobuf.Parameterrange.ParameterRangeOrBuilder getParameterRangeOrBuilder() {
         if (parameterRangeBuilder_ != null) {
@@ -1698,7 +1820,7 @@ public final class Pair {
        * The parameter range for the sender.
        * </pre>
        *
-       * <code>.org.derecalliance.derec.protobuf.ParameterRange parameterRange = 7;</code>
+       * <code>.org.derecalliance.derec.protobuf.ParameterRange parameterRange = 8;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           org.derecalliance.derec.protobuf.Parameterrange.ParameterRange, org.derecalliance.derec.protobuf.Parameterrange.ParameterRange.Builder, org.derecalliance.derec.protobuf.Parameterrange.ParameterRangeOrBuilder> 
@@ -1884,14 +2006,14 @@ public final class Pair {
     /**
      * <pre>
      *
-     * 32-byte (random) nonce to identify the pairing session;
+     * 64-bit (random) nonce to identify the pairing session;
      * this is the same value as sent in the pairing request
      * </pre>
      *
-     * <code>bytes nonce = 5;</code>
+     * <code>int64 nonce = 5;</code>
      * @return The nonce.
      */
-    com.google.protobuf.ByteString getNonce();
+    long getNonce();
 
     /**
      * <pre>
@@ -1944,7 +2066,6 @@ public final class Pair {
     private PairResponseMessage() {
       senderKind_ = 0;
       publicSignatureKey_ = "";
-      nonce_ = com.google.protobuf.ByteString.EMPTY;
     }
 
     @java.lang.Override
@@ -2125,19 +2246,19 @@ public final class Pair {
     }
 
     public static final int NONCE_FIELD_NUMBER = 5;
-    private com.google.protobuf.ByteString nonce_ = com.google.protobuf.ByteString.EMPTY;
+    private long nonce_ = 0L;
     /**
      * <pre>
      *
-     * 32-byte (random) nonce to identify the pairing session;
+     * 64-bit (random) nonce to identify the pairing session;
      * this is the same value as sent in the pairing request
      * </pre>
      *
-     * <code>bytes nonce = 5;</code>
+     * <code>int64 nonce = 5;</code>
      * @return The nonce.
      */
     @java.lang.Override
-    public com.google.protobuf.ByteString getNonce() {
+    public long getNonce() {
       return nonce_;
     }
 
@@ -2208,8 +2329,8 @@ public final class Pair {
       if (((bitField0_ & 0x00000002) != 0)) {
         output.writeMessage(4, getCommunicationInfo());
       }
-      if (!nonce_.isEmpty()) {
-        output.writeBytes(5, nonce_);
+      if (nonce_ != 0L) {
+        output.writeInt64(5, nonce_);
       }
       if (((bitField0_ & 0x00000004) != 0)) {
         output.writeMessage(6, getParameterRange());
@@ -2238,9 +2359,9 @@ public final class Pair {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(4, getCommunicationInfo());
       }
-      if (!nonce_.isEmpty()) {
+      if (nonce_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(5, nonce_);
+          .computeInt64Size(5, nonce_);
       }
       if (((bitField0_ & 0x00000004) != 0)) {
         size += com.google.protobuf.CodedOutputStream
@@ -2274,8 +2395,8 @@ public final class Pair {
         if (!getCommunicationInfo()
             .equals(other.getCommunicationInfo())) return false;
       }
-      if (!getNonce()
-          .equals(other.getNonce())) return false;
+      if (getNonce()
+          != other.getNonce()) return false;
       if (hasParameterRange() != other.hasParameterRange()) return false;
       if (hasParameterRange()) {
         if (!getParameterRange()
@@ -2305,7 +2426,8 @@ public final class Pair {
         hash = (53 * hash) + getCommunicationInfo().hashCode();
       }
       hash = (37 * hash) + NONCE_FIELD_NUMBER;
-      hash = (53 * hash) + getNonce().hashCode();
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getNonce());
       if (hasParameterRange()) {
         hash = (37 * hash) + PARAMETERRANGE_FIELD_NUMBER;
         hash = (53 * hash) + getParameterRange().hashCode();
@@ -2467,7 +2589,7 @@ public final class Pair {
           communicationInfoBuilder_.dispose();
           communicationInfoBuilder_ = null;
         }
-        nonce_ = com.google.protobuf.ByteString.EMPTY;
+        nonce_ = 0L;
         parameterRange_ = null;
         if (parameterRangeBuilder_ != null) {
           parameterRangeBuilder_.dispose();
@@ -2595,7 +2717,7 @@ public final class Pair {
         if (other.hasCommunicationInfo()) {
           mergeCommunicationInfo(other.getCommunicationInfo());
         }
-        if (other.getNonce() != com.google.protobuf.ByteString.EMPTY) {
+        if (other.getNonce() != 0L) {
           setNonce(other.getNonce());
         }
         if (other.hasParameterRange()) {
@@ -2651,11 +2773,11 @@ public final class Pair {
                 bitField0_ |= 0x00000008;
                 break;
               } // case 34
-              case 42: {
-                nonce_ = input.readBytes();
+              case 40: {
+                nonce_ = input.readInt64();
                 bitField0_ |= 0x00000010;
                 break;
-              } // case 42
+              } // case 40
               case 50: {
                 input.readMessage(
                     getParameterRangeFieldBuilder().getBuilder(),
@@ -3178,34 +3300,34 @@ public final class Pair {
         return communicationInfoBuilder_;
       }
 
-      private com.google.protobuf.ByteString nonce_ = com.google.protobuf.ByteString.EMPTY;
+      private long nonce_ ;
       /**
        * <pre>
        *
-       * 32-byte (random) nonce to identify the pairing session;
+       * 64-bit (random) nonce to identify the pairing session;
        * this is the same value as sent in the pairing request
        * </pre>
        *
-       * <code>bytes nonce = 5;</code>
+       * <code>int64 nonce = 5;</code>
        * @return The nonce.
        */
       @java.lang.Override
-      public com.google.protobuf.ByteString getNonce() {
+      public long getNonce() {
         return nonce_;
       }
       /**
        * <pre>
        *
-       * 32-byte (random) nonce to identify the pairing session;
+       * 64-bit (random) nonce to identify the pairing session;
        * this is the same value as sent in the pairing request
        * </pre>
        *
-       * <code>bytes nonce = 5;</code>
+       * <code>int64 nonce = 5;</code>
        * @param value The nonce to set.
        * @return This builder for chaining.
        */
-      public Builder setNonce(com.google.protobuf.ByteString value) {
-        if (value == null) { throw new NullPointerException(); }
+      public Builder setNonce(long value) {
+
         nonce_ = value;
         bitField0_ |= 0x00000010;
         onChanged();
@@ -3214,16 +3336,16 @@ public final class Pair {
       /**
        * <pre>
        *
-       * 32-byte (random) nonce to identify the pairing session;
+       * 64-bit (random) nonce to identify the pairing session;
        * this is the same value as sent in the pairing request
        * </pre>
        *
-       * <code>bytes nonce = 5;</code>
+       * <code>int64 nonce = 5;</code>
        * @return This builder for chaining.
        */
       public Builder clearNonce() {
         bitField0_ = (bitField0_ & ~0x00000010);
-        nonce_ = getDefaultInstance().getNonce();
+        nonce_ = 0L;
         onChanged();
         return this;
       }
@@ -3478,26 +3600,26 @@ public final class Pair {
     java.lang.String[] descriptorData = {
       "\n\npair.proto\022 org.derecalliance.derec.pr" +
       "otobuf\032\027communicationinfo.proto\032\024paramet" +
-      "errange.proto\032\014result.proto\"\270\002\n\022PairRequ" +
+      "errange.proto\032\014result.proto\"\315\002\n\022PairRequ" +
       "estMessage\022@\n\nsenderKind\030\001 \001(\0162,.org.der" +
       "ecalliance.derec.protobuf.SenderKind\022\032\n\022" +
       "publicSignatureKey\030\003 \001(\t\022\033\n\023publicEncryp" +
-      "tionKey\030\004 \001(\t\022N\n\021communicationInfo\030\005 \001(\013" +
-      "23.org.derecalliance.derec.protobuf.Comm" +
-      "unicationInfo\022\r\n\005nonce\030\006 \001(\014\022H\n\016paramete" +
-      "rRange\030\007 \001(\01320.org.derecalliance.derec.p" +
-      "rotobuf.ParameterRange\"\326\002\n\023PairResponseM" +
-      "essage\0228\n\006result\030\001 \001(\0132(.org.derecallian" +
-      "ce.derec.protobuf.Result\022@\n\nsenderKind\030\002" +
-      " \001(\0162,.org.derecalliance.derec.protobuf." +
-      "SenderKind\022\032\n\022publicSignatureKey\030\003 \001(\t\022N" +
-      "\n\021communicationInfo\030\004 \001(\01323.org.derecall" +
-      "iance.derec.protobuf.CommunicationInfo\022\r" +
-      "\n\005nonce\030\005 \001(\014\022H\n\016parameterRange\030\006 \001(\01320." +
-      "org.derecalliance.derec.protobuf.Paramet" +
-      "erRange*F\n\nSenderKind\022\027\n\023SHARER_NON_RECO" +
-      "VERY\020\000\022\023\n\017SHARER_RECOVERY\020\001\022\n\n\006HELPER\020\002b" +
-      "\006proto3"
+      "tionKey\030\004 \001(\t\022\023\n\013publicKeyId\030\005 \001(\005\022N\n\021co" +
+      "mmunicationInfo\030\006 \001(\01323.org.derecallianc" +
+      "e.derec.protobuf.CommunicationInfo\022\r\n\005no" +
+      "nce\030\007 \001(\003\022H\n\016parameterRange\030\010 \001(\01320.org." +
+      "derecalliance.derec.protobuf.ParameterRa" +
+      "nge\"\326\002\n\023PairResponseMessage\0228\n\006result\030\001 " +
+      "\001(\0132(.org.derecalliance.derec.protobuf.R" +
+      "esult\022@\n\nsenderKind\030\002 \001(\0162,.org.derecall" +
+      "iance.derec.protobuf.SenderKind\022\032\n\022publi" +
+      "cSignatureKey\030\003 \001(\t\022N\n\021communicationInfo" +
+      "\030\004 \001(\01323.org.derecalliance.derec.protobu" +
+      "f.CommunicationInfo\022\r\n\005nonce\030\005 \001(\003\022H\n\016pa" +
+      "rameterRange\030\006 \001(\01320.org.derecalliance.d" +
+      "erec.protobuf.ParameterRange*F\n\nSenderKi" +
+      "nd\022\027\n\023SHARER_NON_RECOVERY\020\000\022\023\n\017SHARER_RE" +
+      "COVERY\020\001\022\n\n\006HELPER\020\002b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -3511,7 +3633,7 @@ public final class Pair {
     internal_static_org_derecalliance_derec_protobuf_PairRequestMessage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_org_derecalliance_derec_protobuf_PairRequestMessage_descriptor,
-        new java.lang.String[] { "SenderKind", "PublicSignatureKey", "PublicEncryptionKey", "CommunicationInfo", "Nonce", "ParameterRange", });
+        new java.lang.String[] { "SenderKind", "PublicSignatureKey", "PublicEncryptionKey", "PublicKeyId", "CommunicationInfo", "Nonce", "ParameterRange", });
     internal_static_org_derecalliance_derec_protobuf_PairResponseMessage_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_org_derecalliance_derec_protobuf_PairResponseMessage_fieldAccessorTable = new

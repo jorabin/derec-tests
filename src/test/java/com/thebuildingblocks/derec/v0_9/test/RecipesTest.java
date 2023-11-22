@@ -17,8 +17,8 @@
 
 package com.thebuildingblocks.derec.v0_9.test;
 
-import com.thebuildingblocks.derec.v0_9.httpprototype.Secret;
-import com.thebuildingblocks.derec.v0_9.httpprototype.Sharer;
+import com.thebuildingblocks.keypr.sharer.Secret;
+import com.thebuildingblocks.keypr.sharer.Sharer;
 import com.thebuildingblocks.keypr.common.TestIds;
 import com.thebuildingblocks.keypr.sharer.tools.Notifier;
 import com.thebuildingblocks.keypr.sharer.tools.TestHelperServer;
@@ -30,7 +30,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.KeyPair;
 import java.util.Arrays;
 
-import static com.thebuildingblocks.derec.v0_9.httpprototype.Cryptography.keyPairGenerator;
+import static com.thebuildingblocks.keypr.common.Cryptography.keyPairGenerator;
 import static com.thebuildingblocks.keypr.common.TestIds.DEFAULT_IDS;
 import static com.thebuildingblocks.keypr.common.TestIds.pemFrom;
 

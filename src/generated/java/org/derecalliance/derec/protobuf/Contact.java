@@ -43,13 +43,30 @@ public final class Contact {
     /**
      * <pre>
      **
-     * 32-byte (random) nonce. This should be given to a party after authenticing.
+     * A number used to later identify the publicEncryptionKey. 
+     * When a message is sent to the creator of this contact, and it is encrypted
+     * with the publicEncryptionKey, this identifier is also sent, so the recipient 
+     * knows which key to use to decrypt it. If the recipient creates multiple 
+     * keys for multiple pairings, then they should remember the publicKeyId that
+     * they chose for each one, so they won't have to try all the keys during decryption. 
      * </pre>
      *
-     * <code>bytes nonce = 2;</code>
+     * <code>int32 publicKeyId = 2;</code>
+     * @return The publicKeyId.
+     */
+    int getPublicKeyId();
+
+    /**
+     * <pre>
+     **
+     * 64-bit (random) nonce to identify the pairing session. 
+     * This should be given to a party after authenticating.
+     * </pre>
+     *
+     * <code>int64 nonce = 3;</code>
      * @return The nonce.
      */
-    com.google.protobuf.ByteString getNonce();
+    long getNonce();
 
     /**
      * <pre>
@@ -58,7 +75,7 @@ public final class Contact {
      * This can be an https endpoint or a rabbitMQ endpoint
      * </pre>
      *
-     * <code>string transportUri = 3;</code>
+     * <code>string transportUri = 4;</code>
      * @return The transportUri.
      */
     java.lang.String getTransportUri();
@@ -69,7 +86,7 @@ public final class Contact {
      * This can be an https endpoint or a rabbitMQ endpoint
      * </pre>
      *
-     * <code>string transportUri = 3;</code>
+     * <code>string transportUri = 4;</code>
      * @return The bytes for transportUri.
      */
     com.google.protobuf.ByteString
@@ -81,7 +98,7 @@ public final class Contact {
      * Message encoding mechanism
      * </pre>
      *
-     * <code>.org.derecalliance.derec.protobuf.ContactMessage.MessageEncodingEnum messageEncodingType = 4;</code>
+     * <code>.org.derecalliance.derec.protobuf.ContactMessage.MessageEncodingEnum messageEncodingType = 5;</code>
      * @return The enum numeric value on the wire for messageEncodingType.
      */
     int getMessageEncodingTypeValue();
@@ -91,7 +108,7 @@ public final class Contact {
      * Message encoding mechanism
      * </pre>
      *
-     * <code>.org.derecalliance.derec.protobuf.ContactMessage.MessageEncodingEnum messageEncodingType = 4;</code>
+     * <code>.org.derecalliance.derec.protobuf.ContactMessage.MessageEncodingEnum messageEncodingType = 5;</code>
      * @return The messageEncodingType.
      */
     org.derecalliance.derec.protobuf.Contact.ContactMessage.MessageEncodingEnum getMessageEncodingType();
@@ -123,7 +140,6 @@ public final class Contact {
     }
     private ContactMessage() {
       publicEncryptionKey_ = "";
-      nonce_ = com.google.protobuf.ByteString.EMPTY;
       transportUri_ = "";
       messageEncodingType_ = 0;
     }
@@ -296,23 +312,45 @@ public final class Contact {
       }
     }
 
-    public static final int NONCE_FIELD_NUMBER = 2;
-    private com.google.protobuf.ByteString nonce_ = com.google.protobuf.ByteString.EMPTY;
+    public static final int PUBLICKEYID_FIELD_NUMBER = 2;
+    private int publicKeyId_ = 0;
     /**
      * <pre>
      **
-     * 32-byte (random) nonce. This should be given to a party after authenticing.
+     * A number used to later identify the publicEncryptionKey. 
+     * When a message is sent to the creator of this contact, and it is encrypted
+     * with the publicEncryptionKey, this identifier is also sent, so the recipient 
+     * knows which key to use to decrypt it. If the recipient creates multiple 
+     * keys for multiple pairings, then they should remember the publicKeyId that
+     * they chose for each one, so they won't have to try all the keys during decryption. 
      * </pre>
      *
-     * <code>bytes nonce = 2;</code>
+     * <code>int32 publicKeyId = 2;</code>
+     * @return The publicKeyId.
+     */
+    @java.lang.Override
+    public int getPublicKeyId() {
+      return publicKeyId_;
+    }
+
+    public static final int NONCE_FIELD_NUMBER = 3;
+    private long nonce_ = 0L;
+    /**
+     * <pre>
+     **
+     * 64-bit (random) nonce to identify the pairing session. 
+     * This should be given to a party after authenticating.
+     * </pre>
+     *
+     * <code>int64 nonce = 3;</code>
      * @return The nonce.
      */
     @java.lang.Override
-    public com.google.protobuf.ByteString getNonce() {
+    public long getNonce() {
       return nonce_;
     }
 
-    public static final int TRANSPORTURI_FIELD_NUMBER = 3;
+    public static final int TRANSPORTURI_FIELD_NUMBER = 4;
     @SuppressWarnings("serial")
     private volatile java.lang.Object transportUri_ = "";
     /**
@@ -322,7 +360,7 @@ public final class Contact {
      * This can be an https endpoint or a rabbitMQ endpoint
      * </pre>
      *
-     * <code>string transportUri = 3;</code>
+     * <code>string transportUri = 4;</code>
      * @return The transportUri.
      */
     @java.lang.Override
@@ -345,7 +383,7 @@ public final class Contact {
      * This can be an https endpoint or a rabbitMQ endpoint
      * </pre>
      *
-     * <code>string transportUri = 3;</code>
+     * <code>string transportUri = 4;</code>
      * @return The bytes for transportUri.
      */
     @java.lang.Override
@@ -363,7 +401,7 @@ public final class Contact {
       }
     }
 
-    public static final int MESSAGEENCODINGTYPE_FIELD_NUMBER = 4;
+    public static final int MESSAGEENCODINGTYPE_FIELD_NUMBER = 5;
     private int messageEncodingType_ = 0;
     /**
      * <pre>
@@ -371,7 +409,7 @@ public final class Contact {
      * Message encoding mechanism
      * </pre>
      *
-     * <code>.org.derecalliance.derec.protobuf.ContactMessage.MessageEncodingEnum messageEncodingType = 4;</code>
+     * <code>.org.derecalliance.derec.protobuf.ContactMessage.MessageEncodingEnum messageEncodingType = 5;</code>
      * @return The enum numeric value on the wire for messageEncodingType.
      */
     @java.lang.Override public int getMessageEncodingTypeValue() {
@@ -383,7 +421,7 @@ public final class Contact {
      * Message encoding mechanism
      * </pre>
      *
-     * <code>.org.derecalliance.derec.protobuf.ContactMessage.MessageEncodingEnum messageEncodingType = 4;</code>
+     * <code>.org.derecalliance.derec.protobuf.ContactMessage.MessageEncodingEnum messageEncodingType = 5;</code>
      * @return The messageEncodingType.
      */
     @java.lang.Override public org.derecalliance.derec.protobuf.Contact.ContactMessage.MessageEncodingEnum getMessageEncodingType() {
@@ -408,14 +446,17 @@ public final class Contact {
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(publicEncryptionKey_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, publicEncryptionKey_);
       }
-      if (!nonce_.isEmpty()) {
-        output.writeBytes(2, nonce_);
+      if (publicKeyId_ != 0) {
+        output.writeInt32(2, publicKeyId_);
+      }
+      if (nonce_ != 0L) {
+        output.writeInt64(3, nonce_);
       }
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(transportUri_)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, transportUri_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, transportUri_);
       }
       if (messageEncodingType_ != org.derecalliance.derec.protobuf.Contact.ContactMessage.MessageEncodingEnum.Protobuf.getNumber()) {
-        output.writeEnum(4, messageEncodingType_);
+        output.writeEnum(5, messageEncodingType_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -429,16 +470,20 @@ public final class Contact {
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(publicEncryptionKey_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, publicEncryptionKey_);
       }
-      if (!nonce_.isEmpty()) {
+      if (publicKeyId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, nonce_);
+          .computeInt32Size(2, publicKeyId_);
+      }
+      if (nonce_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(3, nonce_);
       }
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(transportUri_)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, transportUri_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, transportUri_);
       }
       if (messageEncodingType_ != org.derecalliance.derec.protobuf.Contact.ContactMessage.MessageEncodingEnum.Protobuf.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(4, messageEncodingType_);
+          .computeEnumSize(5, messageEncodingType_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -457,8 +502,10 @@ public final class Contact {
 
       if (!getPublicEncryptionKey()
           .equals(other.getPublicEncryptionKey())) return false;
-      if (!getNonce()
-          .equals(other.getNonce())) return false;
+      if (getPublicKeyId()
+          != other.getPublicKeyId()) return false;
+      if (getNonce()
+          != other.getNonce()) return false;
       if (!getTransportUri()
           .equals(other.getTransportUri())) return false;
       if (messageEncodingType_ != other.messageEncodingType_) return false;
@@ -475,8 +522,11 @@ public final class Contact {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + PUBLICENCRYPTIONKEY_FIELD_NUMBER;
       hash = (53 * hash) + getPublicEncryptionKey().hashCode();
+      hash = (37 * hash) + PUBLICKEYID_FIELD_NUMBER;
+      hash = (53 * hash) + getPublicKeyId();
       hash = (37 * hash) + NONCE_FIELD_NUMBER;
-      hash = (53 * hash) + getNonce().hashCode();
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getNonce());
       hash = (37 * hash) + TRANSPORTURI_FIELD_NUMBER;
       hash = (53 * hash) + getTransportUri().hashCode();
       hash = (37 * hash) + MESSAGEENCODINGTYPE_FIELD_NUMBER;
@@ -626,7 +676,8 @@ public final class Contact {
         super.clear();
         bitField0_ = 0;
         publicEncryptionKey_ = "";
-        nonce_ = com.google.protobuf.ByteString.EMPTY;
+        publicKeyId_ = 0;
+        nonce_ = 0L;
         transportUri_ = "";
         messageEncodingType_ = 0;
         return this;
@@ -666,12 +717,15 @@ public final class Contact {
           result.publicEncryptionKey_ = publicEncryptionKey_;
         }
         if (((from_bitField0_ & 0x00000002) != 0)) {
-          result.nonce_ = nonce_;
+          result.publicKeyId_ = publicKeyId_;
         }
         if (((from_bitField0_ & 0x00000004) != 0)) {
-          result.transportUri_ = transportUri_;
+          result.nonce_ = nonce_;
         }
         if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.transportUri_ = transportUri_;
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
           result.messageEncodingType_ = messageEncodingType_;
         }
       }
@@ -725,12 +779,15 @@ public final class Contact {
           bitField0_ |= 0x00000001;
           onChanged();
         }
-        if (other.getNonce() != com.google.protobuf.ByteString.EMPTY) {
+        if (other.getPublicKeyId() != 0) {
+          setPublicKeyId(other.getPublicKeyId());
+        }
+        if (other.getNonce() != 0L) {
           setNonce(other.getNonce());
         }
         if (!other.getTransportUri().isEmpty()) {
           transportUri_ = other.transportUri_;
-          bitField0_ |= 0x00000004;
+          bitField0_ |= 0x00000008;
           onChanged();
         }
         if (other.messageEncodingType_ != 0) {
@@ -767,21 +824,26 @@ public final class Contact {
                 bitField0_ |= 0x00000001;
                 break;
               } // case 10
-              case 18: {
-                nonce_ = input.readBytes();
+              case 16: {
+                publicKeyId_ = input.readInt32();
                 bitField0_ |= 0x00000002;
                 break;
-              } // case 18
-              case 26: {
-                transportUri_ = input.readStringRequireUtf8();
+              } // case 16
+              case 24: {
+                nonce_ = input.readInt64();
                 bitField0_ |= 0x00000004;
                 break;
-              } // case 26
-              case 32: {
-                messageEncodingType_ = input.readEnum();
+              } // case 24
+              case 34: {
+                transportUri_ = input.readStringRequireUtf8();
                 bitField0_ |= 0x00000008;
                 break;
-              } // case 32
+              } // case 34
+              case 40: {
+                messageEncodingType_ = input.readEnum();
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 40
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -896,33 +958,43 @@ public final class Contact {
         return this;
       }
 
-      private com.google.protobuf.ByteString nonce_ = com.google.protobuf.ByteString.EMPTY;
+      private int publicKeyId_ ;
       /**
        * <pre>
        **
-       * 32-byte (random) nonce. This should be given to a party after authenticing.
+       * A number used to later identify the publicEncryptionKey. 
+       * When a message is sent to the creator of this contact, and it is encrypted
+       * with the publicEncryptionKey, this identifier is also sent, so the recipient 
+       * knows which key to use to decrypt it. If the recipient creates multiple 
+       * keys for multiple pairings, then they should remember the publicKeyId that
+       * they chose for each one, so they won't have to try all the keys during decryption. 
        * </pre>
        *
-       * <code>bytes nonce = 2;</code>
-       * @return The nonce.
+       * <code>int32 publicKeyId = 2;</code>
+       * @return The publicKeyId.
        */
       @java.lang.Override
-      public com.google.protobuf.ByteString getNonce() {
-        return nonce_;
+      public int getPublicKeyId() {
+        return publicKeyId_;
       }
       /**
        * <pre>
        **
-       * 32-byte (random) nonce. This should be given to a party after authenticing.
+       * A number used to later identify the publicEncryptionKey. 
+       * When a message is sent to the creator of this contact, and it is encrypted
+       * with the publicEncryptionKey, this identifier is also sent, so the recipient 
+       * knows which key to use to decrypt it. If the recipient creates multiple 
+       * keys for multiple pairings, then they should remember the publicKeyId that
+       * they chose for each one, so they won't have to try all the keys during decryption. 
        * </pre>
        *
-       * <code>bytes nonce = 2;</code>
-       * @param value The nonce to set.
+       * <code>int32 publicKeyId = 2;</code>
+       * @param value The publicKeyId to set.
        * @return This builder for chaining.
        */
-      public Builder setNonce(com.google.protobuf.ByteString value) {
-        if (value == null) { throw new NullPointerException(); }
-        nonce_ = value;
+      public Builder setPublicKeyId(int value) {
+
+        publicKeyId_ = value;
         bitField0_ |= 0x00000002;
         onChanged();
         return this;
@@ -930,15 +1002,70 @@ public final class Contact {
       /**
        * <pre>
        **
-       * 32-byte (random) nonce. This should be given to a party after authenticing.
+       * A number used to later identify the publicEncryptionKey. 
+       * When a message is sent to the creator of this contact, and it is encrypted
+       * with the publicEncryptionKey, this identifier is also sent, so the recipient 
+       * knows which key to use to decrypt it. If the recipient creates multiple 
+       * keys for multiple pairings, then they should remember the publicKeyId that
+       * they chose for each one, so they won't have to try all the keys during decryption. 
        * </pre>
        *
-       * <code>bytes nonce = 2;</code>
+       * <code>int32 publicKeyId = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPublicKeyId() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        publicKeyId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private long nonce_ ;
+      /**
+       * <pre>
+       **
+       * 64-bit (random) nonce to identify the pairing session. 
+       * This should be given to a party after authenticating.
+       * </pre>
+       *
+       * <code>int64 nonce = 3;</code>
+       * @return The nonce.
+       */
+      @java.lang.Override
+      public long getNonce() {
+        return nonce_;
+      }
+      /**
+       * <pre>
+       **
+       * 64-bit (random) nonce to identify the pairing session. 
+       * This should be given to a party after authenticating.
+       * </pre>
+       *
+       * <code>int64 nonce = 3;</code>
+       * @param value The nonce to set.
+       * @return This builder for chaining.
+       */
+      public Builder setNonce(long value) {
+
+        nonce_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       **
+       * 64-bit (random) nonce to identify the pairing session. 
+       * This should be given to a party after authenticating.
+       * </pre>
+       *
+       * <code>int64 nonce = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearNonce() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        nonce_ = getDefaultInstance().getNonce();
+        bitField0_ = (bitField0_ & ~0x00000004);
+        nonce_ = 0L;
         onChanged();
         return this;
       }
@@ -951,7 +1078,7 @@ public final class Contact {
        * This can be an https endpoint or a rabbitMQ endpoint
        * </pre>
        *
-       * <code>string transportUri = 3;</code>
+       * <code>string transportUri = 4;</code>
        * @return The transportUri.
        */
       public java.lang.String getTransportUri() {
@@ -973,7 +1100,7 @@ public final class Contact {
        * This can be an https endpoint or a rabbitMQ endpoint
        * </pre>
        *
-       * <code>string transportUri = 3;</code>
+       * <code>string transportUri = 4;</code>
        * @return The bytes for transportUri.
        */
       public com.google.protobuf.ByteString
@@ -996,7 +1123,7 @@ public final class Contact {
        * This can be an https endpoint or a rabbitMQ endpoint
        * </pre>
        *
-       * <code>string transportUri = 3;</code>
+       * <code>string transportUri = 4;</code>
        * @param value The transportUri to set.
        * @return This builder for chaining.
        */
@@ -1004,7 +1131,7 @@ public final class Contact {
           java.lang.String value) {
         if (value == null) { throw new NullPointerException(); }
         transportUri_ = value;
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -1015,12 +1142,12 @@ public final class Contact {
        * This can be an https endpoint or a rabbitMQ endpoint
        * </pre>
        *
-       * <code>string transportUri = 3;</code>
+       * <code>string transportUri = 4;</code>
        * @return This builder for chaining.
        */
       public Builder clearTransportUri() {
         transportUri_ = getDefaultInstance().getTransportUri();
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000008);
         onChanged();
         return this;
       }
@@ -1031,7 +1158,7 @@ public final class Contact {
        * This can be an https endpoint or a rabbitMQ endpoint
        * </pre>
        *
-       * <code>string transportUri = 3;</code>
+       * <code>string transportUri = 4;</code>
        * @param value The bytes for transportUri to set.
        * @return This builder for chaining.
        */
@@ -1040,7 +1167,7 @@ public final class Contact {
         if (value == null) { throw new NullPointerException(); }
         checkByteStringIsUtf8(value);
         transportUri_ = value;
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -1052,7 +1179,7 @@ public final class Contact {
        * Message encoding mechanism
        * </pre>
        *
-       * <code>.org.derecalliance.derec.protobuf.ContactMessage.MessageEncodingEnum messageEncodingType = 4;</code>
+       * <code>.org.derecalliance.derec.protobuf.ContactMessage.MessageEncodingEnum messageEncodingType = 5;</code>
        * @return The enum numeric value on the wire for messageEncodingType.
        */
       @java.lang.Override public int getMessageEncodingTypeValue() {
@@ -1064,13 +1191,13 @@ public final class Contact {
        * Message encoding mechanism
        * </pre>
        *
-       * <code>.org.derecalliance.derec.protobuf.ContactMessage.MessageEncodingEnum messageEncodingType = 4;</code>
+       * <code>.org.derecalliance.derec.protobuf.ContactMessage.MessageEncodingEnum messageEncodingType = 5;</code>
        * @param value The enum numeric value on the wire for messageEncodingType to set.
        * @return This builder for chaining.
        */
       public Builder setMessageEncodingTypeValue(int value) {
         messageEncodingType_ = value;
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -1080,7 +1207,7 @@ public final class Contact {
        * Message encoding mechanism
        * </pre>
        *
-       * <code>.org.derecalliance.derec.protobuf.ContactMessage.MessageEncodingEnum messageEncodingType = 4;</code>
+       * <code>.org.derecalliance.derec.protobuf.ContactMessage.MessageEncodingEnum messageEncodingType = 5;</code>
        * @return The messageEncodingType.
        */
       @java.lang.Override
@@ -1094,7 +1221,7 @@ public final class Contact {
        * Message encoding mechanism
        * </pre>
        *
-       * <code>.org.derecalliance.derec.protobuf.ContactMessage.MessageEncodingEnum messageEncodingType = 4;</code>
+       * <code>.org.derecalliance.derec.protobuf.ContactMessage.MessageEncodingEnum messageEncodingType = 5;</code>
        * @param value The messageEncodingType to set.
        * @return This builder for chaining.
        */
@@ -1102,7 +1229,7 @@ public final class Contact {
         if (value == null) {
           throw new NullPointerException();
         }
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000010;
         messageEncodingType_ = value.getNumber();
         onChanged();
         return this;
@@ -1113,11 +1240,11 @@ public final class Contact {
        * Message encoding mechanism
        * </pre>
        *
-       * <code>.org.derecalliance.derec.protobuf.ContactMessage.MessageEncodingEnum messageEncodingType = 4;</code>
+       * <code>.org.derecalliance.derec.protobuf.ContactMessage.MessageEncodingEnum messageEncodingType = 5;</code>
        * @return This builder for chaining.
        */
       public Builder clearMessageEncodingType() {
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000010);
         messageEncodingType_ = 0;
         onChanged();
         return this;
@@ -1201,12 +1328,13 @@ public final class Contact {
   static {
     java.lang.String[] descriptorData = {
       "\n\rcontact.proto\022 org.derecalliance.derec" +
-      ".protobuf\"\332\001\n\016ContactMessage\022\033\n\023publicEn" +
-      "cryptionKey\030\001 \001(\t\022\r\n\005nonce\030\002 \001(\014\022\024\n\014tran" +
-      "sportUri\030\003 \001(\t\022a\n\023messageEncodingType\030\004 " +
-      "\001(\0162D.org.derecalliance.derec.protobuf.C" +
-      "ontactMessage.MessageEncodingEnum\"#\n\023Mes" +
-      "sageEncodingEnum\022\014\n\010Protobuf\020\000b\006proto3"
+      ".protobuf\"\357\001\n\016ContactMessage\022\033\n\023publicEn" +
+      "cryptionKey\030\001 \001(\t\022\023\n\013publicKeyId\030\002 \001(\005\022\r" +
+      "\n\005nonce\030\003 \001(\003\022\024\n\014transportUri\030\004 \001(\t\022a\n\023m" +
+      "essageEncodingType\030\005 \001(\0162D.org.derecalli" +
+      "ance.derec.protobuf.ContactMessage.Messa" +
+      "geEncodingEnum\"#\n\023MessageEncodingEnum\022\014\n" +
+      "\010Protobuf\020\000b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -1217,7 +1345,7 @@ public final class Contact {
     internal_static_org_derecalliance_derec_protobuf_ContactMessage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_org_derecalliance_derec_protobuf_ContactMessage_descriptor,
-        new java.lang.String[] { "PublicEncryptionKey", "Nonce", "TransportUri", "MessageEncodingType", });
+        new java.lang.String[] { "PublicEncryptionKey", "PublicKeyId", "Nonce", "TransportUri", "MessageEncodingType", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

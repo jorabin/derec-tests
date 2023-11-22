@@ -15,8 +15,9 @@
  * limitations under the License.
  */
 
-package com.thebuildingblocks.derec.v0_9.httpprototype;
+package com.thebuildingblocks.keypr.helper;
 
+import com.thebuildingblocks.keypr.common.Util;
 import org.derecalliance.derec.api.DeRecIdentity;
 
 import java.net.URI;

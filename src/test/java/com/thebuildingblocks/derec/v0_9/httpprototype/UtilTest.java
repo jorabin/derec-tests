@@ -1,5 +1,6 @@
 package com.thebuildingblocks.derec.v0_9.httpprototype;
 
+import com.thebuildingblocks.keypr.common.Util;
 import org.junit.Test;
 
 import java.util.UUID;
