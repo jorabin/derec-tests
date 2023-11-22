@@ -77,12 +77,12 @@ public class RecoveryTest {
 
 
             // secrets should have same helpers
-            Set<DeRecIdentity> helpers1 = secret1.helpers.stream()
-                    .filter(h -> h.status.equals(DeRecHelperStatus.PairingStatus.PAIRED))
+            Set<DeRecIdentity> helpers1 = secret1.getHelpers().stream()
+                    .filter(h -> h.getStatus().equals(DeRecHelperStatus.PairingStatus.PAIRED))
                     .map(HelperClient::getId)
                     .collect(Collectors.toSet());
-            Set<DeRecIdentity> helpers2 = secret2.helpers.stream()
-                    .filter(h -> h.status.equals(DeRecHelperStatus.PairingStatus.PAIRED))
+            Set<DeRecIdentity> helpers2 = secret2.getHelpers().stream()
+                    .filter(h -> h.getStatus().equals(DeRecHelperStatus.PairingStatus.PAIRED))
                     .map(HelperClient::getId)
                     .collect(Collectors.toSet());
             helpers2.removeAll(helpers1);
@@ -103,7 +103,7 @@ public class RecoveryTest {
 
                     assertTrue(secretIdsVersions.containsKey(secret2.getSecretId()));
                     assertEquals(identity.getName(),1, secretIdsVersions.get(secret2.getSecretId()).size());
-                    assertArrayEquals(secretIdsVersions.get(secret2.getSecretId()).toArray(), secret2.versions.keySet().toArray());
+                    assertArrayEquals(secretIdsVersions.get(secret2.getSecretId()).toArray(), secret2.getVersions().keySet().toArray());
                     logger.info("Completed {}", identity.getName());
                 } catch (ExecutionException | TimeoutException | InterruptedException e) {
                     fail(e.getMessage());
