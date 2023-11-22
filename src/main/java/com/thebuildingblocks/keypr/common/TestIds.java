@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package com.thebuildingblocks.derec.v0_9.test;
+package com.thebuildingblocks.keypr.common;
 
 import org.derecalliance.derec.api.DeRecIdentity;
 

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package com.thebuildingblocks.derec.v0_9.test;
+package com.thebuildingblocks.keypr.sharer.tools;
 
 import com.thebuildingblocks.derec.v0_9.httpprototype.Secret;
 import com.thebuildingblocks.derec.v0_9.httpprototype.Sharer;

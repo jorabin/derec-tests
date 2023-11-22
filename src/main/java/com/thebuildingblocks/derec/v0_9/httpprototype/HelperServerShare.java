@@ -24,7 +24,6 @@ import org.derecalliance.derec.api.DeRecIdentity;
 import org.derecalliance.derec.api.DeRecSecret;
 
 import java.util.List;
-import java.util.Map;
 
 public class HelperServerShare {
 
@@ -35,9 +34,9 @@ public class HelperServerShare {
     }
 
     public interface Storage {
-        void putShare(ByteString sha384Hash, HelperServerShare share);
+        void putShare(ByteString id, HelperServerShare share);
 
-        List<HelperServerShare> getShares (ByteString sha384Hash);
+        List<HelperServerShare> getShares (ByteString id);
     }
     DeRecSecret.Id secretId;
     int version;

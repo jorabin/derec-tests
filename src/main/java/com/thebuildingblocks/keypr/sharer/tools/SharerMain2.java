@@ -15,50 +15,56 @@
  * limitations under the License.
  */
 
-package com.thebuildingblocks.derec.v0_9.test;
+package com.thebuildingblocks.keypr.sharer.tools;
 
 import com.thebuildingblocks.derec.v0_9.httpprototype.Secret;
 import com.thebuildingblocks.derec.v0_9.httpprototype.Sharer;
-import org.derecalliance.derec.api.*;
+import com.thebuildingblocks.derec.v0_9.httpprototype.Version;
+import org.derecalliance.derec.api.DeRecIdentity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.nio.charset.StandardCharsets;
 import java.security.KeyPair;
-import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 import static com.thebuildingblocks.derec.v0_9.httpprototype.Cryptography.keyPairGenerator;
-import static com.thebuildingblocks.derec.v0_9.test.TestIds.DEFAULT_IDS;
-import static com.thebuildingblocks.derec.v0_9.test.TestIds.pemFrom;
+import static com.thebuildingblocks.keypr.common.TestIds.DEFAULT_IDS;
+import static com.thebuildingblocks.keypr.common.TestIds.pemFrom;
 
 /**
  * Illustration of use of classes
  */
-public class SharerMain {
-    static Logger logger = LoggerFactory.getLogger(SharerMain.class);
+public class SharerMain2 {
+    static Logger logger = LoggerFactory.getLogger(SharerMain2.class);
 
-    public static void main(String[] args) {
-        new SharerMain().run();
+    public static void main(String[] args) throws InterruptedException {
+        new SharerMain2().run();
     }
 
-    public void run() {
+    public void run() throws InterruptedException {
 
         KeyPair keyPair = keyPairGenerator.generateKeyPair();
         String pem = pemFrom(keyPair.getPublic());
         // build a sharer
         Sharer me = Sharer.newBuilder()
-                .id(new DeRecIdentity("Secret Sammy", "mailto:test@example.org", null, pem))
-                .keyPair(keyPairGenerator.generateKeyPair())
+                .id(new DeRecIdentity("Incremental Inge", "mailto:test@example.org", null, pem))
+                .keyPair(keyPair)
                 .notificationListener(Notifier::logNotification)
                 .build();
         // get a secret
-        logger.info("Building a secret, wait for it to be recoverable");
-        Secret secret = me.newSecret("Martin Luther", "I have a dream".getBytes(StandardCharsets.UTF_8),
-                Arrays.asList(DEFAULT_IDS));
+        logger.info("Building a secret, no helpers yet");
+        Secret secret = me.newSecret("Martin Luther", "I have a dream".getBytes(StandardCharsets.UTF_8));
         // get last version shared - in this case the first version shared
-        DeRecVersion v = secret.getVersions().lastEntry().getValue();
+        Version v = (Version) secret.getVersions().lastEntry().getValue();
         logger.info("Secret version: {}, is protected: {}", v.getVersionNumber(), v.isProtected());
+
+        for (DeRecIdentity helperInfo: DEFAULT_IDS) {
+            Thread.sleep(5000);
+            logger.info("Pairing with {}", helperInfo.getName());
+            secret.addHelpersAsync(List.of(helperInfo));
+        }
 
         // update the secret
         logger.info("Updating the secret");
@@ -68,20 +74,6 @@ public class SharerMain {
         logger.info("Closing secret {}", secret.getSecretIdAsUuid());
         // dispose of it
         secret.close();
-
-
-/*        try {
-            // should not be able to update after close
-            secret.update("throw me an exception".getBytes(StandardCharsets.UTF_8));
-            throw new AssertionError("can't update after close");
-        } catch (IllegalStateException e) {
-            // correctly throwing exception
-            logger.info("[Expected] Exception on update secret", e);
-        }*/
-
-        DeRecSecret secret2 = me.newSecret("Genghis Khan", "Something".getBytes(StandardCharsets.UTF_8),
-                Arrays.asList(DEFAULT_IDS));
-
 
         System.out.println("Hit enter to exit");
         Scanner scanner = new Scanner(System.in);

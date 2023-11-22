@@ -17,10 +17,10 @@
 
 package com.thebuildingblocks.derec.v0_9.httpprototype;
 
-import com.thebuildingblocks.derec.v0_9.test.Recipes;
-import com.thebuildingblocks.derec.v0_9.test.TestHelperServer;
-import com.thebuildingblocks.derec.v0_9.test.Notifier;
-import com.thebuildingblocks.derec.v0_9.test.TestIds;
+import com.thebuildingblocks.keypr.sharer.tools.Recipes;
+import com.thebuildingblocks.keypr.sharer.tools.TestHelperServer;
+import com.thebuildingblocks.keypr.sharer.tools.Notifier;
+import com.thebuildingblocks.keypr.common.TestIds;
 import org.derecalliance.derec.api.DeRecHelperStatus;
 import org.derecalliance.derec.api.DeRecIdentity;
 import org.derecalliance.derec.api.DeRecSecret;
@@ -36,8 +36,8 @@ import java.util.concurrent.*;
 import java.util.stream.Collectors;
 
 import static com.thebuildingblocks.derec.v0_9.httpprototype.Cryptography.keyPairGenerator;
-import static com.thebuildingblocks.derec.v0_9.test.TestIds.DEFAULT_IDS;
-import static com.thebuildingblocks.derec.v0_9.test.TestIds.pemFrom;
+import static com.thebuildingblocks.keypr.common.TestIds.DEFAULT_IDS;
+import static com.thebuildingblocks.keypr.common.TestIds.pemFrom;
 import static org.junit.Assert.*;
 
 public class RecoveryTest {

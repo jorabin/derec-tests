@@ -25,7 +25,7 @@ import java.util.function.Function;
 /**
  * Helpers to assist in use of {@link java.net.http.HttpClient}
  */
-public class HttpHelper {
+public class HttpClientHelper {
     /**
      * function to check response is 200 and return the body as an input stream  or throw exception if not
      */

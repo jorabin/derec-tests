@@ -19,6 +19,9 @@ package com.thebuildingblocks.derec.v0_9.test;
 
 import com.thebuildingblocks.derec.v0_9.httpprototype.Secret;
 import com.thebuildingblocks.derec.v0_9.httpprototype.Sharer;
+import com.thebuildingblocks.keypr.common.TestIds;
+import com.thebuildingblocks.keypr.sharer.tools.Notifier;
+import com.thebuildingblocks.keypr.sharer.tools.TestHelperServer;
 import org.derecalliance.derec.api.DeRecIdentity;
 import org.junit.*;
 
@@ -28,8 +31,8 @@ import java.security.KeyPair;
 import java.util.Arrays;
 
 import static com.thebuildingblocks.derec.v0_9.httpprototype.Cryptography.keyPairGenerator;
-import static com.thebuildingblocks.derec.v0_9.test.TestIds.DEFAULT_IDS;
-import static com.thebuildingblocks.derec.v0_9.test.TestIds.pemFrom;
+import static com.thebuildingblocks.keypr.common.TestIds.DEFAULT_IDS;
+import static com.thebuildingblocks.keypr.common.TestIds.pemFrom;
 
 public class RecipesTest {
     static TestHelperServer server;

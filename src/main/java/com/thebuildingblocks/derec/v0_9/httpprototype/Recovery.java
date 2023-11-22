@@ -85,7 +85,7 @@ public class Recovery {
         // send the request
         return httpClient.sendAsync(httpRequest, HttpResponse.BodyHandlers.ofInputStream())
                 // check the status, throw exception if not 200,n exception is caught below
-                .thenApply(HttpHelper.httpStatusChecker)
+                .thenApply(HttpClientHelper.httpStatusChecker)
                 // process the input stream which is the response message
                 .thenApply(r -> {
                     // deserialize the message
@@ -118,7 +118,7 @@ public class Recovery {
                     // report failure
                     listener.accept(Notification.newBuilder()
                             .severity(WARNING)
-                            .message(HttpHelper.getMessageForException(t))
+                            .message(HttpClientHelper.getMessageForException(t))
                             .build(LIST_SECRET_FAILED));
                     return result;
                 });
