@@ -59,5 +59,23 @@
 			<version>4.13.2</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.derecalliance.derec</groupId>
+			<artifactId>derec-api</artifactId>
+			<version>0.9-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
+	<!-- snapshot builds of derec-api-java are held in GitHub packages
+these are not public and can't be accessed without a PAT
+put in the servers/server/password section of user's local settings.xml
+see ./devcontainers.settings.xml -->
+	<repositories>
+		<repository>
+			<id>tbb-github</id>
+			<url>https://maven.pkg.github.com/the-building-blocks/*</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 </project>
